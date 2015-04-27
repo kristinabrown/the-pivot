@@ -18,5 +18,4 @@ class CreateBeers < ActiveRecord::Migration
   def down
     remove_attachment :beers, :image
   end
-
 end
