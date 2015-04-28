@@ -1,0 +1,15 @@
+<%= form_for(@user, url: users_path) do |f| %>
+  <%= f.label :fullname %>
+  <%= f.text_field :fullname %>
+  <%= f.label :display_name %>
+  <%= f.text_field :display_name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit "Submit" %>
+<% end %>

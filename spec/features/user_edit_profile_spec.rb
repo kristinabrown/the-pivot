@@ -18,4 +18,5 @@ feature "a user is able to edit" do
     expect(page).to_not have_content("MCProdigy@gmail.com")
     expect(page).to have_content("Wigmaster@hotmail.com")
   end 
+
 end

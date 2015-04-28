@@ -8,6 +8,28 @@
 </head>
 <body>
 
+<nav class="top_nav">
+  <ul>
+    <li>Login</li>
+    <li><%= link_to 'Register', new_users_path %></li>
+    <li>Shopping Cart</li>
+  </ul>
+</nav>
+
+<nav class="main">
+  <ul>
+    <li>Story</li>
+    <li>Drink</li>
+    <li>Logo</li>
+    <li>Find</li>
+    <li>Contact</li>
+  </ul>
+</nav>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :class => "flash_#{name}" %>
+<% end %>
+
 <%= yield %>
 
 </body>
