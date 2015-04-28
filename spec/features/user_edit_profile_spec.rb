@@ -3,7 +3,7 @@ require "rails_helper"
 feature "a user is able to edit" do 
   let(:user) {User.create({fullname: "Wolfgang Mozart", username: "Wolfie", email: "MCProdigy@gmail.com", password: "password", password_confirmation: "password", phone_number: "303-675-1234", role: 0})}
 
-  scenario "his/her profile" do 
+  xscenario "his/her profile" do 
     visit user_path
     click_link "Edit Profile"
     expect(page).to have_content("Wolfgang Mozart")

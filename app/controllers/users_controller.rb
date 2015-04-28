@@ -15,10 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    # @user = User.find_by(email: user_params[:email])
-  end
-
   private
 
  def user_params
