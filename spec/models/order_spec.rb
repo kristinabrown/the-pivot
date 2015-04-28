@@ -42,6 +42,30 @@ RSpec.describe Order, type: :model do
     it "responds to beers" do
       expect(order.beers).to eq([])
     end
+    
+    it "validates status" do
+      order = Order.new(user_id: User.first.id, 
+                        status: "ordered",
+                        total: 1000)
+      order1 = Order.new(user_id: User.first.id, 
+                        status: "completed",
+                        total: 1000)
+      order2 = Order.new(user_id: User.first.id, 
+                        status: "cancelled",
+                        total: 1000)
+      order3 = Order.new(user_id: User.first.id, 
+                        status: "paid",
+                        total: 1000)
+      order4 = Order.new(user_id: User.first.id, 
+                        status: "poured",
+                        total: 1000)
+                        
+      expect(order4).to_not be_valid
+      expect(order1).to be_valid
+      expect(order2).to be_valid
+      expect(order3).to be_valid
+      expect(order).to be_valid
+    end
   end
 end
   
