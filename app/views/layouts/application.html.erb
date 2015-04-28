@@ -10,7 +10,11 @@
 
 <nav class="top_nav">
   <ul>
-    <li>Login</li>
+    <% if current_user %>
+    <li><%= link_to "Logout", logout_path, method: :delete %></li>
+    <% else %>
+    <li><%= link_to "Login", login_path %></li>
+    <% end %>
     <li><%= link_to 'Register', new_users_path %></li>
     <li>Shopping Cart</li>
   </ul>
@@ -19,7 +23,7 @@
 <nav class="main">
   <ul>
     <li>Story</li>
-    <li>Drink</li>
+    <li><%= link_to "Drinks", beers_path %></li>
     <li>Logo</li>
     <li>Find</li>
     <li>Contact</li>
