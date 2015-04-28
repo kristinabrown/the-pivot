@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
       expect(User.where(email: "example@example.org").count).to eq(1)
     end
     
-    xit "it has a display name between 2-32 characters when provided" do
+    it "it has a display name between 2-32 characters when provided" do
       user = User.new(fullname: "David Daniel", 
                       email: "example@example.org", 
                       phone: "222-333-4444",
@@ -68,7 +68,7 @@ RSpec.describe User, type: :model do
       user1 = User.new(fullname: "David Daniel", 
                        email: "example@example.com", 
                        phone: "222-333-4444",
-                       display_name: "dddddddddddddddddddddddddddddddd",
+                       display_name: "ddddddddddddddddddddddddddddddddd",
                        password: "password")
 
        expect(user).to_not be_valid
