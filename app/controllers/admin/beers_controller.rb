@@ -38,13 +38,13 @@ class Admin::BeersController < Admin::BaseController
     @beer.update(beer_params)
     redirect_to admin_beer_path(@beer)
   end
-  
+
   private
-  
+
   def beer_params
-    params.require(:beer).permit(:name, 
-                                 :description, 
-                                 :price, 
+    params.require(:beer).permit(:name,
+                                 :description,
+                                 :price,
                                  :state)
   end
 
