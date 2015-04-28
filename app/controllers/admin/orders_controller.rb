@@ -32,8 +32,8 @@ class Admin::OrdersController < Admin::BaseController
 
   def order_params
     params.require(:order).permit(:user_id,
-                                  :status, 
+                                  :status,
                                   :total)
   end
-  
+
 end
