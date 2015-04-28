@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :beers, only: [:show, :index]
   resource :users
+  resources :cart_items
 
   namespace :user do 
     resources :orders
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :beers
     resources :categories
-    resources :orders
+    resources :orders, except: [:new, :create]
   end  
 
   get '/login', to: 'sessions#new'
