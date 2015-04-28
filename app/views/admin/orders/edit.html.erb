@@ -1,0 +1,12 @@
+<%= form_for [:admin, @order] do |f| %>
+  <%= f.label "user_id" %>
+  <%= f.text_field "user_id" %>
+
+  <%= f.label "status" %>
+  <%= f.text_field "status" %>
+  
+  <%= f.label "total" %>
+  <%= f.text_field "total" %>
+
+  <%= f.submit %>
+<% end %>

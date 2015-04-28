@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   has_many :beers, through: :order_beers
 
   validates :user_id, presence: true
-  validates :status, presence: true
+  validates :status, presence: true,
+                     inclusion: {in: %w(ordered completed cancelled paid)}
   validates :total, presence: true
 end
