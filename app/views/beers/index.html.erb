@@ -1,0 +1,6 @@
+<% @categories.each do |category| %>
+<h1><%= category.name %></h1>
+<% end %>
+<% @beers.each do |beer| %>
+  <p><%= link_to beer.name, beer_path(beer) %></p>
+<% end %> 

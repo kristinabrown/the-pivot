@@ -1,6 +1,13 @@
-<% if current_user.display_name.empty? %>
+<% if current_user.display_name.blank? %>
   <p>Welcome, <%= current_user.fullname %>!</p>
 <% else %>
   <p>Welcome, <%= current_user.display_name %>!</p>
 <% end %>
+
+<%= link_to "Edit Profile", edit_users_path(current_user) %>
+<h1>Current Shopping Cart</h1>
+<h1>Quantity</h1>
+<h1>Price Per Item</h1>
+<h1>Delete</h1>
+
 
