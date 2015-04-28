@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Beer, type: :model do
-  let(:beer) { Beer.create(name: "Titan", 
+  let(:beer) { Beer.create(name: "Titan",
                            state: true,
-                           description: "aggressively hopped ipa", 
-                           price: 350) 
-              }
+                           description: "aggressively hopped ipa",
+                           price: 350) }
   context "is valid" do
     it "is valid with valid attributes" do
       expect(beer).to be_valid
@@ -15,7 +14,7 @@ RSpec.describe Beer, type: :model do
   context "is invalid with invalid attributes" do
     it "is invalid without name" do
       beer = Beer.new(state: true,
-                      description: "aggressively hopped ipa", 
+                      description: "aggressively hopped ipa",
                       price: 350)
 
       expect(beer).to_not be_valid
@@ -31,7 +30,7 @@ RSpec.describe Beer, type: :model do
 
     it "is invalid without description" do
       beer = Beer.new(name: "titan",
-                      state: true, 
+                      state: true,
                       price: 350)
 
       expect(beer).to_not be_valid
@@ -39,7 +38,7 @@ RSpec.describe Beer, type: :model do
 
     it "is invalid without price" do
       beer = Beer.new(name: "titan",
-                      state: true, 
+                      state: true,
                       description: "aggressively hopped ipa")
 
       expect(beer).to_not be_valid

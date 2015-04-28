@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
   let(:category) { Category.create(name: "India Pale Ale", 
-                                   description: "A hoppy beer style within the broader category of pale ale") }
+                                   description: "A hoppy beer") }
   context "is valid" do
     it "is valid with valid attributes" do
       expect(category).to be_valid
