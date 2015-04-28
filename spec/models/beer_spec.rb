@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Beer, type: :model do
   let(:beer) { Beer.create(name: "Titan", 
-                        state: true,
-                        description: "aggressively hopped ipa", 
-                        price: 350) }
+                           state: true,
+                           description: "aggressively hopped ipa", 
+                           price: 350) 
+              }
   context "is valid" do
     it "is valid with valid attributes" do
       expect(beer).to be_valid
