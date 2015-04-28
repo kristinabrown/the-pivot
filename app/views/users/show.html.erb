@@ -1,0 +1,6 @@
+<% if current_user.display_name.empty? %>
+  <p>Welcome, <%= current_user.fullname %>!</p>
+<% else %>
+  <p>Welcome, <%= current_user.display_name %>!</p>
+<% end %>
+

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  before(:all) { User.create(fullname: "David Daniel", 
+  before(:each) { User.create(fullname: "David Daniel", 
                              email: "example@example.org",
                              role: 0,
                              phone: "222-333-4444",
