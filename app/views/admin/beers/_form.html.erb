@@ -1,4 +1,4 @@
-<%= form_for [:admin, @beer] do |f| %>
+<%= form_for [:admin, @beer], multipart: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :state %>
@@ -7,5 +7,7 @@
   <%= f.text_field :description %>
   <%= f.label :price %>
   <%= f.text_field :price %>
+  <%= f.label :attachment %>
+  <%= f.file_field :attachment %>
   <%= f.submit %>
 <% end %>

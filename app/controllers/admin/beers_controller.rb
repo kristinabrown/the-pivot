@@ -45,7 +45,8 @@ class Admin::BeersController < Admin::BaseController
     params.require(:beer).permit(:name,
                                  :description,
                                  :price,
-                                 :state)
+                                 :state,
+                                 :attachment)
   end
 
 end

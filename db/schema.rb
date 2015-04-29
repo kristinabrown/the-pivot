@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428213325) do
+ActiveRecord::Schema.define(version: 20150428234324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 20150428213325) do
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -66,12 +70,16 @@ ActiveRecord::Schema.define(version: 20150428213325) do
   add_index "user_beers", ["user_id"], name: "index_user_beers_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string  "fullname"
-    t.string  "email"
-    t.string  "password_digest"
-    t.integer "role",            default: 0
-    t.string  "phone"
-    t.string  "display_name"
+    t.string   "fullname"
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "role",                default: 0
+    t.string   "phone"
+    t.string   "display_name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_foreign_key "beer_categories", "beers"
