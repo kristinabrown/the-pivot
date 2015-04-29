@@ -4,6 +4,7 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.paperclip_defaults = {
       :storage => :s3,
+      :s3_protocol => 'http',
       :s3_credentials => {
         bucket: ENV['bucket'],
         access_key_id: ENV["access_key_id"],
