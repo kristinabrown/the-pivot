@@ -16,3 +16,6 @@ capybara*.html
 coverage
 .tags
 .tags_sorted_by_file
+
+# Ignore application configuration
+/config/application.yml
