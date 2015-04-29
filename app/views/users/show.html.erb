@@ -4,6 +4,8 @@
   <p>Welcome, <%= current_user.display_name %>!</p>
 <% end %>
 
+<%= image_tag current_user.avatar.url(:square) %>
+
 <%= link_to "Edit Profile", edit_users_path(current_user) %>
 <h1>Current Shopping Cart</h1>
 <h1>Quantity</h1>

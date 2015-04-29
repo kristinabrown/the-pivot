@@ -6,10 +6,12 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.paperclip_defaults = {
     :storage => :s3,
+    :s3_protocol => 'http',
+    #:bucket => ENV['bucket'],
     :s3_credentials => {
-      :bucket => ENV['beerworld'],
-      :access_key_id => ENV['AKIAI6YTIHHF2PMSYMRQ'],
-      :secret_access_key => ENV['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']
+      bucket: ENV['bucket'],
+      access_key_id: ENV["access_key_id"],
+      secret_access_key: ENV["secret_access_key"]
       }
     }
   config.cache_classes = false
