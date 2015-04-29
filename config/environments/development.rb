@@ -5,11 +5,13 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.paperclip_defaults = {
-      :storage => :s3,
-      :s3_credentials => {
-        :bucket => ENV['S3_BUCKET_NAME'],
-        :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    :storage => :s3,
+    :s3_protocol => 'http',
+    #:bucket => ENV['bucket'],
+    :s3_credentials => {
+      bucket: ENV['bucket'],
+      access_key_id: ENV["access_key_id"],
+      secret_access_key: ENV["secret_access_key"]
       }
     }
   config.cache_classes = false
