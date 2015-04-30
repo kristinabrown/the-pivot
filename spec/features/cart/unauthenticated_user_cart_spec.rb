@@ -11,7 +11,13 @@ feature "an unauthenticated user accesses a cart" do
           state: true,
           description: "aggressively hopped ipa",
           price: 400}
+          
+  beer2 = {name: "Yeti",
+          state: true,
+          description: "Not aggressively hopped ipa",
+          price: 500}
   category.beers.create(beer1)
+  category.beers.create(beer2)
   end
 
   scenario "successfully and adds one beer" do 
@@ -25,15 +31,57 @@ feature "an unauthenticated user accesses a cart" do
     expect(page).to have_content(1) 
   end
 
-  xscenario "successfully adds two beers" do 
-
+  scenario "successfully adds two beers" do 
+    visit root_path
+    click_link "Drinks"
+    click_link "Titan"
+    click_button "Add to Basket"
+    
+    visit root_path
+    click_link "Drinks"
+    visit beers_path
+    click_link "Titan"
+    click_button "Add to Basket"
+    
+    expect(current_path).to eq(add_to_carts_path)
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("$8.00")
+    expect(page).to have_content(2) 
   end
 
-  xscenario "successfully adds two different beers" do 
+  scenario "successfully adds two different beers" do
+    visit root_path
+    click_link "Drinks"
+    click_link "Titan"
+    click_button "Add to Basket"
+    
+    visit beers_path
+    click_link "Yeti"
+    click_button "Add to Basket"
 
+    expect(current_path).to eq(add_to_carts_path)
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("Yeti")
+    expect(page).to have_content("$9.00")
+    expect(page).to have_content(1)  
   end
 
-  xscenario "unsuccessfully checks out" do 
+  scenario "unsuccessfully checks out" do
+    visit root_path
+    click_link "Drinks"
+    click_link "Titan"
+    click_button "Add to Basket"
+    
+    visit beers_path
+    click_link "Yeti"
+    click_button "Add to Basket"
 
+    expect(current_path).to eq(add_to_carts_path)
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("Yeti")
+    expect(page).to have_content("$9.00")
+    expect(page).to have_content(1)   
+
+    expect(page).to have_content("Please log in to checkout.")
   end
 end
