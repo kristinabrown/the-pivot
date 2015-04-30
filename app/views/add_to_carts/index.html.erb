@@ -1,0 +1,19 @@
+<table>
+    <tr>
+      <th>Item</th>
+      <th colspan="2">Item Price</th>
+      <th colspan="3">Quantity</th>
+      <th colspan="4">Total</th>
+      <th colspan="5">Remove</th>
+    </tr>
+    <tr>
+      
+ 
+
+    <td><% current_cart.contents.each do |k,v| %></td>
+    <td><%= v[:beer_name]%></td>
+    <td><%= number_to_currency(v[:beer_price]/100) %></td>
+    <td><%= v[:quantity] %></td>
+    <% end %>
+    <tr>
+</table>
