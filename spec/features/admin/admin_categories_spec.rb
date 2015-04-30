@@ -68,6 +68,17 @@ RSpec.describe'admin categories' do
       expect(page).to have_content("very important")
     end
 
+    it "assigns an beer to a category" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      pilsner = Category.create(name: "pilsner", description: "Mmmmm... pils")
+      beer = Beer.create(name: "Hoptageous", state: true, description: "Mmmmmmm", price: 3)
+      visit edit_admin_beer_path(beer)
+      page.check("pilsner")
+      click_button("Update Beer")
+      expect(current_path).to eq(admin_beer_path(beer))
+      expect(page).to have_content("pilsner")
+    end
+
   end
 
   context 'with default user logged in' do
