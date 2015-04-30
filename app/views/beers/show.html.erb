@@ -1,2 +1,9 @@
 <%= @beer.name %>
 <%= @beer.description %>
+
+<%= form_for(:order, url: :add_to_carts) do |f| %>
+<%= f.number_field :quantity, value: 1 %>
+<%= f.hidden_field :beer_id, value: @beer.id %>
+<%= f.hidden_field :beer_price, value: @beer.price %>
+<%= f.submit "Add to Basket" %>
+<% end %>

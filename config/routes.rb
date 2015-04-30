@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :beers, only: [:show, :index]
   resource :users
   resources :cart_items
+  resources :add_to_carts, only: [:create, :destroy, :index]
 
   namespace :user do 
     resources :orders
