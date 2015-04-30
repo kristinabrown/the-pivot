@@ -1,0 +1,9 @@
+<% @order.beers.each do |beer| %>
+<%= link_to beer.name, beer_path(beer) %> %>
+<%= beer.price %>
+<% end %>
+
+<%= number_to_currency(@order.total/100) %>
+<%= @order.status %>
+<%= @order.created_at %>
+<%= @order.updated_at %>

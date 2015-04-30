@@ -10,7 +10,13 @@ class OrdersController < ApplicationController
       flash[:errors] = "Whoops! Something went wrong with your order."
       redirect_to add_to_carts_path
     end
-    p params
   end
 
+  def index
+    @orders = Order.where(user_id: current_user.id)
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
 end
