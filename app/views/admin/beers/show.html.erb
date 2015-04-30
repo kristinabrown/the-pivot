@@ -1,6 +1,10 @@
-<%= @beer.name %>
-<%= @beer.description %>
-<%= @beer.price %>
-<%= @beer.state %>
+<%= @beer.name %><br>
+<%= @beer.description %><br>
+<%= @beer.price %><br>
+<%= @beer.state %><br>
+<p>Categories:</p>
+<% @beer.categories.each do |category| %>
+  <%= category.name %><br>
+<% end %>
 
 <%= link_to "Beers Index", admin_beers_path %>
