@@ -11,9 +11,16 @@
  
 
     <td><% current_cart.contents.each do |k,v| %></td>
-    <td><%= v[:beer_name]%></td>
-    <td><%= number_to_currency(v[:beer_price]/100) %></td>
-    <td><%= v[:quantity] %></td>
+    <td><%= v["beer_name"]%></td>
+    <td><%= number_to_currency(v["beer_price"].to_i/100) %></td>
+    <td><%= v["quantity"] %></td>
     <% end %>
     <tr>
 </table>
+
+<h2> Total: <%= number_to_currency(current_cart.total/100) %></h2>
+<% if current_user %>
+  <%= button_to "Checkout",  user_order_path %>
+<% else %>
+   <%= link_to "Please log in to checkout.", login_path %>
+<% end %>
