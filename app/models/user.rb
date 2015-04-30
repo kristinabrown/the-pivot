@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :user_beers
-  has_many :beers, through: :user_beers
+  has_many :user_beers # can remove this and 
+  has_many :beers, through: :user_beers #this
   has_many :orders
 
   validates :fullname, presence: true

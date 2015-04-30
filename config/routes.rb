@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   resource :users
   resources :cart_items
   resources :add_to_carts, only: [:create, :destroy, :index]
-
-  namespace :user do 
-    resources :orders
-  end
+  resources :orders
 
   namespace :admin do
     resources :beers

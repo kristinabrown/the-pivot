@@ -1,6 +1,6 @@
 class Beer < ActiveRecord::Base
-  has_many :user_beers
-  has_many :users, through: :user_beers
+  has_many :user_beers #don't need
+  has_many :users, through: :user_beers #Don't need
   has_many :order_beers
   has_many :orders, through: :order_beers
   has_many :beer_categories
