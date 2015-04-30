@@ -1,4 +1,4 @@
-class AddToCartsController < ApplicationController
+class AddToCartsController < ApplicationController # rename to cart_items_controller.rb
 
   def create
     beer = Beer.find(params[:order][:beer_id])

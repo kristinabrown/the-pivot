@@ -9,10 +9,10 @@ class Admin::BeersController < Admin::BaseController
   end
 
   def create
-    @beer = Beer.new(beer_params)
-    categories = params[:beer][:categories].reject(&:empty?) # Can someone please explain to me why this works?
+    @beer      = Beer.new(beer_params)
+    categories = params[:beer][:categories].reject(&:empty?)
     if @beer.save
-      categories.each { |category| @beer.categories << Category.find(category) }
+      categories.each { |category_id| @beer.categories << Category.find(category_id) }
       flash[:notice] = "Beer successfully created!"
       redirect_to admin_beer_path(@beer)
     else
@@ -36,12 +36,12 @@ class Admin::BeersController < Admin::BaseController
   end
 
   def update
-    @beer = Beer.find(params[:id])
+    @beer      = Beer.find(params[:id])
     categories = params[:beer][:categories].reject(&:empty?)
     if @beer.update(beer_params)
       @beer.categories.destroy_all
-      redirect_to admin_beer_path(@beer)
       categories.each { |category| @beer.categories << Category.find(category) }
+      redirect_to admin_beer_path(@beer)
     else
       render :edit
     end
@@ -54,8 +54,7 @@ class Admin::BeersController < Admin::BaseController
                                  :description,
                                  :price,
                                  :state,
-                                 :attachment,
-                                 :category_id)
+                                 :attachment )
   end
 
 end
