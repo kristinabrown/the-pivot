@@ -39,6 +39,7 @@ class Admin::BeersController < Admin::BaseController
     @beer = Beer.find(params[:id])
     categories = params[:beer][:categories].reject(&:empty?)
     if @beer.update(beer_params)
+      @beer.categories.destroy_all
       redirect_to admin_beer_path(@beer)
       categories.each { |category| @beer.categories << Category.find(category) }
     else
