@@ -11,21 +11,25 @@ RSpec.describe'admin Beers' do
                   role: 1)
     end
 
-    it 'displays the beers' do
+    before(:each) do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    end
+
+    it 'displays the beers' do
+      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_beers_path
       expect(page).to have_content("Beers") # Probably want to change this to be more specific
     end
 
     xit "redirects to new beer path" do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_beers_path
       click_link_or_button "New Beer"
       expect(current_path).to eq(new_admin_beer_path)
     end
 
     it "creates a new beer" do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "DAS BEER"
       fill_in "beer[state]", with: true
@@ -37,7 +41,7 @@ RSpec.describe'admin Beers' do
     end
 
     it "deletes a beer" do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "beer to delete"
       fill_in "beer[state]", with: true
@@ -53,7 +57,7 @@ RSpec.describe'admin Beers' do
     end
 
     it "edits a beer" do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "beer to edit"
       fill_in "beer[state]", with: true
@@ -72,6 +76,31 @@ RSpec.describe'admin Beers' do
       expect(page).to_not have_content("beer to edit")
       expect(page).to have_content("YUM!")
       expect(page).to have_content("new beer")
+    end
+
+  end
+
+  context "with invalid attributes" do
+    let(:admin) do
+      User.create(fullname: "Skeeter McTyson",
+                  password: "pw",
+                  email: "skeeter@email.com",
+                  phone: "111-111-1111",
+                  role: 1)
+    end
+
+    it "won't create a beer with invalid attributes and redirects to admin beers path" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      visit new_admin_beer_path
+      fill_in "beer[name]", with: "DAS BEER"
+      # fill_in "beer[state]", with: true
+      fill_in "beer[description]", with: "High gravity, high flavor"
+      fill_in "beer[price]", with: 4
+      click_button "Create Beer"
+      expect(page).to_not have_content("DAS BEER")
+      expect(page).to_not have_content("High gravity, high flavor")
+      expect(page).to have_content("State is not included in the list")
+      expect(current_path).to eq(admin_beers_path)
     end
 
   end

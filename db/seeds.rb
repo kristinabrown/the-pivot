@@ -15,6 +15,7 @@ class Seed
   def generate
     create_beer
     create_users
+    create_categories
     create_orders
   end
 
@@ -27,17 +28,25 @@ class Seed
 
   def create_users
     users.each do |full_name, email, pw, role, phone, display_name|
-      User.create(fullname: full_name, email: email, password_digest: pw, role: role, phone: phone, display_name: display_name)
+      User.create(fullname: full_name, email: email, password: pw, role: role, phone: phone, display_name: display_name)
     end
     puts "Users: #{User.all.map(&:fullname).join(", ")} created."
   end
 
+  def create_categories
+    categories.each do |name, description|
+      Category.create(name: name, description: description)
+    end
+    puts "Category: #{Category.all.map(&:name).join(", ")} created."
+  end
+  
   def create_orders
     orders.each do |user_id, status, total|
       Order.create(user_id: user_id, status: status, total: total)
     end
     puts "Orders: #{Order.all.map(&:user_id).join(", ")} created."
   end
+
 
   private
 
@@ -62,15 +71,7 @@ class Seed
       ["Josh Cheek", "demo+josh@jumpstartlab.com", "password", 1, "9119119111", "josh"],
       ["Jorge Telez", "demo+jorge@jumpstartlab.com", "password", 0, "4044044404", "novohispano"],
       ["Jeff Cashmir", "demo+jeff@jumpstartlab.com", "password", 0, "1111111111", "j3"],
-      ["Rachel Warbelow", "demo+rachel@jumpstartlab.com", "password", 0, "4044044404", ],
-      ["Samwise Gamgee", "tracy@tracy.com", "pass", 0, "4044044404", "Trizzle"],
-      ["Frodo Baggins", "frodo@frodo.com", "pass", 0, "4044044404", "Hobbit1"],
-      ["Bilbo Baggins", "bilbo@bilbo.com", "pass", 0, "4044044404", "Hobit2"],
-      ["Minnie Lee", "minnie@tminnie.com", "pass", 0, "4044044404", "Mizzle"],
-      ["Kristina Brown", "Kristina@Kristina.com", "pass", 0, "4044044404", "Krizzle"],
-      ["David Daniel", "boss@man.com", "pass", 0, "4044044404", "KingDavid"],
-      ["Bob Barker", "bob@wheel.com", "pass", 0, "4044044404", "BobTheMan"],
-      ["Bob Ross", "bob@paint.com", "pass", 0, "4044044404", "HappyTrees"],
+      ["Rachel Warbelow", "demo+rachel@jumpstartlab.com", "password", 0, "4044044404" ],
      ]
    end
 
@@ -79,14 +80,28 @@ class Seed
       [1, "ordered", 1200],
       [2, "completed", 2200],
       [3, "cancelled", 400],
-      [6, "paid", 10300],
+      [3, "paid", 10300],
       [4, "ordered", 2000],
-      [5, "ordered", 800],
+      [4, "ordered", 800],
       [2, "completed", 1001],
       [1, "ordered", 2003],
-      [1, "cancelled", 300],
+      [3, "cancelled", 300],
       [1, "paid", 3000]
      ]
+   end
+
+   def categories
+      [
+        ["American Amber Ale", "American-style amber ales have medium-high to high maltiness with medium to low caramel character. They are characterized by American-variety hops, which produce medium hop bitterness, flavor and aroma. American ambers are usually darker in color, have more caramel flavor and less hop aromatics, and may have more body. This style was first made popular by brewers from California and the Pacific Northwest."],
+        ["Pale Ale", "Fill in pale ale description"],
+        ["Porter", "Fill in description"],
+        ["Amber", "Fill in description"],
+        ["Lager", "Fill in description"],
+        ["IPA", "Fill in description"],
+        ["Stout", "Fill in description"],
+        ["Blonde", "Fill in description"],
+        ["Hefferveisen", "Fill in description"],
+      ]
    end
 
 end
