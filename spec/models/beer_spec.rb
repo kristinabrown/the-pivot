@@ -52,11 +52,7 @@ RSpec.describe Beer, type: :model do
 
       expect(beer).to_not be_valid
     end
-
-    it "responds to users" do
-      expect(beer.users).to eq([])
-    end
-
+    
     it "responds to oders" do
       expect(beer.orders).to eq([])
     end

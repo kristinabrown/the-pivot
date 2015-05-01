@@ -2,5 +2,6 @@
 <h1><%= category.name %></h1>
 <% end %>
 <% @beers.each do |beer| %>
+  <%= image_tag beer.attachment.url %>
   <p><%= link_to beer.name, beer_path(beer) %></p>
 <% end %> 

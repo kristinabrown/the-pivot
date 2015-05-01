@@ -7,6 +7,8 @@
   
   <%= f.label "total" %>
   <%= f.text_field "total" %>
+  
+  <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) %><br>
 
   <%= f.submit %>
 <% end %>

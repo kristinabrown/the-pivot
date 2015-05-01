@@ -17,7 +17,7 @@ RSpec.describe'admin orders' do
       expect(page).to have_content("Orders") # Probably want to change this to be more specific
     end
 
-    xit "edits an order" do
+    it "edits an order" do
       Order.create(status: "ordered",
                    user_id: admin.id,
                    total: 10)
@@ -25,12 +25,9 @@ RSpec.describe'admin orders' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_orders_path
       expect(page).to have_content("ordered")
-      click_link "edit"
-      fill_in "order[status]", with: "paid"
-      fill_in "order[total]", with: 7
+      select "paid", from: "order[status]"
       click_button "Update Order"
-      expect(page).to_not have_content("completed")
-      expect(page).to have_content(7)
+      
       expect(page).to have_content("paid")
     end
 
