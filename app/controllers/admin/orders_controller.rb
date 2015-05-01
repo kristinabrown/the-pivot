@@ -4,15 +4,7 @@ class Admin::OrdersController < Admin::BaseController
     @orders = Order.all
   end
 
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-    redirect_to admin_orders_path
-  end
-
   def edit
-    p params
-    @order = Order.find(params[:id])
   end
 
   def update

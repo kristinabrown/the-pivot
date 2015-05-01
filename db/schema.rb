@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428234324) do
+ActiveRecord::Schema.define(version: 20150501174409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,14 +61,6 @@ ActiveRecord::Schema.define(version: 20150428234324) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "user_beers", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "beer_id"
-  end
-
-  add_index "user_beers", ["beer_id"], name: "index_user_beers_on_beer_id", using: :btree
-  add_index "user_beers", ["user_id"], name: "index_user_beers_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "fullname"
     t.string   "email"
@@ -87,6 +79,4 @@ ActiveRecord::Schema.define(version: 20150428234324) do
   add_foreign_key "order_beers", "beers"
   add_foreign_key "order_beers", "orders"
   add_foreign_key "orders", "users"
-  add_foreign_key "user_beers", "beers"
-  add_foreign_key "user_beers", "users"
 end

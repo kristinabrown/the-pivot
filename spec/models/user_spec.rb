@@ -78,9 +78,5 @@ RSpec.describe User, type: :model do
     it "responds to orders" do
       expect(user.orders).to eq([])
     end
-    #double check that we need this relationship
-    it "responds to beers" do
-      expect(user.beers).to eq([])
-    end
   end
 end

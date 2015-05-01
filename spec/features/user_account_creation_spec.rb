@@ -59,18 +59,6 @@ feature "user creates account" do
     expect(page).to have_content("Email has already been taken")
   end
 
-  xscenario "uploads an image" do
-    visit root_path
-    click_link "Register"
-    fill_in "user[fullname]", with: "George Orwell"
-    fill_in "user[email]", with: "GeorgeO@gmail.com"
-    fill_in "user[password]", with: "password"
-    fill_in "user[password_confirmation]", with: "password"
-    fill_in "user[phone]", with: "303-333-3333" 
-    page.attach_file('user[attachment]', Rails.root + 'spec/images/george.jpg')
-    expect(page).to have_css(".profile_picture")
-  end
-
   scenario "and opts for a display name" do 
     visit root_path
     click_link "Register"
