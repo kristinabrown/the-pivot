@@ -28,16 +28,15 @@ RSpec.describe'admin orders' do
       expect(page).to_not have_content("completed")
     end
 
-    it "edits a order" do
-      Order.create(status: "completed",
+    it "edits an order" do
+      Order.create(status: "ordered",
                    user_id: admin.id,
                    total: 10)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_orders_path
-      expect(page).to have_content("completed")
-      click_link "Edit Order"
-      # fill_in "order[user_id]", with: 1
+      expect(page).to have_content("ordered")
+      click_link ""
       fill_in "order[status]", with: "paid"
       fill_in "order[total]", with: 7
       click_button "Update Order"
