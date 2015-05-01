@@ -1,4 +1,4 @@
-class AddToCartsController < ApplicationController
+class CartItemsController < ApplicationController
 
   def create
     beer = Beer.find(params[:order][:beer_id])

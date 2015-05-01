@@ -25,7 +25,7 @@ feature "an unauthenticated user accesses a cart" do
     click_link "Drinks"
     click_link "Titan"
     click_button "Add to Basket"
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("$4.00")
     expect(page).to have_content(1) 
@@ -43,7 +43,7 @@ feature "an unauthenticated user accesses a cart" do
     click_link "Titan"
     click_button "Add to Basket"
     
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("$8.00")
     expect(page).to have_content(2) 
@@ -59,7 +59,7 @@ feature "an unauthenticated user accesses a cart" do
     click_link "Yeti"
     click_button "Add to Basket"
 
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("Yeti")
     expect(page).to have_content("$9.00")
@@ -76,7 +76,7 @@ feature "an unauthenticated user accesses a cart" do
     click_link "Yeti"
     click_button "Add to Basket"
 
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("Yeti")
     expect(page).to have_content("$9.00")
