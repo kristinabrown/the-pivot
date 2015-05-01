@@ -2,5 +2,8 @@
 <% @orders.each do |order| %>
   <%= order.id %>
   <%= order.status %>
-  <%= link_to "Edit Order", edit_admin_order_path(order) %>
+  <%= form_for order, url: admin_order_path(order) do |f| %>
+  <%= f.collection_select(:status, Order.statuses, :to_s, :to_s)%><br>
+  <%= f.submit %>
+  <% end  %>
 <% end %>

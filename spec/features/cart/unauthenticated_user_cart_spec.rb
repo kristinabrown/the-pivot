@@ -81,7 +81,6 @@ feature "an unauthenticated user accesses a cart" do
     
     first(:link, "remove item").click
     expect(page).to_not have_content("Titan")
-    save_and_open_page
     expect(page).to_not have_content("$4.00")
   end
 
