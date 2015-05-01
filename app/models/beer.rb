@@ -11,7 +11,7 @@ class Beer < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
   
-  has_attached_file :attachment, default_url: "************",
+  has_attached_file :attachment, default_url: "beer_default_images.jpg",
                                  storage: :s3,
                                  bucket: ENV['bucket'],
                                  s3_credentials: { access_key_id: ENV["access_key_id"],
