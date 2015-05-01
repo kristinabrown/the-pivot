@@ -75,13 +75,14 @@ feature "an unauthenticated user accesses a cart" do
     visit beers_path
     click_link "Yeti"
     click_button "Add to Basket"
-    save_and_open_page
 
     expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     
     first(:link, "remove item").click
     expect(page).to_not have_content("Titan")
+    save_and_open_page
+    expect(page).to_not have_content("$4.00")
   end
 
   scenario "unsuccessfully checks out" do

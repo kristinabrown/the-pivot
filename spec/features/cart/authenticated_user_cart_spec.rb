@@ -77,7 +77,6 @@ feature "an authenticated user accesses a cart" do
     visit beers_path
     click_link "Yeti"
     click_button "Add to Basket"
-    save_and_open_page
 
     expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
