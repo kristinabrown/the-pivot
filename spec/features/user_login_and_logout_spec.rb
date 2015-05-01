@@ -8,10 +8,8 @@ feature "user logs in" do
     fill_in "session[email]", with: "MCProdigy@gmail.com"
     fill_in "session[password]", with: "password"
     click_button "Login"
-    expect(page).to have_content("Current Shopping Cart")
-    expect(page).to have_content("Quantity")
-    expect(page).to have_content("Price Per Item")
-    expect(page).to have_content("Delete")
+    
+    expect(page).to have_content("Welcome, Wolfie!")
     end
 
   scenario "with invalid credentials - mispelled email" do 

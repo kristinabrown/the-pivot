@@ -2,7 +2,8 @@
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :state %>
-  <%= f.text_field :state %><br>
+  active <%= f.radio_button :state, "true" %>
+  retired <%= f.radio_button :state, "false" %><br>
   <%= f.label :description %>
   <%= f.text_field :description %><br>
   <%= f.label :price %>

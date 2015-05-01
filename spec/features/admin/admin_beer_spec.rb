@@ -32,7 +32,7 @@ RSpec.describe'admin Beers' do
       # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "DAS BEER"
-      fill_in "beer[state]", with: true
+      page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "High gravity, high flavor"
       fill_in "beer[price]", with: 4
       click_button "Create Beer"
@@ -44,7 +44,7 @@ RSpec.describe'admin Beers' do
       # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "beer to delete"
-      fill_in "beer[state]", with: true
+      page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "STALE"
       fill_in "beer[price]", with: 9
       click_button "Create Beer"
@@ -60,7 +60,7 @@ RSpec.describe'admin Beers' do
       # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "beer to edit"
-      fill_in "beer[state]", with: true
+      page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "YUCK"
       fill_in "beer[price]", with: 4
       click_button "Create Beer"
@@ -69,7 +69,7 @@ RSpec.describe'admin Beers' do
 
       click_link "Edit Beer"
       fill_in "beer[name]", with: "new beer"
-      fill_in "beer[state]", with: true
+      page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "YUM!"
       fill_in "beer[price]", with: 5
       click_button 'Update Beer'
@@ -93,13 +93,12 @@ RSpec.describe'admin Beers' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "DAS BEER"
-      # fill_in "beer[state]", with: true
+      page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "High gravity, high flavor"
-      fill_in "beer[price]", with: 4
       click_button "Create Beer"
       expect(page).to_not have_content("DAS BEER")
       expect(page).to_not have_content("High gravity, high flavor")
-      expect(page).to have_content("State is not included in the list")
+      expect(page).to have_content("Price can't be blank")
       expect(current_path).to eq(admin_beers_path)
     end
 
