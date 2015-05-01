@@ -27,7 +27,7 @@ feature "an authenticated user accesses a cart" do
     click_link "Drinks"
     click_link "Titan"
     click_button "Add to Basket"
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("$4.00")
     expect(page).to have_content(1) 
@@ -45,7 +45,7 @@ feature "an authenticated user accesses a cart" do
     click_link   "Titan"
     click_button "Add to Basket"
     
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("$8.00")
     expect(page).to have_content(2) 
@@ -61,14 +61,32 @@ feature "an authenticated user accesses a cart" do
     click_link "Yeti"
     click_button "Add to Basket"
 
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("Yeti")
     expect(page).to have_content("$9.00")
     expect(page).to have_content(1)  
   end
+  
+  scenario "successfully deletes and item" do
+    visit root_path
+    click_link "Drinks"
+    click_link "Titan"
+    click_button "Add to Basket"
+    
+    visit beers_path
+    click_link "Yeti"
+    click_button "Add to Basket"
+    save_and_open_page
 
-  xscenario "unsuccessfully checks out" do
+    expect(current_path).to eq(cart_items_path)
+    expect(page).to have_content("Titan")
+    
+    first(:link, "remove item").click
+    expect(page).to_not have_content("Titan")
+  end
+
+  scenario "successfully checks out" do
     visit root_path
     click_link "Drinks"
     click_link "Titan"
@@ -78,14 +96,16 @@ feature "an authenticated user accesses a cart" do
     click_link "Yeti"
     click_button "Add to Basket"
 
-    expect(current_path).to eq(add_to_carts_path)
+    expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("Yeti")
     expect(page).to have_content("$9.00")
     expect(page).to have_content(1)   
 
     click_button "Checkout"
-    expect(current_path).to eq(orders_path)
+    
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("ordered")
   end
 
 end

@@ -1,5 +1,4 @@
-class AddToCartsController < ApplicationController # rename to cart_items_controller.rb
-
+class CartItemsController < ApplicationController
   def create
     beer = Beer.find(params[:order][:beer_id])
     if beer.state == true
@@ -11,5 +10,10 @@ class AddToCartsController < ApplicationController # rename to cart_items_contro
       flash[:errors] = "The '#{beer.name}' is unavailable."
       render :index
     end
+  end
+  
+  def update
+    current_cart.delete_item(params['item']['beer_id'])
+    render :index
   end
 end

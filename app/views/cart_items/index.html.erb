@@ -6,16 +6,16 @@
       <th colspan="4">Total</th>
       <th colspan="5">Remove</th>
     </tr>
-    <tr>
-      
- 
 
     <td><% current_cart.contents.each do |k,v| %></td>
+    <tr>
     <td><%= v["beer_name"]%></td>
     <td><%= number_to_currency(v["beer_price"].to_i/100) %></td>
-    <td><%= v["quantity"] %></td>
-    <% end %>
+    <td><%= v["quantity"] %></td> 
+    <td><%= link_to "remove item", cart_items_path("item" => {beer_id: k}), method: "patch" %></td>
     <tr>
+    <% end %>
+
 </table>
 
 <h2> Total: <%= number_to_currency(current_cart.total/100) %></h2>

@@ -1,7 +1,7 @@
 <%= @beer.name %>
 <%= @beer.description %>
 
-<%= form_for(:order, url: :add_to_carts) do |f| %>
+<%= form_for(:order, url: :cart_items) do |f| %>
 <%= f.number_field :quantity, value: 1 %>
 <%= f.hidden_field :beer_id, value: @beer.id %>
 <%= f.hidden_field :beer_price, value: @beer.price %>

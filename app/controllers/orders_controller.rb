@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
     new_order = CreateOrder.new(params)
     order = Order.new(user_id: new_order.user_id, total: new_order.total, status: "ordered",)
     if order.save
+      session[:cart].clear
       new_order.beers.each { |beer| order.beers << beer }
       redirect_to order_path(order)
     else 

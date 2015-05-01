@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   resources :beers, only: [:show, :index]
   resource :users
-  resources :cart_items
-  resources :add_to_carts, only: [:create, :destroy, :index]
-  resources :orders
+  resource :cart_items, only: [:create, :update, :index]
 
+  resources :orders
+  
   namespace :admin do
     resources :beers
     resources :categories
