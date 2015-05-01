@@ -85,7 +85,7 @@ feature "an authenticated user accesses a cart" do
     expect(page).to have_content(1)   
 
     click_button "Checkout"
-    expect(current_path).to eq(user_orders_path)
+    expect(current_path).to eq(orders_path)
   end
 
 end

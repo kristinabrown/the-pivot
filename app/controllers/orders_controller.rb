@@ -10,7 +10,10 @@ class OrdersController < ApplicationController
       flash[:errors] = "Whoops! Something went wrong with your order."
       redirect_to add_to_carts_path
     end
-    p params
+  end
+
+  def show
+    
   end
 
 end

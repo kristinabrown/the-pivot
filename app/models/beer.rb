@@ -7,7 +7,7 @@ class Beer < ActiveRecord::Base
   has_many :categories, through: :beer_categories
 
   validates :name, presence: true
-  validates :state, presence: true
+  validates :state, :inclusion => {:in => [true, false]}
   validates :description, presence: true
   validates :price, presence: true
   
