@@ -68,7 +68,7 @@ feature "an authenticated user accesses a cart" do
     expect(page).to have_content(1)  
   end
 
-  scenario "unsuccessfully checks out" do
+  xscenario "unsuccessfully checks out" do
     visit root_path
     click_link "Drinks"
     click_link "Titan"
