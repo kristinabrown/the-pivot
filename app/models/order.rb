@@ -7,11 +7,11 @@ class Order < ActiveRecord::Base
   validates :status, presence: true,
                      inclusion: {in: %w(ordered completed cancelled paid)}
   validates :total, presence: true
-  
+
   def self.statuses
     ["ordered", "completed", "cancelled", "paid"]
   end
-  
+
   scope :ordered, -> { where(status: "ordered") }
   scope :completed, -> { where(status: "completed") }
   scope :cancelled, -> { where(status: "cancelled") }
