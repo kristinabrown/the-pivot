@@ -6,8 +6,9 @@ class Beer < ActiveRecord::Base
 
   validates :name, presence: true, 
                    format: { with: /\A[a-zA-Z\d\D]+\z/ },
-                   length: {in: 1..32}
-                   
+                   length: {in: 1..32},
+                   uniqueness: true
+
   validates :state, :inclusion => {:in => [true, false]}
   validates :description, presence: true, 
                           format: { with: /\A[a-zA-Z\d\D]+\z/ }
