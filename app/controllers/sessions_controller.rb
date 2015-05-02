@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     elsif @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       if @cart.contents.empty?
-        redirect_to users_path 
+        redirect_to users_path
       else
         redirect_to cart_items_path
       end
