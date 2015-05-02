@@ -115,6 +115,24 @@ feature "an authenticated user accesses a cart" do
     expect(page).to have_content("1")
     expect(page).to have_content("$4.00")
   end
+  
+  scenario "unsuccessfully checkouts with negative" do
+    visit root_path
+    click_link "Drinks"
+    click_link "Titan"
+    
+    click_button "Add to Basket"
+
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("1")
+    
+    first(:button, "+").click
+    first(:button, "-").click
+    
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("1")
+    expect(page).to have_content("$4.00")
+  end
 
   scenario "successfully checks out" do
     visit root_path
