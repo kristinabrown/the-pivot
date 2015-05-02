@@ -31,6 +31,16 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
     end
     
+    it "is invalid with empty name" do
+      user = User.new(fullname: "", 
+                      email: "asdf@jkl.com",
+                      role: 0, 
+                      phone: "222-333-4444",
+                      password: "password")
+
+      expect(user).to_not be_valid
+    end
+    
     it "it only accepts and email between 5-50 characters" do
       user = User.new(fullname: "David Daniel", 
                       email: "exam",
