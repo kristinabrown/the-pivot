@@ -8,8 +8,8 @@ class CartItemsController < ApplicationController
       session[:cart] = @cart.contents 
       render :index
     else
-      flash[:errors] = "The '#{beer.name}' is unavailable."
-      render :index
+      flash[:errors] = "The #{beer.name} is unavailable."
+      redirect_to beers_path
     end
   end
   

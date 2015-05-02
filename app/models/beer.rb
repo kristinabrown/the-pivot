@@ -1,7 +1,9 @@
 class Beer < ActiveRecord::Base
+  # before_save :ensure_has_at_least_one_category
+  
   has_many :order_beers
   has_many :orders, through: :order_beers
-  has_many :beer_categories
+  has_many :beer_categories, dependent: :destroy
   has_many :categories, through: :beer_categories
 
   validates :name, presence: true, 
@@ -25,4 +27,13 @@ class Beer < ActiveRecord::Base
   def available?
     state == true
   end
+  
+  # def ensure_has_at_least_one_category
+  #   if self.categories.count < 1
+  #     errors.add(:beer, "A Beer must have at least one category")
+  #     return false
+  #   else
+  #     return true
+  #   end
+  # end
 end

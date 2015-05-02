@@ -13,40 +13,33 @@ RSpec.describe'admin Beers' do
 
     before(:each) do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      Category.create(name: "Lager", description: "wheaty")
     end
 
     it 'displays the beers' do
-      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_beers_path
-      expect(page).to have_content("Beers") # Probably want to change this to be more specific
-    end
-
-    xit "redirects to new beer path" do
-      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      visit admin_beers_path
-      click_link_or_button "New Beer"
-      expect(current_path).to eq(new_admin_beer_path)
+      expect(page).to have_content("Beers")
     end
 
     it "creates a new beer" do
-      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "DAS BEER"
       page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "High gravity, high flavor"
       fill_in "beer[price]", with: 4
+      page.check "Lager"
       click_button "Create Beer"
       expect(page).to have_content("DAS BEER")
       expect(page).to have_content("High gravity, high flavor")
     end
 
     it "deletes a beer" do
-      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "beer to delete"
       page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "STALE"
       fill_in "beer[price]", with: 9
+      page.check "Lager"
       click_button "Create Beer"
       expect(page).to have_content("beer to delete")
       click_link "Beers Index"
@@ -57,12 +50,12 @@ RSpec.describe'admin Beers' do
     end
 
     it "edits a beer" do
-      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_beer_path
       fill_in "beer[name]", with: "beer to edit"
       page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "YUCK"
       fill_in "beer[price]", with: 4
+      page.check "Lager"
       click_button "Create Beer"
       expect(page).to have_content("beer to edit")
       click_link "Beers Index"
@@ -72,6 +65,7 @@ RSpec.describe'admin Beers' do
       page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "YUM!"
       fill_in "beer[price]", with: 5
+      page.check "Lager"
       click_button 'Update Beer'
       expect(page).to_not have_content("beer to edit")
       expect(page).to have_content("YUM!")
@@ -91,10 +85,12 @@ RSpec.describe'admin Beers' do
 
     it "won't create a beer with invalid attributes and redirects to admin beers path" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      Category.create(name: "Lager", description: "wheaty")
       visit new_admin_beer_path
       fill_in "beer[name]", with: "DAS BEER"
       page.choose "beer[state]", match: :first
       fill_in "beer[description]", with: "High gravity, high flavor"
+      page.check "Lager"
       click_button "Create Beer"
       expect(page).to_not have_content("DAS BEER")
       expect(page).to_not have_content("High gravity, high flavor")
@@ -119,5 +115,4 @@ RSpec.describe'admin Beers' do
       expect(page).to have_content("404")
     end
   end
-
 end
