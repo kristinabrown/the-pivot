@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  
+
   def create
     new_order = CreateOrder.new(params)
     order = Order.new(user_id: new_order.user_id, total: new_order.total, status: "ordered",)
