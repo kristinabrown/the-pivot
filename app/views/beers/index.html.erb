@@ -2,6 +2,6 @@
 <h1><%= category.name %></h1>
   <% category.beers.each do |beer| %>
   <%= image_tag beer.attachment.url %>
-  <h3><%= link_to beer.name, beer_path(beer) %> for-sale? <%= beer.state %></h3> 
+  <h3><%= link_to beer.name, beer_path(beer) %> </h3> 
   <% end %>
 <% end %> 

@@ -17,4 +17,16 @@ class CartItemsController < ApplicationController
     @cart.delete_item(params['item']['beer_id'])
     render :index
   end
+  
+  def increase
+    beer = @cart.find_beer(params["item"]["beer_id"])
+    @cart.increase_quantity(beer)
+    render :index
+  end
+  
+  def decrease
+    beer = @cart.find_beer(params["item"]["beer_id"])
+    @cart.decrease_quantity(beer)
+    render :index
+  end
 end
