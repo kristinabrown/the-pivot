@@ -23,11 +23,12 @@ class OrdersController < ApplicationController
   end
 
   def show
-    if current_user
-      @order = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    if current_user && @order.user_id == current_user.id
+      @order
     else
-      flash[:errors] = "Must be logged in to view orders"
-      redirect_to login_path
+      flash[:errors] = "Oops, something went wrong"
+      redirect_to "/404"
     end
   end
 end
