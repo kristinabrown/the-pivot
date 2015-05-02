@@ -14,10 +14,20 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(user_id: current_user.id)
+    if current_user
+      @orders = Order.where(user_id: current_user.id)
+    else 
+      flash[:errors] = "Must be logged in to view orders"
+      redirect_to login_path
+    end
   end
 
   def show
-    @order = Order.find(params[:id])
+    if current_user
+      @order = Order.find(params[:id])
+    else 
+      flash[:errors] = "Must be logged in to view orders"
+      redirect_to login_path
+    end
   end
 end
