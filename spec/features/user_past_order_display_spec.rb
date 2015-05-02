@@ -54,7 +54,7 @@ feature "a user's past orders" do
     click_link "Chocolate Stout"
     expect(page).to have_content("full-bodied flavor with hints of rich oatmeal and dark chocolate")
     click_button "Add"
-    expect(page).to have_content("The 'Chocolate Stout' is unavailable.")
+    expect(page).to have_content("The Chocolate Stout is unavailable.")
   end
 end
 
