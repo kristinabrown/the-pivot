@@ -5,6 +5,10 @@ class Cart
     @contents = initial_contents || {}
   end
   
+  def find_beer(beer_id)
+    Beer.find(beer_id)
+  end
+  
   def add_beer(beer, quantity)
     if contents[beer.id.to_s]
       contents[beer.id.to_s]["quantity"] = contents[beer.id.to_s]["quantity"].to_i + quantity.to_i
@@ -14,10 +18,8 @@ class Cart
     end
   end
   
-  def total # use reduce
-    total = 0
-    contents.each { |k, v| total += v["beer_price"].to_i }
-    total
+  def total
+    contents.values.reduce(0) { |sum, value| sum += value["beer_price"].to_i }
   end
   
   def delete_item(beer_id)

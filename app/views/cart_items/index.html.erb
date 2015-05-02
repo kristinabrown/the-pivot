@@ -7,7 +7,7 @@
       <th colspan="5">Remove</th>
     </tr>
 
-    <td><% current_cart.contents.each do |k,v| %></td>
+    <td><% @cart.contents.each do |k,v| %></td>
     <tr>
     <td><%= v["beer_name"]%></td>
     <td><%= number_to_currency(v["beer_price"].to_i/100) %></td>
@@ -18,9 +18,9 @@
 
 </table>
 
-<h2> Total: <%= number_to_currency(current_cart.total/100) %></h2>
+<h2> Total: <%= number_to_currency(@cart.total/100) %></h2>
 <% if current_user %>
-  <%= button_to "Checkout",  orders_path( :order_info => {total: number_to_currency(current_cart.total/100), user_id: current_user.id, beers: current_cart.all_beers, }) %>
+  <%= button_to "Checkout",  orders_path( :order_info => {total: number_to_currency(@cart.total/100), user_id: current_user.id, beers: @cart.all_beers, }) %>
 <% else %>
    <%= link_to "Please log in to checkout.", login_path %>
 <% end %>

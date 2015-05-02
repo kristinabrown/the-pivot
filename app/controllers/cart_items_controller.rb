@@ -1,10 +1,11 @@
 class CartItemsController < ApplicationController
   def create
-    beer = Beer.find(params[:order][:beer_id])
-    if beer.state == true
+    beer_id = params[:order][:beer_id]
+    beer = @cart.find_beer(beer_id)
+    if beer.available?
       quantity = params[:order][:quantity]
-      current_cart.add_beer(beer, quantity)
-      session[:cart] = current_cart.contents 
+      @cart.add_beer(beer, quantity)
+      session[:cart] = @cart.contents 
       render :index
     else
       flash[:errors] = "The '#{beer.name}' is unavailable."
@@ -13,7 +14,7 @@ class CartItemsController < ApplicationController
   end
   
   def update
-    current_cart.delete_item(params['item']['beer_id'])
+    @cart.delete_item(params['item']['beer_id'])
     render :index
   end
 end

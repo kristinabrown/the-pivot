@@ -2,10 +2,12 @@ class SessionsController < ApplicationController
 
   def create
    @user = User.find_by(email: params[:session][:email])
-    if @user && @user.authenticate(params[:session][:password])
+    if @user != nil && @user.admin?
       session[:user_id] = @user.id
-      redirect_to users_path # if default, go one place, if admin, elsewhere 
-      #@users? ^
+      redirect_to admin_beers_path
+    elsif @user && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      redirect_to users_path 
     else
       flash[:errors] = "Invalid login"
       render :new
