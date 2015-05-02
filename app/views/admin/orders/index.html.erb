@@ -1,5 +1,32 @@
 <h1>All Orders</h1>
-<% @orders.each do |order| %>
+<% @orders.ordered.each do |order| %>
+  <%= order.id %>
+  <%= order.status %>
+  <%= form_for order, url: admin_order_path(order) do |f| %>
+  <%= f.collection_select(:status, Order.statuses, :to_s, :to_s)%><br>
+  <%= f.submit %>
+  <% end  %>
+<% end %>
+
+<% @orders.paid.each do |order| %>
+  <%= order.id %>
+  <%= order.status %>
+  <%= form_for order, url: admin_order_path(order) do |f| %>
+  <%= f.collection_select(:status, Order.statuses, :to_s, :to_s)%><br>
+  <%= f.submit %>
+  <% end  %>
+<% end %>
+
+<% @orders.completed.each do |order| %>
+  <%= order.id %>
+  <%= order.status %>
+  <%= form_for order, url: admin_order_path(order) do |f| %>
+  <%= f.collection_select(:status, Order.statuses, :to_s, :to_s)%><br>
+  <%= f.submit %>
+  <% end  %>
+<% end %>
+
+<% @orders.cancelled.each do |order| %>
   <%= order.id %>
   <%= order.status %>
   <%= form_for order, url: admin_order_path(order) do |f| %>

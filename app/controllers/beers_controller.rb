@@ -1,7 +1,6 @@
 class BeersController < ApplicationController
 
   def index
-    @beers = Beer.all #lose this
     @categories = Category.all 
   end
 

@@ -11,4 +11,9 @@ class Order < ActiveRecord::Base
   def self.statuses
     ["ordered", "completed", "cancelled", "paid"]
   end
+  
+  scope :ordered, -> { where(status: "ordered") }
+  scope :completed, -> { where(status: "completed") }
+  scope :cancelled, -> { where(status: "cancelled") }
+  scope :paid, -> { where(status: "paid") }
 end

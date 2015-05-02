@@ -17,4 +17,8 @@ class Beer < ActiveRecord::Base
   
   
   validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
+  
+  def available?
+    state == true
+  end
 end
