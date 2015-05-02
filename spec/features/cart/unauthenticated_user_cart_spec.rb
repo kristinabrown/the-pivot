@@ -66,7 +66,7 @@ feature "an unauthenticated user accesses a cart" do
     expect(page).to have_content(1)  
   end
   
-  scenario "successfully deletes and item" do
+  scenario "successfully deletes an item" do
     visit root_path
     click_link "Drinks"
     click_link "Titan"
@@ -81,6 +81,38 @@ feature "an unauthenticated user accesses a cart" do
     first(:link, "remove item").click
     expect(page).to_not have_content("Titan")
     expect(page).to_not have_content("$4.00")
+  end
+  
+  scenario "successfully increases an item" do
+    visit root_path
+    click_link "Drinks"
+    click_link "Titan"
+    click_button "Add to Basket"
+
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("1")
+    
+    first(:button, "+").click
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("2")
+    expect(page).to have_content("$8.00")
+  end
+  
+  scenario "successfully decreases an item" do
+    visit root_path
+    click_link "Drinks"
+    click_link "Titan"
+    click_button "Add to Basket"
+
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("1")
+    
+    first(:button, "+").click
+    first(:button, "-").click
+    
+    expect(page).to have_content("Titan")
+    expect(page).to have_content("1")
+    expect(page).to have_content("$4.00")
   end
 
   scenario "unsuccessfully checks out" do
