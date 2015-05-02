@@ -53,6 +53,22 @@ RSpec.describe Beer, type: :model do
       expect(beer).to_not be_valid
     end
     
+    it "is invalid with empty string name" do
+      beer = Beer.new(name: "",
+                      state: true,
+                      description: "aggressively hopped ipa",
+                      price: 350) 
+      expect(beer).to_not be_valid
+    end
+    
+    it "is invalid with empty string description" do
+      beer = Beer.new(name: "Titam",
+                      state: true,
+                      description: "",
+                      price: 350) 
+      expect(beer).to_not be_valid
+    end
+    
     it "responds to oders" do
       expect(beer.orders).to eq([])
     end

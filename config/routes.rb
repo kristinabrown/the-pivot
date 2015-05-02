@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :beers, only: [:show, :index]
   resource :users
-  resource :cart_items, only: [:create, :update, :index]
+  resources :cart_items, only: [:create, :update, :index]
 
   resources :orders
   
