@@ -5,10 +5,10 @@ class Beer < ActiveRecord::Base
   has_many :categories, through: :beer_categories
 
   validates :name, presence: true, 
-                   format: { with: /\A[a-z\d]+\z/ }
+                   format: { with: /\A[a-zA-Z\d\D]+\z/ }
   validates :state, :inclusion => {:in => [true, false]}
   validates :description, presence: true, 
-                          format: { with: /\A[a-z\d]+\z/ }
+                          format: { with: /\A[a-zA-Z\d\D]+\z/ }
   validates :price, presence: true
   
   has_attached_file :attachment, default_url: "beer_default_images.jpg",
