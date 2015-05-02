@@ -4,9 +4,11 @@ class Beer < ActiveRecord::Base
   has_many :beer_categories
   has_many :categories, through: :beer_categories
 
-  validates :name, presence: true
+  validates :name, presence: true, 
+                   format: { with: /\A[a-z\d]+\z/ }
   validates :state, :inclusion => {:in => [true, false]}
-  validates :description, presence: true
+  validates :description, presence: true, 
+                          format: { with: /\A[a-z\d]+\z/ }
   validates :price, presence: true
   
   has_attached_file :attachment, default_url: "beer_default_images.jpg",
@@ -17,6 +19,8 @@ class Beer < ActiveRecord::Base
   
   
   validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
+  
+  scope :all_available, -> { where(state: true) }
   
   def available?
     state == true
