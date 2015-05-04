@@ -8,8 +8,14 @@ class Order < ActiveRecord::Base
                      inclusion: {in: %w(ordered completed cancelled paid)}
   validates :total, presence: true
 
-  def self.statuses
-    ["ordered", "completed", "cancelled", "paid"]
+  def statuses
+    if status == "ordered"
+      ["paid", "cancelled"]
+    elsif status == "paid"
+      ["completed", "cancelled"]
+    else
+      []
+    end
   end
 
   scope :ordered, -> { where(status: "ordered") }
