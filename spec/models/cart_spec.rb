@@ -9,21 +9,21 @@ describe Cart do
     it "successfully adds a beer and quantity to the cart" do 
       cart = Cart.new({})
       cart.add_beer(beer, 1)
-      expect(cart.contents).to eq({beer.id.to_s=>{"beer_name"=>"Yeti", "beer_price"=>606, "quantity"=>1}})
+      expect(cart.contents).to eq({beer.id.to_s=>{"quantity"=>1}})
     end
 
     it "successfully adds two beer and the quantity to the cart" do 
       cart = Cart.new({})
       cart.add_beer(beer, 1)
       cart.add_beer(beer2, 1)
-      expect(cart.contents).to eq({beer.id.to_s=>{"beer_name"=>"Yeti", "beer_price"=>606, "quantity"=>1}, beer2.id.to_s=>{"beer_name"=>"Titan", "beer_price"=>606, "quantity"=>1}})
+      expect(cart.contents).to eq({beer.id.to_s=>{"quantity"=>1}, beer2.id.to_s=>{"quantity"=>1}})
     end
 
     it "successfully adds the same beer twice to the cart" do 
       cart = Cart.new({})
       cart.add_beer(beer, 1)
       cart.add_beer(beer, 2)
-      expect(cart.contents).to eq({beer.id.to_s=>{"beer_name"=>"Yeti", "beer_price"=>1818, "quantity"=>3}})
+      expect(cart.contents).to eq({beer.id.to_s=>{"quantity"=>3}})
     end
   end
 end

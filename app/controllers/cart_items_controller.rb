@@ -13,7 +13,7 @@ class CartItemsController < ApplicationController
     end
   end
 
-  def update
+  def destroy
     @cart.delete_item(params['item']['beer_id'])
     render :index
   end

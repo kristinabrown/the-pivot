@@ -44,7 +44,7 @@ feature "an authenticated user accesses a cart" do
     visit        beers_path
     click_link   "Titan"
     click_button "Add to Basket"
-    
+
     expect(current_path).to eq(cart_items_path)
     expect(page).to have_content("Titan")
     expect(page).to have_content("$8.00")
