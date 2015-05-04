@@ -9,22 +9,22 @@
 
     <td><% @cart.contents.each do |k,v| %></td>
     <tr>
-    <td><%= v["beer_name"]%></td>
-    <td><%= number_to_currency(v["beer_price"].to_i/100) %></td>
+    <td><%= @cart.find_beer(k).name %></td>
+    <td><%= number_to_currency(@cart.total_item_price(k,v["quantity"])) %></td>
     <td><%= v["quantity"] %></td> 
     <td><%= button_to "+", cart_items_increase_path("item" => {beer_id: k}), method: "increase" %></td>
     <% if v["quantity"].to_i > 1  %>
      <td><%= button_to "-", cart_items_decrease_path("item" => {beer_id: k}), method: "decrease" %></td>
     <% end %>
-    <td><%= link_to "remove item", cart_item_path(@cart, "item" => {beer_id: k, purpose: "delete"}), method: "patch" %></td>
+    <td><%= link_to "remove item", cart_item_path(@cart, "item" => {beer_id: k}), method: "delete" %></td>
     <tr>
     <% end %>
 
 </table>
 
-<h2> Total: <%= number_to_currency(@cart.total/100) %></h2>
+<h2> Total: <%= number_to_currency(@cart.total) %></h2>
 <% if current_user %>
-  <%= button_to "Checkout",  orders_path( :order_info => {total: number_to_currency(@cart.total/100), user_id: current_user.id, beers: @cart.all_beers, }) %>
+  <%= button_to "Checkout", orders_path( :order_info => {total: number_to_currency(@cart.total), user_id: current_user.id, beers: @cart.all_beers, }) %>
 <% else %>
    <%= link_to "Please log in to checkout.", login_path %>
 <% end %>
