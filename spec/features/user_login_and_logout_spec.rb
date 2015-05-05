@@ -2,15 +2,15 @@ require "rails_helper"
 
 feature "user logs in" do
     let!(:user) {User.create({fullname: "Wolfgang Mozart", display_name: "Wolfie", email: "MCProdigy@gmail.com", password: "password", password_confirmation: "password", phone: "303-675-1234", role: 0})}
+  
   scenario "with valid credentials" do 
     visit root_path
     click_link "Login"
     fill_in "session[email]", with: "MCProdigy@gmail.com"
     fill_in "session[password]", with: "password"
     click_button "Login"
-    
     expect(page).to have_content("Welcome, Wolfie!")
-    end
+  end
 
   scenario "with invalid credentials - mispelled email" do 
     visit root_path

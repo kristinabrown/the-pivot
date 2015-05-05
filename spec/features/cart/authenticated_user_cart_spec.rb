@@ -154,5 +154,4 @@ feature "an authenticated user accesses a cart" do
     expect(page).to have_content("Titan")
     expect(page).to have_content("ordered")
   end
-
 end
