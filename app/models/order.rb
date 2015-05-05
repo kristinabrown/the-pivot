@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   validates :total, presence: true
 
   def statuses
-    if status == "ordered"
+    if status    == "ordered"
       ["paid", "cancelled"]
     elsif status == "paid"
       ["completed", "cancelled"]
@@ -18,8 +18,8 @@ class Order < ActiveRecord::Base
     end
   end
 
-  scope :ordered, -> { where(status: "ordered") }
+  scope :ordered,   -> { where(status: "ordered") }
   scope :completed, -> { where(status: "completed") }
   scope :cancelled, -> { where(status: "cancelled") }
-  scope :paid, -> { where(status: "paid") }
+  scope :paid,      -> { where(status: "paid") }
 end

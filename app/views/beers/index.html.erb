@@ -1,7 +1,7 @@
 <% @categories.each do |category| %>
-<h1><%= category.name %></h1>
+  <h1><%= category.name %></h1>
   <% category.beers.each do |beer| %>
-  <%= image_tag beer.attachment.url %>
-  <h3><%= link_to beer.name, beer_path(beer) %> </h3> 
+    <%= image_tag beer.attachment.url %>
+    <h3><%= link_to beer.name, beer_path(beer) %> </h3> 
   <% end %>
 <% end %> 
