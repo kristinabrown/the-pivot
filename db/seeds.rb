@@ -13,18 +13,12 @@ class Seed
   end
 
   def generate
-    create_beer
     create_users
     create_categories
+    create_beer
     create_orders
   end
 
-  def create_beer
-    beer.each do |name, state, description, price|
-      Beer.create(name: name, state: state, description: description, price: price)
-    end
-    puts "Beers: #{Beer.all.map(&:name).join(", ")} created."
-  end
 
   def create_users
     users.each do |full_name, email, pw, role, phone, display_name|
@@ -40,6 +34,16 @@ class Seed
     puts "Category: #{Category.all.map(&:name).join(", ")} created."
   end
   
+  def create_beer
+    rotator = (1..(categories.length)).to_a
+    beer.each do |name, state, description, price|
+      cat = Category.find_by(id: rotator.first)
+      cat.beers.create(name: name, state: state, description: description, price: price)
+      rotator.rotate!
+    end
+    puts "Beers: #{Beer.all.map(&:name).join(", ")} created."
+  end
+
   def create_orders
     orders.each do |user_id, status, total|
       Order.create(user_id: user_id, status: status, total: total)
@@ -52,17 +56,17 @@ class Seed
 
    def beer
      [
-      ["Big Tasty", true, "Poignant and personal", 4 ],
-      ["Imperial Stout", true, "Generic Imperial stout", 4 ],
-      ["KB Special", true, "Description", 4 ],
-      ["Tracy Spacy", true, "Description", 4 ],
-      ["Minnie Winny", true, "Description", 4 ],
-      ["Pink Pilsner", true, "Description", 4 ],
-      ["Kreamy Kolsch", true, "Description", 4 ],
-      ["Hoppy Hefferveisen", true, "Description", 4 ],
-      ["Brown Blackout", true, "Description", 4 ],
-      ["Black Brownout", false, "Description", 3 ],
-      ["Duff", true, "Tasty and true", 6 ]
+      ["Big Tasty", true, "Poignant and personal", 400 ],
+      ["Imperial Stout", true, "Generic Imperial stout", 450 ],
+      ["KB Special", true, "Description", 350 ],
+      ["Tracy Spacy", true, "Description", 500 ],
+      ["Minnie Winny", true, "Description", 550 ],
+      ["Pink Pilsner", true, "Description", 400 ],
+      ["Kreamy Kolsch", true, "Description", 375 ],
+      ["Les Faverage", true, "Description", 500 ],
+      ["La-Brunson", true, "Description", 475 ],
+      ["La-Bise", false, "Description", 300 ],
+      ["Backside Montford", true, "Tasty and true", 200 ]
      ]
    end
 
