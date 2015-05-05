@@ -2,6 +2,7 @@ class Admin::BeersController < Admin::BaseController
 
   def new
     @beer = Beer.new
+    @categories = Category.all
   end
 
   def index
@@ -33,11 +34,12 @@ class Admin::BeersController < Admin::BaseController
 
   def edit
     @beer = Beer.find(params[:id])
+    @categories = Category.all
   end
 
   def update
-    @beer      = Beer.find(params[:id])
-    categories = params[:beer][:categories].reject(&:empty?)
+    @beer = Beer.find(params[:id])
+    categories = params[:beer][:category_ids].reject(&:empty?)
     if @beer.update(beer_params)
       @beer.categories.destroy_all
       categories.each { |category| @beer.categories << Category.find(category) }

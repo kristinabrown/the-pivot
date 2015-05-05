@@ -15,7 +15,7 @@ RSpec.describe'admin orders' do
       user = User.create({fullname: "Wolfgang Mozart", display_name: "Wolfie", email: "MCProdigy@gmail.com", password: "password", password_confirmation: "password", phone: "303-675-1234", role: 0})
       beer1 = {name: "Yeti", state: true, description: "big, roasty malt flavor with rich caramel and toffee notes", price: 606, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:54:09 UTC")}
       beer2 = {name: "Chocolate Stout", state: true, description: "full-bodied flavor with hints of rich oatmeal and dark chocolate", price: 612, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:54:09 UTC")}
-      @order = Order.create(user_id: user.id, status: "completed", total: 1218, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:58:15 UTC") )
+      @order = Order.create(user_id: user.id, status: "ordered", total: 1218, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:58:15 UTC") )
       beer_orders = @order.beers.create(beer1)
       beer_orders2 = @order.beers.create(beer2)
     end

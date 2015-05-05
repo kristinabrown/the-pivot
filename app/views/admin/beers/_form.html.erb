@@ -11,6 +11,6 @@
   <%= f.label :attachment %>
   <%= f.file_field :attachment %><br>
   <p>Categories:</p>
-  <%= f.collection_check_boxes(:categories, Category.all, :id, :name) %>
+  <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
   <%= f.submit %>
 <% end %>
