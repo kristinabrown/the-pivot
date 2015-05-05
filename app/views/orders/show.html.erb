@@ -5,5 +5,5 @@
 
 <%= number_to_currency(@order.total/100) %>
 <%= @order.status %>
-<%= @order.created_at %>
-<%= @order.updated_at %>
+<%= @order.created_at.to_date %>
+<%= @order.updated_at.to_date %>
