@@ -1,8 +1,9 @@
 <h1>All Beers</h1>
 
 <% @beers.each do |beer| %>
- <%= beer.name %>
- <%= beer.price %>
- <%= link_to "Delete Beer", admin_beer_path(beer), method: "delete" %>
- <%= link_to "Edit Beer", edit_admin_beer_path(beer) %>
+  <%= beer.name %>
+  <%= beer.price %>
+  
+  <%= link_to "Delete Beer", admin_beer_path(beer), method: "delete" %>
+  <%= link_to "Edit Beer", edit_admin_beer_path(beer) %>
 <% end %>

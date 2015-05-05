@@ -1,15 +1,20 @@
 <%= form_for [:admin, @beer], multipart: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
+
   <%= f.label :state %>
   active <%= f.radio_button :state, "true" %>
   retired <%= f.radio_button :state, "false" %><br>
+
   <%= f.label :description %>
   <%= f.text_field :description %><br>
+
   <%= f.label :price %>
   <%= f.text_field :price %><br>
+
   <%= f.label :attachment %>
   <%= f.file_field :attachment %><br>
+
   <p>Categories:</p>
   <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
   <%= f.submit %>

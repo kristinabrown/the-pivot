@@ -8,6 +8,8 @@ feature "an authenticated user's past orders" do
     @order = Order.create(user_id: user.id, status: "completed", total: 1218, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:58:15 UTC") )
     beer_orders = @order.beers.create(beer1)
     beer_orders2 = @order.beers.create(beer2)
+    @order.order_beers.create(beer_id: beer_orders.id, quantity: 1)
+    @order.order_beers.create(beer_id: beer_orders2.id, quantity: 1)
     visit root_path
     click_link "Login"
     fill_in "session[email]", with: "MCProdigy@gmail.com"
