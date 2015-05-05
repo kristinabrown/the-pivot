@@ -1,4 +1,18 @@
-<%= @order.id %><br>
-<%= @order.status %><br>
-<%= @order.user_id %><br>
-<%= @order.total %><br>
+<% @order.beers.each do |beer| %>
+  <% OrderBeer.where(order_id: @order.id, beer_id: beer.id).each do |ob| %>
+    <%= ob.quantity %>
+    <%= link_to beer.name, beer_path(beer) %>
+    subtotal: <%= number_to_currency((beer.price * ob.quantity)/100) %></br>
+  <% end %>
+<% end %>
+
+user name: <%= Order.user_name(@order) %><br>
+user email: <%= Order.user_email(@order) %><br>
+
+
+
+
+<%= number_to_currency(@order.total) %><br>
+status: <%= @order.status %><br>
+submitted: <%= @order.created_at %><br>
+

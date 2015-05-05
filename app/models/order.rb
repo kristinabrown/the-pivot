@@ -17,6 +17,14 @@ class Order < ActiveRecord::Base
       []
     end
   end
+  
+  def self.user_name(order)
+    User.where(id: order.user_id).pluck(:fullname).join
+  end
+  
+  def self.user_email(order)
+    User.where(id: order.user_id).pluck(:email).join
+  end
 
   scope :ordered,   -> { where(status: "ordered") }
   scope :completed, -> { where(status: "completed") }

@@ -26,7 +26,7 @@
 <h2> Total: <%= number_to_currency(@cart.total) %></h2>
 
 <% if current_user %>
-  <%= button_to "Checkout", orders_path( :order_info => {total: number_to_currency(@cart.total), user_id: current_user.id, beers: @cart.all_beers, }) %>
+  <%= button_to "Checkout", orders_path( :order_info => {total: @cart.total, user_id: current_user.id, beers: @cart.contents}) %>
 <% else %>
    <%= link_to "Please log in to checkout.", login_path %>
 <% end %>
