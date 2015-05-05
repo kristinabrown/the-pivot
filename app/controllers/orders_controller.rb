@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
     if order.save
       session[:cart].clear
       new_order.beers.each { |beer| order.beers << beer }
+      new_order.quantities(order)
       redirect_to order_path(order)
     else
       flash[:errors] = "Whoops! Something went wrong with your order."

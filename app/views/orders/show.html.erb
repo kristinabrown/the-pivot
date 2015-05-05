@@ -1,9 +1,17 @@
 <% @order.beers.each do |beer| %>
-  <%= link_to beer.name, beer_path(beer) %>
-  <%= beer.price %>
+  <% OrderBeer.where(order_id: @order.id, beer_id: beer.id).each do |ob| %>
+    <%= ob.quantity %>
+    <%= link_to beer.name, beer_path(beer) %>
+    subtotal: <%= number_to_currency((beer.price * ob.quantity)/100) %></br>
+  <% end %>
 <% end %>
 
-<%= number_to_currency(@order.total/100) %>
-<%= @order.status %>
-<%= @order.created_at.to_date %>
-<%= @order.updated_at.to_date %>
+<%= number_to_currency(@order.total) %><br>
+status: <%= @order.status %><br>
+submitted: <%= @order.created_at.to_date %><br>
+
+<% if @order.status == "completed" %>
+  Completed on: <%= @order.updated_at.to_date  %>
+<% elsif @order.status == "cancelled" %>
+  Cancelled on: <%= @order.updated_at.to_date  %>
+<% end %>
