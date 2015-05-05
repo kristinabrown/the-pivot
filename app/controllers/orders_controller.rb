@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
       redirect_to order_path(order)
     else
       flash[:errors] = "Whoops! Something went wrong with your order."
-      redirect_to add_to_carts_path
+      redirect_to cart_items_path
     end
   end
 
