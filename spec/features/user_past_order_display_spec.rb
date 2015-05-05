@@ -22,8 +22,6 @@ feature "an authenticated user's past orders" do
     expect(page).to have_content("Chocolate Stout")
     expect(@order.beers.count).to eq(2)
     expect(@order.status).to eq("completed")
-    # expect(page).to have_css(".order")
-    # expect(page).to have_css(".beer")
     expect(page).to have_content("$12.00")
     expect(page).to have_content(Date.parse("2012-03-25 09:54:09 UTC"))
     expect(page).to have_content(Date.parse("2012-03-25 09:54:09 UTC"))
