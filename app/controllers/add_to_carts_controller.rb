@@ -2,7 +2,8 @@ class AddToCartsController < ApplicationController # rename to cart_items_contro
 
   def create
     beer = Beer.find(params[:order][:beer_id])
-    if beer.state == true
+    # if beer.state == true
+    if beer.available?
       quantity = params[:order][:quantity]
       current_cart.add_beer(beer, quantity)
       session[:cart] = current_cart.contents 

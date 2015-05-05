@@ -1,7 +1,7 @@
 class CartItemsController < ApplicationController
   def create
     beer_id = params[:order][:beer_id]
-    beer = @cart.find_beer(beer_id)
+    beer    = @cart.find_beer(beer_id)
     if beer.available?
       quantity = params[:order][:quantity]
       @cart.add_beer(beer, quantity)
