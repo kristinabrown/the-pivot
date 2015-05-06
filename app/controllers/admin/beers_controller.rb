@@ -11,7 +11,7 @@ class Admin::BeersController < Admin::BaseController
 
   def create
     @beer = Beer.new(beer_params)
-    categories = params[:beer][:category_ids].reject(&:empty?)
+    categories = params[:beer][:category_ids].to_a.reject(&:empty?)
     if @beer.save
       categories.each { |category_id| @beer.categories << Category.find(category_id) }
       flash[:notice] = "Beer successfully created!"
