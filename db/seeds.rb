@@ -58,15 +58,24 @@ class Seed
      [
       ["Big Tasty", true, "Poignant and personal", 400 ],
       ["Imperial Stout", true, "Generic Imperial stout", 450 ],
-      ["KB Special", true, "Description", 350 ],
-      ["Tracy Spacy", true, "Description", 500 ],
-      ["Minnie Winny", true, "Description", 550 ],
-      ["Pink Pilsner", true, "Description", 400 ],
-      ["Kreamy Kolsch", true, "Description", 375 ],
-      ["Les Faverage", true, "Description", 500 ],
-      ["La-Brunson", true, "Description", 475 ],
-      ["La-Bise", false, "Description", 300 ],
-      ["Backside Montford", true, "Tasty and true", 200 ]
+      ["KB Special", true, "For the ladies", 350 ],
+      ["Tracy Spacy", true, "You'll be laughing in no time", 500 ],
+      ["Minnie Winny", true, "Put on your dancing shoes", 550 ],
+      ["Pink Pilsner", true, "It's not actually pink...", 400 ],
+      ["Kreamy Kolsch", true, "Hard, yet soft", 375 ],
+      ["Les Faverage", true, "French for 'your favorite beer'", 500 ],
+      ["La-Brunson", true, "Spanish for The Brunson", 475 ],
+      ["La-Bise", false, "Portuguese for La-Brunson", 300 ],
+      ["Backside Montford", true, "Tasty and true", 200 ],
+      ["Duff", true, "Homer's go-to", 400 ],
+      ["DAS BEER", true, "IT'S GERMAN", 450 ],
+      ["Renegade", true, "Unleash your inner Cashmir", 900 ],
+      ["Pliney the Elder", true, "Because 'Gandalph' was already taken", 250 ],
+      ["Blind Pig IPA", true, "Oink Oink", 600 ],
+      ["Hair on Your Chest Stout", true, "Darker than Turing with the lights turned off.", 400 ],
+      ["Grandma's White Ale", true, "Drink it up, sonny.", 375 ],
+      ["Black Brownout", true, "I forgot to write this description", 475 ],
+      ["Beer", true, "It's beer", 725 ],
      ]
    end
 
@@ -97,14 +106,14 @@ class Seed
    def categories
       [
         ["American Amber Ale", "American-style amber ales have medium-high to high maltiness with medium to low caramel character. They are characterized by American-variety hops, which produce medium hop bitterness, flavor and aroma. American ambers are usually darker in color, have more caramel flavor and less hop aromatics, and may have more body. This style was first made popular by brewers from California and the Pacific Northwest."],
-        ["Pale Ale", "Fill in pale ale description"],
-        ["Porter", "Fill in description"],
-        ["Amber", "Fill in description"],
-        ["Lager", "Fill in description"],
-        ["IPA", "Fill in description"],
-        ["Stout", "Fill in description"],
-        ["Blonde", "Fill in description"],
-        ["Hefferveisen", "Fill in description"],
+        ["Pale", "This is a pale ale"],
+        ["Porter", "This is a porter"],
+        ["Amber", "This is an amber"],
+        ["Lager", "This is a LAGER"],
+        ["IPA", "HOPPY IS HAPPY"],
+        ["Stout", "It's stout"],
+        ["Blonde", "Insert blonde joke"],
+        ["Hefferveisen", "DAS GERMAN BEER"],
       ]
    end
 
