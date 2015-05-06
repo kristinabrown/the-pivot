@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :orders
   
+  resources :charges
+  
   namespace :admin do
     resources :beers
     resources :categories
