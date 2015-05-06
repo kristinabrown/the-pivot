@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   validates :total, presence: true
 
   def statuses
-    if status    == "ordered"
+    if status  == "ordered"
       ["paid", "cancelled"]
     elsif status == "paid"
       ["completed", "cancelled"]
