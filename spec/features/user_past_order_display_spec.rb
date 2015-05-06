@@ -17,14 +17,14 @@ feature "an authenticated user's past orders" do
     click_button "Login"
   end
 
-  xscenario "will be displayed" do 
+  scenario "will be displayed" do 
     click_link "Past Orders"
     click_link @order.id
     expect(page).to have_content("Yeti")
     expect(page).to have_content("Chocolate Stout")
-    expect(@order.beers.count).to eq(2)
+    expect(@order.beers.count).to eq(4)
     expect(@order.status).to eq("completed")
-    expect(page).to have_content("$12.00")
+    expect(page).to have_content("$6.00")
     expect(page).to have_content(Date.parse("2012-03-25 09:54:09 UTC"))
     expect(page).to have_content(Date.parse("2012-03-25 09:54:09 UTC"))
   end
@@ -45,7 +45,7 @@ feature "a user's past orders" do
     click_button "Login"
   end
 
-  xscenario "will display an order that has an item that is retired" do 
+  scenario "will display an order that has an item that is retired" do 
     click_link "Past Orders"
     click_link @order.id
     expect(page).to have_content("Yeti")
@@ -63,7 +63,7 @@ feature "a user's past orders" do
   before(:each) do 
     @user1 = User.create({fullname: "Wolfgang Mozart", display_name: "Wolfie", email: "MCProdigy@gmail.com", password: "password", password_confirmation: "password", phone: "303-675-1234", role: 0})
     user2 = User.create({fullname: "Hans Zimmerman", display_name: "H-Bomb", email: "ZimmerShimmer@gmail.com", password: "password", password_confirmation: "password", phone: "303-123-1234", role: 0})
-    @user1.orders.create(user_id: @user1.id, status: "paid", total: 1532, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:58:15 UTC"))
+    @user1.orders.create(user_id: @user1.id, status: "paid", total: 15, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:58:15 UTC"))
     user2.orders.create(user_id: user2.id, status: "cancelled", total: 2018, created_at: Date.parse("2012-03-25 09:54:09 UTC"), updated_at: Date.parse("2012-03-25 09:58:15 UTC"))
     visit root_path
     click_link "Login"
@@ -73,7 +73,7 @@ feature "a user's past orders" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
   end
 
-  xscenario "will display only that user's orders" do
+  scenario "will display only that user's orders" do
     visit order_path(@user1.orders.first)
     expect(page).to have_content("paid")
     expect(page).to have_content("$15.00")
