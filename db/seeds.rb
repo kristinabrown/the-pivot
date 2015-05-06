@@ -66,7 +66,16 @@ class Seed
       ["Les Faverage", true, "Description", 500 ],
       ["La-Brunson", true, "Description", 475 ],
       ["La-Bise", false, "Description", 300 ],
-      ["Backside Montford", true, "Tasty and true", 200 ]
+      ["Backside Montford", true, "Tasty and true", 200 ],
+      ["Beer12", true, "Description", 400 ],
+      ["Beer13", true, "Description", 450 ],
+      ["Beer14", true, "Description", 900 ],
+      ["Beer15", true, "Description", 250 ],
+      ["Beer16", true, "Description", 600 ],
+      ["Beer17", true, "Description", 400 ],
+      ["Beer18", true, "Description", 375 ],
+      ["Beer19", true, "Description", 475 ],
+      ["Beer20", true, "Description", 725 ],
      ]
    end
 
