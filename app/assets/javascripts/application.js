@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  
+  toggleCategory(".lager", "#lager_beers")
+  toggleCategory(".stout", "#stout_beers")
+  toggleCategory(".ipa", "#ipa_beers")
+  toggleCategory(".ale", "#ale_beers")
+  toggleCategory(".blonde", "#blonde_beers")
+  
+  
+  function toggleCategory(categoryID, beerID){
+    $(categoryID).click(function(){
+      $(beerID).toggleClass("hidden");
+    });
+  }
+  
+});
