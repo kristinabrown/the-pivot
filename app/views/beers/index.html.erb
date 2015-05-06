@@ -1,7 +1,19 @@
+<!-- <button class="lager">Lager</button>
+<button class="stout">Stout</button>
+<button class="ipa">IPA</button>
+<button class="ale">Pale Ale</button>
+<button class="blonde">Blonde</button>
+ -->
+ <% @categories.each do |category| %>
+ <button class="<%= category.name.downcase %>"><%= category.name.capitalize %></button>
+<% end %>
+
 <% @categories.each do |category| %>
+<div class="category hidden" id="<%= category.name.downcase %>_beers">
   <h1><%= category.name %></h1>
   <% category.beers.each do |beer| %>
-    <%= image_tag beer.attachment.url %>
-    <h3><%= link_to beer.name, beer_path(beer) %> </h3> 
+    <h3><%= link_to beer.name, beer_path(beer) %> 
+      <%= image_tag beer.attachment.url %></h3> 
   <% end %>
+</div>
 <% end %> 
