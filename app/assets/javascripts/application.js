@@ -25,9 +25,12 @@ $(document).ready(function(){
   
   
   function toggleCategory(categoryID, beerID){
+    var currentCategory = this.value;
+    
     $(categoryID).click(function(){
       $(beerID).toggleClass("hidden");
     });
   }
+  
   
 });

@@ -6,8 +6,7 @@
  -->
  <% @categories.each do |category| %>
  <button class="<%= category.name.downcase %>"><%= category.name.capitalize %></button>
- <% end %>
-
+<% end %>
 
 <% @categories.each do |category| %>
 <div class="category hidden" id="<%= category.name.downcase %>_beers">
