@@ -1,8 +1,8 @@
 <% @order.beers.each do |beer| %>
-  <% OrderBeer.where(order_id: @order.id, beer_id: beer.id).each do |ob| %>
+  <% OrderBeer.quantities(beer.id, @order.id).each do |ob| %>
     <%= ob.quantity %>
     <%= link_to beer.name, beer_path(beer) %>
-    subtotal: <%= number_to_currency((beer.price * ob.quantity)/100) %></br>
+    subtotal: <%= number_to_currency(OrderBeer.line_item_subtotal(beer.price, ob.quantity.to_i)) %></br>
   <% end %>
 <% end %>
 
