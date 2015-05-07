@@ -4,7 +4,7 @@
    @user = User.find_by(email: params[:session][:email])
     if @user != nil && @user.admin?
       session[:user_id] = @user.id
-      redirect_to admin_beers_path
+      redirect_to admin_dashboard_path
     elsif @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       if @cart.contents.empty?

@@ -1,9 +1,17 @@
+<div class="container">
+<%= render :partial => 'layouts/admin_login_header.html.erb' %>
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
+
 <h1>Current Categories</h1>
 
 <% @categories.each do |category| %>
-  <%= category.name %> <%= link_to "Delete Category", admin_category_path(category), method: "delete" %>
-  <%= link_to "Edit Category", edit_admin_category_path(category) %>
-  <p><%= category.description %></p>
+  <div class="stitched">
+    <%= category.name %> <%= link_to "Delete Category", admin_category_path(category), method: "delete" %>
+    <%= link_to "Edit Category", edit_admin_category_path(category) %>
+    <p><%= category.description %></p>
+  </div>
+  <br/>
 <% end %>
 
-<%= link_to "New Category", new_admin_category_path %>
+<%= link_to "New Category", new_admin_category_path, class:"button" %>
+</div>

@@ -1,11 +1,22 @@
-<%= @beer.name %>
-<%= @beer.description %>
+<div class="container">
+<%= render :partial => 'layouts/user_header.html.erb' %>
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-<%= image_tag @beer.attachment.url %>
-
-<%= form_for(:order, url: :cart_items) do |f| %>
-<%= f.number_field :quantity, value: 1, in: 1..1000 %>
-<%= f.hidden_field :beer_id, value: @beer.id %>
-<%= f.hidden_field :beer_price, value: @beer.price %>
-<%= f.submit "Add to Basket" %>
-<% end %>
+<div class="row">
+  <div class="four columns">
+    <%= image_tag @beer.attachment.url, class: "individual_beer" %>
+  </div>
+  <div class="eight columns">
+    <h2><%= @beer.name %></h2>
+    <p><%= @beer.description %></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget dui nec justo rutrum ornare. Donec euismod neque eu accumsan commodo. Nunc ultrices ante eu hendrerit posuere. Nam lobortis, nisl at maximus ullamcorper, quam leo lacinia diam, nec porta massa lectus vel turpis. Fusce ac pellentesque ex. Sed ac dui magna. Aenean ligula turpis, pulvinar nec eros eu, semper fringilla sapien. Maecenas laoreet elit in lacus vulputate maximus. Vivamus fermentum ex ut leo viverra, vel blandit lorem viverra. Cras et neque finibus, aliquet nunc id, egestas libero.</p>
+    <p>Maecenas ut quam non eros consequat porta nec vitae sapien. Pellentesque vitae posuere lorem. Vivamus erat orci, volutpat sit amet tempus efficitur, euismod quis mi. Cras ac laoreet lorem. Maecenas sed volutpat dui. Quisque nec tincidunt justo, ut tincidunt arcu. Duis aliquam semper ex, ac dapibus elit elementum at. Maecenas aliquet, lectus vitae hendrerit vestibulum, tellus nisi venenatis ipsum, semper lacinia nunc metus id orci. Curabitur consequat tortor non ante volutpat tempus.</p>
+    <p>Suspendisse non placerat ex. Cras tincidunt aliquet diam quis gravida. Ut vitae rutrum nibh. Suspendisse rutrum eu diam eleifend dictum. Integer interdum erat et ornare tempor. Cras elementum varius luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer ac euismod arcu. In vitae lacinia magna. Donec finibus, erat eu pellentesque porta, nisl lacus malesuada ante, non condimentum erat mauris sed nunc. Fusce vel facilisis purus. Fusce ante erat, iaculis eget erat vitae, lobortis finibus purus.</p>
+      <%= form_for(:order, url: :cart_items) do |f| %>
+      <%= f.number_field :quantity, value: 1, in: 1..1000 %>
+      <%= f.hidden_field :beer_id, value: @beer.id %>
+      <%= f.hidden_field :beer_price, value: @beer.price %>
+      <%= f.submit "Add to Basket" %>
+      <% end %>
+  </div>
+</div>
