@@ -2,6 +2,7 @@ class ChargesController < ApplicationController
   
   def index
     @order = Order.find(params["order_id"])
+    redirect_to order_show(@order)
   end
 
   def create
