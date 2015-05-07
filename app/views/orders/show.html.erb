@@ -28,6 +28,8 @@
 <br/><br/>
 <% if @order.status == "completed" %>
   Completed on: <%= @order.updated_at.to_date  %>
+<% elsif @order.status == "ordered" %>
+  <%= link_to "Pay with Credit Card", charges_path(order_id: @order.id) %>
 <% elsif @order.status == "cancelled" %>
   Cancelled on: <%= @order.updated_at.to_date  %>
 <% end %>

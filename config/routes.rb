@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resource :users
   resources :cart_items, only: [:edit, :create, :update, :index, :destroy]
   resources :orders
-
+  
+  resources :charges
+  
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
     resources :beers
