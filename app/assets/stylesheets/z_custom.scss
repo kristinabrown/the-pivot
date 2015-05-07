@@ -1,0 +1,302 @@
+/* COLUMNS */
+
+.column, .columns{
+  padding: 20px 0px;
+}
+.container.staticpages {
+  max-width: 100%;
+}
+
+.inner-container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* FONTS */
+h1, h2, h3, h4, h5, h6, .main-nav{
+  font-family: 'Oswald', sans-serif;
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:.006em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+h1, h2, h6{
+  font-family:'Arvo', serif;
+  font-weight:bold;
+  letter-spacing:.006em;
+}
+h6{
+  text-align:center;
+  min-height:50px;
+}
+
+h5{
+  text-align:center;
+}
+a{
+  text-decoration:none;
+  color:#fff;
+}
+
+a:hover{
+  color:#8a1f1a;
+}
+
+p, table{
+  color:#fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+
+.contact h1, .about h5{
+  float:right;
+}
+
+hr{
+  border: 5px solid #fff;
+}
+
+/* NAV */
+
+
+.top-nav ul li, .main-nav ul li {
+  display:inline-block;
+  float:left;
+}
+
+.top-nav ul li{
+  float:right;
+  padding:0px 10px;
+}
+
+.main-nav{
+  background:url(image_path("nav-ribbon.png")) no-repeat;
+  background-size: 100% 110px;
+  font-size: 30px;
+  min-height: 130px;
+  // margin: -70px auto 0;
+}
+
+.main-nav ul{
+  margin-left:80px;
+}
+.main-nav ul li{
+  width:20%;
+  padding-top:30px;
+}
+blockquote{
+  text-align:center;
+  color:#fff;
+  font-style:italic;
+  position:relative;
+
+  margin-top:35px;
+}
+
+
+blockquote::before{
+  content: "";
+  background: url(image_path("wheat-left.png")) no-repeat;
+  display: inline-block;
+  min-height: 100px;
+  min-width: 110px;
+  position: absolute;
+  left: -95px;
+  top: -30px;
+}
+
+blockquote::after{
+  content: "";
+  background: url(image_path("wheat-right.png")) no-repeat;
+  display: inline-block;
+  min-height: 100px;
+  min-width: 110px;
+  position: absolute;
+  right: -95px;
+  top: -30px;
+}
+
+.logo{
+  margin:-62px 0 0 -25px;
+
+}
+.logo img{
+  width: 135px;
+  height: 188px;
+}
+
+/*BEERS*/
+
+/* FOOT */
+
+/* HOME */
+
+img{
+  width:100%;
+}
+
+body{
+  background:url(image_path("chalk.jpg")) repeat;
+  color:#fff;
+
+}
+.staticpages_hero{
+  background:url(image_path("brewery.jpg")) no-repeat ;
+  min-height:500px;
+  max-height:500px;
+  background-size:100%;
+}
+
+.about{
+  background:url(image_path("rust.jpg")) repeat ;
+  background-size:100%;
+
+}
+
+.quote {
+  background:url(image_path("chalk.jpg")) repeat ;
+
+}
+
+footer{
+  background:url(image_path("border.png")) repeat-x #000;
+  min-height:70px;
+}
+
+.contact{
+  background:url(image_path("beer-bottles.jpg")) no-repeat ;
+}
+
+/*BEERS*/
+
+ul.categories-nav li{
+  font-family:'Arvo', serif;
+  font-weight:bold;
+  letter-spacing:.006em;
+  color: #fff;
+  display: inline;
+  float: left;
+  font-size: 30px;
+  padding-right: 20px;
+  text-transform: uppercase;
+}
+
+.beer_bottle{
+  margin-top: -80px;
+  margin-left: -50px;
+}
+
+
+/* CART */
+
+
+.stitched{
+  border:2px dashed #fff;
+  border-radius: 5px;
+  padding:20px;
+}
+table{
+  width: 94%;
+  margin: 0px 3%;
+}
+
+th, tr{
+  width:20%;
+  text-align:center!important;
+}
+tr {
+   border-bottom: 2px dashed #fff;
+}
+.basket{
+  position:relative;
+}
+
+.basket .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
+  background-color:#8a1f1a;
+  border:none;
+  font-family: 'Oswald', sans-serif;;
+  color:#fff;
+  float:left;
+}
+
+.basket{
+  padding: 50px 0px;
+}
+.basket p{
+  float:right;
+  position:relative;
+  padding-right:30px;
+}
+.basket p:before{
+  content: "";
+  background: url(image_path("basket.png")) no-repeat;
+  display: block;
+  min-height: 44px;
+  min-width: 50px;
+  position: absolute;
+  left: -61px;
+  top: -7px;
+}
+
+.body{
+  background-color:#000!important;
+}
+
+
+input[type="email"], input[type="number"], input[type="search"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"], textarea, select {
+  width: 100%;
+  color: #000;
+}
+.beer_row{
+  border-bottom: 5px solid #000;
+  margin-bottom:10px;
+}
+.all_orders{
+  display:block;
+  min-height:140px;
+}
+
+.increase_decrease input{
+  color:#fff;
+  font-size:40px;
+  margin-left:5px;
+  line-height: 31.1px;
+  padding-bottom: 10px;
+}
+
+
+.individual_beer {
+  max-width:80%;
+  margin:0 auto;
+  display: block;
+}
+
+ul.orders{
+  display: block;
+  margin: 33px;
+  font-size: 18px;
+}
+ul.orders li{
+  display:inline-block;
+  float:left;
+  margin-right:10px;
+  list-style:none;
+  font-weight:bold;
+}
+
+.beerbottle {
+  width: 80%;
+  margin-top: -68px;
+  margin-right: 31px;
+  margin-left: 155px;
+}
+
+ul.beerlist li{
+  display:inline-block;
+  list-style:none;
+  float:left;
+  margin-right:15px;
+  font-weight:bold;
+  font-family:'Arvo', serif;
+  font-size:20px;
+
+}

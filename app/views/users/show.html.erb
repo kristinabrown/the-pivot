@@ -1,10 +1,22 @@
+<div class="container">
+<%= render :partial => 'layouts/user_header.html.erb' %>
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
 <% if current_user.display_name.blank? %>
-  <p>Welcome, <%= current_user.fullname %>!</p>
+  <h1>Welcome, <%= current_user.fullname %>!</h1>
 <% else %>
-  <p>Welcome, <%= current_user.display_name %>!</p>
+  <h1>Welcome, <%= current_user.display_name %>!</h1>
 <% end %>
+<div class="row">
+  <div class="four columns">
+    <%= image_tag current_user.avatar.url(:thumb) %>
+  </div>
+  <div class="eight columns">
+    <ul>
+      <li><%= link_to "Edit Profile", edit_users_path(current_user) %></li>
+      <li><%= link_to "Past Orders", orders_path %></li>
+    </ul>
 
-<%= image_tag current_user.avatar.url(:thumb) %>
 
-<%= link_to "Edit Profile", edit_users_path(current_user) %>
-<%= link_to "Past Orders", orders_path %>
+  </div>
+</div>
+</div>

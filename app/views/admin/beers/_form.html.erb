@@ -1,21 +1,28 @@
-<%= form_for [:admin, @beer], multipart: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+<div class="row">
+  <div class="twelve columns">
+    <%= form_for [:admin, @beer], multipart: true do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %><br>
 
-  <%= f.label :state %>
-  active <%= f.radio_button :state, "true" %>
-  retired <%= f.radio_button :state, "false" %><br>
+      <%= f.label :description %>
+      <%= f.text_field :description %><br>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %><br>
+      <%= f.label :price %>
+      <%= f.text_field :price %><br>
 
-  <%= f.label :price %>
-  <%= f.text_field :price %><br>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %><br>
 
-  <%= f.label :attachment %>
-  <%= f.file_field :attachment %><br>
+      <%= f.label :state %>
+      active <%= f.radio_button :state, "true" %>
+      retired <%= f.radio_button :state, "false" %><br>
 
-  <p>Categories:</p>
-  <%= f.collection_check_boxes(:category_ids, @categories.to_a, :id, :name) %>
-  <%= f.submit %>
-<% end %>
+      <p>Categories:</p>
+      <ul class="form_categories">
+        <li><%= f.collection_check_boxes(:category_ids, @categories.to_a, :id, :name) %></li>
+      </ul>
+      <br/><br/><br/><br/>
+            <%= f.submit %>
+    <% end %>
+  </div>
+</div>
