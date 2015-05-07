@@ -25,6 +25,8 @@ $(document).ready(function(){
   toggleCategory(".pale", "#pale_beers")
   toggleCategory(".porter", "#porter_beers")
   toggleCategory(".amber", "#amber_beers")
+  toggleCategory(".porter", "#porter_beers")
+
   
   
   

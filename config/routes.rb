@@ -2,16 +2,16 @@ Rails.application.routes.draw do
   resources :beers, only: [:show, :index]
   resource :users
   resources :cart_items, only: [:edit, :create, :update, :index, :destroy]
-
   resources :orders
   
   resources :charges
   
   namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
     resources :beers
     resources :categories
     resources :orders, except: [:new, :create]
-  end  
+  end
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

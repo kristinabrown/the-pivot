@@ -1,13 +1,38 @@
-<% @categories.each do |category| %>
- <button class="<%= category.name.downcase %>"><%= category.name.capitalize %></button>
-<% end %>
+<div class="container">
+  <%= render :partial => 'layouts/user_header.html.erb' %>
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-<% @categories.each do |category| %>
-<div class="category hidden" id="<%= category.name.downcase %>_beers">
-  <h1><%= category.name %></h1>
-  <% category.beers.each do |beer| %>
-    <h3><%= link_to beer.name, beer_path(beer) %> 
-      <%= image_tag beer.attachment.url %></h3> 
+
+  <div class="row">
+    <div class="columns four">
+      <h1>Beer List</h1>
+    <ul class="beerlist">
+    <% @categories.each do |category| %>
+      <button class="<%= category.name.downcase %>"><li><%= category.name %></li></button>
+    <% end %>
+    </ul>
+    
+    </div>
+    <div class="columns eight">
+      <img class="beerbottle" src="<%= image_path("bottle.png")%>">
+    </div>
+  </div>
+
+
+  <% @categories.each_with_index do |category, index| %>
+    <% if (index + 1) % 6 == 0 %>
+      <div class="row beer_row">
+    <% end %>
+    
+    <% category.beers.each do |beer| %>
+      <div class="columns two hidden" id="<%= category.name.downcase %>_beers">
+        <h6><%= link_to beer.name, beer_path(beer) %> </h6>
+        <%= image_tag beer.attachment.url, class:"individual_beer" %>
+      </div>
+    <% end %>
+
+    <% if (index + 1) % 6 == 0 %>
+    </div><!--row-->
+    <% end %>
   <% end %>
 </div>
-<% end %> 

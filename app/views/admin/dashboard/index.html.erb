@@ -1,0 +1,18 @@
+<div class="container">
+<%= render :partial => 'layouts/admin_login_header.html.erb' %>
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
+
+<div class="stitched">
+  <h4>Welcome, <%= current_user.fullname %>!</h4>
+
+  <div class="row">
+    <div class="four columns">
+      <%= render :partial => 'layouts/user_avatar.html.erb' %>
+    </div><!--4-->
+    <div class="eight columns">
+      <%= render :partial => 'layouts/admin_header.html.erb' %>
+
+    </div><!--4-->
+  </div><!--row-->
+</div>
+</div>

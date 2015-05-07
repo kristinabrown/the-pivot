@@ -1,3 +1,8 @@
+<div class="container">
+<%= render :partial => 'layouts/admin_login_header.html.erb' %>
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
+
+<div class="stitched">
 <% @order.beers.each do |beer| %>
   <% OrderBeer.quantities(beer.id, @order.id).each do |ob| %>
     <%= ob.quantity %>
@@ -10,9 +15,8 @@ user name: <%= Order.user_name(@order) %><br>
 user email: <%= Order.user_email(@order) %><br>
 
 
-
-
 <%= number_to_currency(@order.total) %><br>
 status: <%= @order.status %><br>
 submitted: <%= @order.created_at %><br>
-
+</div>
+</div>

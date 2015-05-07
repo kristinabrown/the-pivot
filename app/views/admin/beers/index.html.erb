@@ -1,9 +1,7 @@
+<div class="container">
+<%= render :partial => 'layouts/admin_login_header.html.erb' %>
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
 <h1>All Beers</h1>
 
-<% @beers.each do |beer| %>
-  <%= beer.name %>
-  <%= beer.price %>
-  
-  <%= link_to "Delete Beer", admin_beer_path(beer), method: "delete" %>
-  <%= link_to "Edit Beer", edit_admin_beer_path(beer) %>
-<% end %>
+<%= render :partial => 'layouts/beers.html.erb' %>
+</div>

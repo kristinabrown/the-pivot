@@ -1,7 +1,6 @@
-<%= @beer.name %><br>
-<%= @beer.description %><br>
-<%= @beer.price %><br>
-<%= @beer.state %><br>
+<div class="container">
+<%= render :partial => 'layouts/admin_login_header.html.erb' %>
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
 <p>Categories:</p>
 <% @beer.categories.each do |category| %>
@@ -9,3 +8,5 @@
 <% end %>
 
 <%= link_to "Beers Index", admin_beers_path %>
+<%= render :partial => 'layouts/beer.html.erb' %>
+</div>

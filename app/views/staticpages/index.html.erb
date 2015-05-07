@@ -1,1 +1,54 @@
-<h1>Our Story</h1>
+
+    <section>
+      <div class="row staticpages_hero">
+        <header>
+
+            <div class="row">
+              <div class="twelve columns">
+                <nav class="top-nav inner-container">
+                <ul>
+                  <li><%= link_to "Login", login_path %></li>
+                  <li><%= link_to "Register", new_users_path %></li>
+                  <li><a href="">Cart</a></li>
+                </ul>
+              </nav>
+              </div><!--12-->
+            </div><!--row-->
+
+            <%= render :partial => 'layouts/sitewide_header.html.erb' %>
+
+
+        </header>
+  
+      </div><!--row-->
+    </section>
+
+    <section>
+      <div class="row quote">
+        <div class="offset-by-three six columns">
+          <blockquote>A quote about beer goes here. A quote about beer. A quote about beer goes here. A quote about beer.</blockquote>
+        </div><!--4-->
+      </div><!--row-->
+    </section>
+
+    <main class="about">
+      <div class="row inner-container">
+        <div class="twelve columns">
+          <h1>Our Story</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget convallis eros. Maecenas varius interdum sapien sed facilisis. Morbi lobortis in tellus ut suscipit. Nunc leo dolor, commodo ac dignissim porttitor, laoreet a metus. Aliquam tempor, dolor a faucibus tristique, magna enim finibus ipsum, sit amet pharetra arcu odio quis lacus. Maecenas rutrum tincidunt risus et aliquet. Sed quam urna, feugiat vitae condimentum ut, pharetra quis ligula.</p>
+
+          <p>Morbi ultricies non nisl nec volutpat. Ut mattis aliquam erat, in cursus enim convallis eu. Vivamus elit enim, tempus sed enim ut, fermentum euismod nisl. Phasellus gravida varius ex, eget aliquam velit tempor nec. Suspendisse tempor pulvinar dolor, scelerisque condimentum quam fermentum non. Pellentesque id ante ac mi semper iaculis ut eu orci. Vestibulum vel lectus vitae purus placerat ultricies sit amet a diam. Praesent maximus a sapien a pharetra. Suspendisse urna dolor, suscipit eu ex nec, dictum consequat dui.</p>
+          <h5>Since 1960</h5>
+        </div><!--12-->
+      </div><!--row-->
+    </main>
+
+
+
+
+    <footer>
+      <div class="row">
+        <div class="twelve columns">
+        </div>
+      </div>
+    </footer>

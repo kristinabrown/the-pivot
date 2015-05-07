@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="four columns ind_beer">
+    <%= image_tag @beer.attachment, class:"individual_beer" %>
+  </div>
+
+  <div class="eight columns">
+    <%= @beer.name %><br>
+    <%= @beer.description %><br>
+    <p><%=number_to_currency(@beer.price/100) %></p>
+    <%= @beer.state %><br>
+  </div>
+</div>

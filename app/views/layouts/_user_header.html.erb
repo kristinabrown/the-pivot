@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="twelve columns">
+    <nav class="top-nav inner-container">
+    <ul>
+      <% if current_user %>
+        <li><%= link_to "Dashboard", users_path %></li>
+        <li><%= link_to "Logout", logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Login", login_path %></li>
+        <li><%= link_to "Register", new_users_path %></li>
+      <% end %>
+      <li><%= link_to "Cart", cart_items_path %></li>
+    </ul>
+  </nav>
+  </div><!--12-->
+</div><!--row-->

@@ -1,0 +1,16 @@
+
+<% @beers.each_with_index do |beer, index| %>
+  <% if (index + 1) % 4 == 0 %>
+    <div class="row">
+  <% end %>
+  <div class="three columns">
+    <%= image_tag beer.attachment.url %>
+    <h4><%= beer.name %></h4>
+    <p><%=number_to_currency(beer.price/100) %></p>
+    <%= link_to "Delete Beer", admin_beer_path(beer), method: "delete", class: "button" %>
+    <%= link_to "Edit Beer", edit_admin_beer_path(beer), class: "button" %>
+  </div>
+  <% if (index + 1) % 4 == 0 %>
+  </div><!--row-->
+  <% end %>
+<% end %>
