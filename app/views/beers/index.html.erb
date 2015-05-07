@@ -10,6 +10,7 @@
     <% @categories.each do |category| %>
       <button class="<%= category.name.downcase %>"><li><%= category.name %></li></button>
     <% end %>
+    <button class="all"><li> All</li></button>
     </ul>
     
     </div>
@@ -25,7 +26,7 @@
     <% end %>
     
     <% category.beers.each do |beer| %>
-      <div class="columns two hidden" id="<%= category.name.downcase %>_beers">
+      <div class="columns two hidden <%= category.name.downcase %>_beers">
         <h6><%= link_to beer.name, beer_path(beer) %> </h6>
         <%= image_tag beer.attachment.url, class:"individual_beer" %>
       </div>

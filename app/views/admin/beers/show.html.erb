@@ -1,12 +1,11 @@
 <div class="container">
 <%= render :partial => 'layouts/admin_login_header.html.erb' %>
 <%= render :partial => 'layouts/sitewide_header.html.erb' %>
+<h1><%= @beer.name %></h1>
+<div class="stitched">
 
-<p>Categories:</p>
-<% @beer.categories.each do |category| %>
-  <%= category.name %><br>
-<% end %>
 
-<%= link_to "Beers Index", admin_beers_path %>
-<%= render :partial => 'layouts/beer.html.erb' %>
+  <h4><%= link_to "Beers Index", admin_beers_path %></h4>
+  <%= render :partial => 'layouts/beer.html.erb' %>
+  </div>
 </div>
