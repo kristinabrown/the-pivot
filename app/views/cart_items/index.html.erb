@@ -1,42 +1,50 @@
 <div class="container">
-<%= render :partial => 'layouts/user_header.html.erb' %>
-<%= render :partial => 'layouts/sitewide_header.html.erb' %>
-<h1>Shopping cart</h1>
-<div class="stitched">
-<table>
-    <tr>
-      <th>Item</th>
-      <th>Item Price</th>
-      <th>Quantity</th>
-      <th>Total</th>
-      <th>Remove</th>
-    </tr>
-    <tr>
-      <% @cart.contents.each do |k,v| %>
+  <%= render :partial => 'layouts/user_header.html.erb' %>
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-      <td><%= @cart.find_beer(k).name %></td>
-      <td><%= number_to_currency(@cart.total_item_price(k,v["quantity"])) %></td>
-      <td><%= v["quantity"] %></td>
-      <td>
-        <span class="increase_decrease"><%= button_to "+", cart_items_increase_path("item" => {beer_id: k}), method: "increase" %></span>
-      <% if v["quantity"].to_i > 1  %>
-        <span class="increase_decrease"><%= button_to "-", cart_items_decrease_path("item" => {beer_id: k}), method: "decrease" %></span>
-      <% end %>
-      </td>
+  <h1>Shopping cart</h1>
+  <div class="stitched">
+    <table>
 
-      <td><%= link_to "remove item", cart_item_path(@cart, "item" => {beer_id: k}), method: "delete" %></td>
       <tr>
-    <% end %>
+        <th>Item</th>
+        <th>Item Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Remove</th>
+      </tr>
 
-</table>
+      <tr>
+        <% @cart.contents.each do |k,v| %>
 
-</div>
-<br/>
-<h4> Total: <%= number_to_currency(@cart.total) %></h4>
+          <td><%= @cart.find_beer(k).name %></td>
+          <td><%= number_to_currency(@cart.total_item_price(k,v["quantity"])) %></td>
+          <td><%= v["quantity"] %></td>
+          <td>
+            <span class="increase_decrease"><%= button_to "+", cart_items_increase_path("item" => {beer_id: k}), method: "increase" %></span>
 
-<% if current_user %>
-  <%= button_to "Checkout", orders_path( :order_info => {total: @cart.total, user_id: current_user.id, beers: @cart.contents}) %>
-<% else %>
-   <%= link_to "Please log in to checkout.", login_path %>
-<% end %>
+            <% if v["quantity"].to_i > 1  %>
+              <span class="increase_decrease"><%= button_to "-", cart_items_decrease_path("item" => {beer_id: k}), method: "decrease" %></span>
+            <% end %>
+
+          </td>
+
+          <td>
+            <%= link_to "remove item", cart_item_path(@cart, "item" => {beer_id: k}), method: "delete" %>
+          </td>
+        <% end %>
+      </tr>
+
+    </table>
+
+  </div>
+  <br/>
+
+  <h4> Total: <%= number_to_currency(@cart.total) %></h4>
+
+  <% if current_user %>
+    <%= button_to "Checkout", orders_path( :order_info => {total: @cart.total, user_id: current_user.id, beers: @cart.contents}) %>
+  <% else %>
+     <%= link_to "Please log in to checkout.", login_path %>
+  <% end %>
 </div>

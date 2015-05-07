@@ -1,12 +1,13 @@
 <div class="container">
-<%= render :partial => 'layouts/admin_login_header.html.erb' %>
-<%= render :partial => 'layouts/sitewide_header.html.erb' %>
+  <%= render :partial => 'layouts/admin_login_header.html.erb' %>
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-<p>Categories:</p>
-<% @beer.categories.each do |category| %>
-  <%= category.name %><br>
-<% end %>
+  <p>Categories:</p>
 
-<%= link_to "Beers Index", admin_beers_path %>
-<%= render :partial => 'layouts/beer.html.erb' %>
+  <% @beer.categories.each do |category| %>
+    <%= category.name %><br>
+  <% end %>
+
+  <%= link_to "Beers Index", admin_beers_path %>
+  <%= render :partial => 'layouts/beer.html.erb' %>
 </div>

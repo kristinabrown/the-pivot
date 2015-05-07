@@ -1,23 +1,26 @@
 <div class="container">
-<%= render :partial => 'layouts/user_header.html.erb' %>
-<%= render :partial => 'layouts/sitewide_header.html.erb' %>
-<h1>Past Orders</h1>
-<div class="stitched">
-  <table>
-    <tr>
-      <th> Order Number</th>
-      <th> Order Status</th>
-      <th> Order Total</th>
-    </tr>
+  <%= render :partial => 'layouts/user_header.html.erb' %>
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-      <% @orders.each do |order| %>
+  <h1>Past Orders</h1>
+  
+  <div class="stitched">
+    <table>
       <tr>
-        <td><%= link_to order.id, order_path(order) %></td>
-        <td><%= order.status %></td>
-        <td><%= order.total %></td>
+        <th> Order Number</th>
+        <th> Order Status</th>
+        <th> Order Total</th>
       </tr>
-      <% end %>
 
-  </table>
-</div>
+        <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, order_path(order) %></td>
+          <td><%= order.status %></td>
+          <td><%= order.total %></td>
+        </tr>
+        <% end %>
+
+    </table>
+  </div>
+
 </div>

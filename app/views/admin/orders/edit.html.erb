@@ -1,22 +1,22 @@
 <div class="container">
-<%= render :partial => 'layouts/admin_login_header.html.erb' %>
-<%= render :partial => 'layouts/sitewide_header.html.erb' %>
+  <%= render :partial => 'layouts/admin_login_header.html.erb' %>
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-<div class="stitched">
-<%= form_for [:admin, @order] do |f| %>
-  <%= f.label "user_id" %>
-  <%= f.text_field "user_id" %>
+  <div class="stitched">
+    <%= form_for [:admin, @order] do |f| %>
 
-  <%= f.label "status" %>
-  <%= f.text_field "status" %>
+      <%= f.label "user_id" %>
+      <%= f.text_field "user_id" %>
 
-  <%= f.label "total" %>
-  <%= f.text_field "total" %>
+      <%= f.label "status" %>
+      <%= f.text_field "status" %>
 
-  <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) %><br>
+      <%= f.label "total" %>
+      <%= f.text_field "total" %>
 
-  <%= f.submit %>
-<% end %>
+      <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) %><br>
 
-</div>
+      <%= f.submit %>
+    <% end %>
+  </div>
 </div>
