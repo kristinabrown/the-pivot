@@ -105,15 +105,12 @@ class Seed
 
    def categories
       [
-        ["American Amber Ale", "American-style amber ales have medium-high to high maltiness with medium to low caramel character. They are characterized by American-variety hops, which produce medium hop bitterness, flavor and aroma. American ambers are usually darker in color, have more caramel flavor and less hop aromatics, and may have more body. This style was first made popular by brewers from California and the Pacific Northwest."],
         ["Pale", "This is a pale ale"],
         ["Porter", "This is a porter"],
         ["Amber", "This is an amber"],
         ["Lager", "This is a LAGER"],
         ["IPA", "HOPPY IS HAPPY"],
-        ["Stout", "It's stout"],
         ["Blonde", "Insert blonde joke"],
-        ["Hefferveisen", "DAS GERMAN BEER"],
       ]
    end
 
