@@ -22,6 +22,8 @@ $(document).ready(function(){
   toggleCategory(".ipa", "#ipa_beers")
   toggleCategory(".ale", "#ale_beers")
   toggleCategory(".blonde", "#blonde_beers")
+  toggleCategory(".porter", "#porter_beers")
+  
   
   
   function toggleCategory(categoryID, beerID){
