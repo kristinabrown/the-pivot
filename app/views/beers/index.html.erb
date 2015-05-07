@@ -1,10 +1,4 @@
-<!-- <button class="lager">Lager</button>
-<button class="stout">Stout</button>
-<button class="ipa">IPA</button>
-<button class="ale">Pale Ale</button>
-<button class="blonde">Blonde</button>
- -->
- <% @categories.each do |category| %>
+<% @categories.each do |category| %>
  <button class="<%= category.name.downcase %>"><%= category.name.capitalize %></button>
 <% end %>
 

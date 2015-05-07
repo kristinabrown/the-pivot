@@ -18,6 +18,14 @@ class Order < ActiveRecord::Base
     end
   end
   
+  def set_status_to_paid
+    update(status: "paid")
+  end
+  
+  def to_cents(total)
+    total * 100
+  end
+  
   def self.user_name(order)
     User.where(id: order.user_id).pluck(:fullname).join
   end
