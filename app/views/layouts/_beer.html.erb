@@ -8,5 +8,13 @@
     <%= @beer.description %><br>
     <p><%=number_to_currency(@beer.price/100) %></p>
     <%= @beer.state %><br>
+    
+    <p>Categories:</p>
+    <ul>
+      <% @beer.categories.each do |category| %>
+        <li><%= category.name %></li>
+      <% end %>
+    </ul>
+  
   </div>
 </div>

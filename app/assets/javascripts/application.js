@@ -25,6 +25,7 @@ $(document).ready(function(){
   toggleCategory(".pale", ".pale_beers")
   toggleCategory(".amber", ".amber_beers")
   toggleCategory(".porter", ".porter_beers")
+  toggleAllCategory()
 
   
   
@@ -36,6 +37,12 @@ $(document).ready(function(){
       $(beerID).toggleClass("hidden");
     });
   }
+  
+  function toggleAllCategory(){
+    $(".all").click(function(){
+      $(".two").toggleClass("hidden");
+    });
+  }  
   
   
 });
