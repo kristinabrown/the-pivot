@@ -8,6 +8,9 @@ class OrdersController < ApplicationController
       new_order.beers.each { |beer| order.beers << beer }
       new_order.quantities(order)
       redirect_to order_path(order)
+    else
+      flash[:errors] = "Whoops! Something went wrong with your order."
+      redirect_to cart_items_path
     end
   end
 
