@@ -17,15 +17,14 @@
 
 $(document).ready(function(){
   
-  toggleCategory(".lager", "#lager_beers")
-  toggleCategory(".stout", "#stout_beers")
-  toggleCategory(".ipa", "#ipa_beers")
-  toggleCategory(".ale", "#ale_beers")
-  toggleCategory(".blonde", "#blonde_beers")
-  toggleCategory(".pale", "#pale_beers")
-  toggleCategory(".porter", "#porter_beers")
-  toggleCategory(".amber", "#amber_beers")
-  toggleCategory(".porter", "#porter_beers")
+  toggleCategory(".lager", ".lager_beers")
+  toggleCategory(".stout", ".stout_beers")
+  toggleCategory(".ipa", ".ipa_beers")
+  toggleCategory(".ale", ".ale_beers")
+  toggleCategory(".blonde", ".blonde_beers")
+  toggleCategory(".pale", ".pale_beers")
+  toggleCategory(".amber", ".amber_beers")
+  toggleCategory(".porter", ".porter_beers")
 
   
   
