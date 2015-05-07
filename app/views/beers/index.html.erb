@@ -7,7 +7,7 @@
       <h1>Beer List</h1>
     <ul class="beerlist">
     <% @categories.each do |category| %>
-      <li class="<%= category.name %>"><%= category.name %></li>
+      <button class="<%= category.name.downcase %>"><li><%= category.name %></li></button>
     <% end %>
     </ul>
     
@@ -18,19 +18,17 @@
   </div>
 
 
-  <% @beers.each_with_index do |beer, index| %>
+  <% @categories.each_with_index do |category, index| %>
     <% if (index + 1) % 6 == 0 %>
       <div class="row beer_row">
     <% end %>
-
-    <% beer.categories.each do |cat| %>
-      <% @cat_class = cat.name %>
+    
+    <% category.beers.each do |beer| %>
+      <div class="columns two hidden" id="<%= category.name.downcase %>_beers">
+        <h6><%= link_to beer.name, beer_path(beer) %> </h6>
+        <%= image_tag beer.attachment.url, class:"individual_beer" %>
+      </div>
     <% end %>
-
-    <div class="columns two <%= @cat_class %> beer">
-      <h6><%= link_to beer.name, beer_path(beer) %> </h6>
-      <%= image_tag beer.attachment.url, class:"individual_beer" %>
-    </div>
 
     <% if (index + 1) % 6 == 0 %>
     </div><!--row-->
