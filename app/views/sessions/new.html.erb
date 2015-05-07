@@ -1,15 +1,17 @@
 <div class="container">
-<%= render :partial => 'layouts/user_header.html.erb' %>
-<%= render :partial => 'layouts/sitewide_header.html.erb' %>
-<div class="stitched">
-  <%= form_for(:session, url:login_path) do |f| %>
-    <%= f.label "Email:" %>
-    <%= f.text_field :email %>
+  <%= render :partial => 'layouts/user_header.html.erb' %>
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-    <%= f.label "Password:" %>
-    <%= f.password_field :password %>
+  <div class="stitched">
+    <%= form_for(:session, url:login_path) do |f| %>
+      <%= f.label "Email:" %>
+      <%= f.text_field :email %>
 
-    <%= f.submit 'Login' %>
-  <% end %>
-</div>
+      <%= f.label "Password:" %>
+      <%= f.password_field :password %>
+
+      <%= f.submit 'Login' %>
+    <% end %>
+  </div>
+  
 </div>

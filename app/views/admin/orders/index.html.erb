@@ -1,68 +1,70 @@
 <div class="container">
-<%= render :partial => 'layouts/admin_login_header.html.erb' %>
-<%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-<h1>All Orders</h1>
-<div class="stitched">
-<h3>Ordered</h3>
-<% @orders.ordered.each do |order| %>
-  <div class="all_orders">
-    <%= link_to order.id, admin_order_path(order) %>
-    <%= order.status %>
-    <%= form_for order, url: admin_order_path(order) do |f| %>
-      <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
-      <%= f.submit %>
-    <% end  %>
-  </div><!--div-->
-<% end %>
-</div>
-<br/>
-<div class="stitched">
-  <h3>Paid</h3>
-<% @orders.paid.each do |order| %>
-  <div class="all_orders">
-    <%= link_to order.id, admin_order_path(order) %>
-    <%= order.status %>
-    <%= form_for order, url: admin_order_path(order) do |f| %>
-      <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
-      <%= f.submit %>
-    <% end  %>
+  <%= render :partial => 'layouts/admin_login_header.html.erb' %>
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
+
+  <h1>All Orders</h1>
+
+  <div class="stitched">
+    <h3>Ordered</h3>
+    <% @orders.ordered.each do |order| %>
+      <div class="all_orders">
+
+        <%= link_to order.id, admin_order_path(order) %>
+        <%= order.status %>
+
+        <%= form_for order, url: admin_order_path(order) do |f| %>
+          <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
+          <%= f.submit %>
+        <% end  %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-</div>
-<br/>
-<div class="stitched">
-<h3>Completed</h3>
-<% @orders.completed.each do |order| %>
-  <div class="all_orders">
-    <%= link_to order.id, admin_order_path(order) %>
-    <%= order.status %>
-      <%= form_for order, url: admin_order_path(order) do |f| %>
-      <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
-      <%= f.submit %>
-      <% end  %>
+  <br/>
+
+  <div class="stitched">
+    <h3>Paid</h3>
+    <% @orders.paid.each do |order| %>
+      <div class="all_orders">
+        <%= link_to order.id, admin_order_path(order) %>
+        <%= order.status %>
+
+        <%= form_for order, url: admin_order_path(order) do |f| %>
+          <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
+          <%= f.submit %>
+        <% end  %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-</div>
+  <br/>
 
+  <div class="stitched">
+    <h3>Completed</h3>
+    <% @orders.completed.each do |order| %>
+      <div class="all_orders">
+        <%= link_to order.id, admin_order_path(order) %>
+        <%= order.status %>
+          <%= form_for order, url: admin_order_path(order) do |f| %>
+          <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
+          <%= f.submit %>
+          <% end  %>
+      </div>
+    <% end %>
+  </div>
 
-
-
-
-
-
-<br/>
-<div class="stitched">
-<h3>Cancelled</h3>
-<% @orders.cancelled.each do |order| %>
-  <div class="all_orders">
-  <%= link_to order.id, admin_order_path(order) %>
-  <%= order.status %>
-  <%= form_for order, url: admin_order_path(order) do |f| %>
-    <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
-    <%= f.submit %>
-  <% end  %>
-</div>
-<% end %>
-</div>
+  <br/>
+  <div class="stitched">
+    <h3>Cancelled</h3>
+    <% @orders.cancelled.each do |order| %>
+      <div class="all_orders">
+        <%= link_to order.id, admin_order_path(order) %>
+        <%= order.status %>
+        
+        <%= form_for order, url: admin_order_path(order) do |f| %>
+          <%= f.collection_select(:status, order.statuses, :to_s, :to_s)%><br>
+          <%= f.submit %>
+        <% end  %>
+      </div>
+    <% end %>
+  </div>
 </div>
