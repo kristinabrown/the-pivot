@@ -136,9 +136,14 @@ body{
   color:#fff;
 
 }
+
+#e {
+ font-size: 3em;
+}
+
 .staticpages_hero{
-  background:url(image_path("collectibles.png")) no-repeat ;
-  min-height:500px;
+  background:url(image_path("classic-car.png")) no-repeat ;
+  min-height:600px;
   max-height:500px;
   background-size:100%;
 }
