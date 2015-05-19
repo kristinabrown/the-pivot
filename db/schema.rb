@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501174409) do
+ActiveRecord::Schema.define(version: 20150519232259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,23 +24,29 @@ ActiveRecord::Schema.define(version: 20150501174409) do
   add_index "beer_categories", ["beer_id"], name: "index_beer_categories_on_beer_id", using: :btree
   add_index "beer_categories", ["category_id"], name: "index_beer_categories_on_category_id", using: :btree
 
-  create_table "beers", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+  end
+
+  create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "state"
+    t.boolean  "active"
     t.string   "description"
-    t.integer  "price"
+    t.integer  "starting_price"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.datetime "expiration_date"
+    t.integer  "store_id"
+    t.integer  "category_id"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-  end
+  add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
+  add_index "items", ["store_id"], name: "index_items_on_store_id", using: :btree
 
   create_table "order_beers", force: :cascade do |t|
     t.integer "order_id"
@@ -61,6 +67,13 @@ ActiveRecord::Schema.define(version: 20150501174409) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
+  create_table "stores", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "fullname"
     t.string   "email"
@@ -74,9 +87,9 @@ ActiveRecord::Schema.define(version: 20150501174409) do
     t.datetime "avatar_updated_at"
   end
 
-  add_foreign_key "beer_categories", "beers"
   add_foreign_key "beer_categories", "categories"
-  add_foreign_key "order_beers", "beers"
+  add_foreign_key "beer_categories", "items", column: "beer_id"
+  add_foreign_key "order_beers", "items", column: "beer_id"
   add_foreign_key "order_beers", "orders"
   add_foreign_key "orders", "users"
 end
