@@ -115,10 +115,7 @@ blockquote::after{
   top: -30px;
 }
 
-.logo{
-  margin:-62px 0 0 -25px;
 
-}
 .logo img{
   width: 135px;
   height: 188px;
@@ -135,25 +132,26 @@ img{
 }
 
 body{
-  background:url(image_path("chalk.jpg")) repeat;
+  //background:url(image_path("chalk.jpg")) repeat;
   color:#fff;
 
 }
 .staticpages_hero{
-  background:url(image_path("brewery.jpg")) no-repeat ;
+  background:url(image_path("collectibles.png")) no-repeat ;
   min-height:500px;
   max-height:500px;
   background-size:100%;
 }
 
 .about{
-  background:url(image_path("rust.jpg")) repeat ;
+  background: #706f60; //url(image_path("rust.jpg")) repeat ;
   background-size:100%;
+  padding: 10px;
 
 }
 
 .quote {
-  background:url(image_path("chalk.jpg")) repeat ;
+  background: #3f5b6b //url(image_path("chalk.jpg")) repeat ;
 
 }
 
