@@ -1,10 +1,10 @@
-<div class="container">
-  <%= render :partial => 'layouts/user_header.html.erb' %>
-  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
+  <!-- <%= render :partial => 'layouts/user_header.html.erb' %> -->
+  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
+<div class="container">
   <div class="row">
     <div class="columns four">
-      <h1>Beer List</h1>
+      <h1>Stores</h1>
       <ul class="beerlist">
         <% @categories.each do |category| %>
           <button class="<%= category.name.downcase %>"><li><%= category.name %></li></button>
@@ -35,4 +35,5 @@
       <% end %>
     
   <% end %>
+
 </div>
