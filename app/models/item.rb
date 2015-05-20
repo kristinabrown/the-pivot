@@ -39,9 +39,9 @@ class Item < ActiveRecord::Base
 
   # scope :all_available, -> { where(state: true) }
 
-  # def available?
-  #   state == true
-  # end
+  def available?
+    active == true
+  end
 
   # def ensure_has_at_least_one_category
   #   if self.categories.count < 1

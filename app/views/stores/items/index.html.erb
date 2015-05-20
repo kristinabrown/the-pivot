@@ -5,5 +5,16 @@
 <div class="col-md-2 items">
   <h5 class="item-name text-center"> <%= link_to item.name, '#' %> </h5>
   <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.starting_price) %></p>
+
+<%= form_for(:order, url: :cart_items) do |f| %>
+  <%= f.label :minimum_bid %>
+  <%= f.number_field :price, value: item.starting_price + 1.00 %>
+  <%= f.hidden_field :item_id, value: item.id %>
+  <%= f.hidden_field :item_price, value: item.starting_price %>
+  <!-- should be bid price -->
+        
+<%= f.submit "Bid Now" %>
+<%= f.submit "Add to Watchlist" %>
+<% end %>
 </div>
 <% end %>

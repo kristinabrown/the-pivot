@@ -5,34 +5,30 @@ class Cart
     @contents = initial_contents || {}
   end
 
-  def find_beer(beer_id)
-    Beer.find(beer_id.to_i)
+  def find_item(item_id)
+    Item.find(item_id.to_i)
   end
   
-  def total_item_price(beer_id, quantity)
-    (find_beer(beer_id).price * quantity.to_i)/100
+  def total_item_price(item_id, quantity)
+    (find_item(item_id).price * quantity.to_i)/100
   end
 
-  def add_beer(beer, quantity)
-    if contents[beer.id.to_s]
-      contents[beer.id.to_s]["quantity"] = contents[beer.id.to_s]["quantity"].to_i + quantity.to_i
-    else
-      contents[beer.id.to_s] = {"quantity" => quantity}
-    end
+  def add_item(item)
+    contents["item"] = item.id
   end
 
   def total
     contents.map { |k, v| total_item_price(k, v["quantity"]) }.reduce(:+)
   end
 
-  def increase_quantity(beer)
-    contents[beer.id.to_s]["quantity"]   = contents[beer.id.to_s]["quantity"].to_i + 1
-    contents[beer.id.to_s]["beer_price"] = beer.price * contents[beer.id.to_s]["quantity"].to_i
+  def increase_quantity(item)
+    contents[item.id.to_s]["quantity"]   = contents[item.id.to_s]["quantity"].to_i + 1
+    contents[item.id.to_s]["item_price"] = item.price * contents[item.id.to_s]["quantity"].to_i
   end
 
-  def decrease_quantity(beer)
-    contents[beer.id.to_s]["quantity"]   = contents[beer.id.to_s]["quantity"].to_i - 1
-    contents[beer.id.to_s]["beer_price"] = beer.price * contents[beer.id.to_s]["quantity"].to_i # just do ID and quantity and take logic elsewhere
+  def decrease_quantity(item)
+    contents[item.id.to_s]["quantity"]   = contents[item.id.to_s]["quantity"].to_i - 1
+    contents[item.id.to_s]["beer_price"] = item.price * contents[item.id.to_s]["quantity"].to_i # just do ID and quantity and take logic elsewhere
   end
 
   def delete_item(beer_id)

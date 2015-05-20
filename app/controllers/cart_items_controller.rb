@@ -1,32 +1,31 @@
 class CartItemsController < ApplicationController
   def create
-    beer_id = params[:order][:beer_id]
-    beer    = @cart.find_beer(beer_id)
-    if beer.available?
-      quantity = params[:order][:quantity]
-      @cart.add_beer(beer, quantity)
+    item_id = params[:order][:item_id]
+    item    = @cart.find_item(item_id)
+    if item.available?
+      @cart.add_item(item)
       session[:cart] = @cart.contents
       render :index
     else
-      flash[:errors] = "The #{beer.name} is unavailable."
-      redirect_to beers_path
+      flash[:errors] = "The #{item.name} is unavailable."
+      redirect_to stores_path
     end
   end
 
   def destroy
-    @cart.delete_item(params['item']['beer_id'])
+    @cart.delete_item(params['item']['item_id'])
     render :index
   end
 
   def increase
-    beer = @cart.find_beer(params["item"]["beer_id"])
-    @cart.increase_quantity(beer)
+    item = @cart.find_item(params["item"]["item_id"])
+      @cart.increase_quantity(item)
     render :index
   end
 
   def decrease
-    beer = @cart.find_beer(params["item"]["beer_id"])
-    @cart.decrease_quantity(beer)
+    item = @cart.find_item(params["item"]["item_id"]) 
+      @cart.decrease_quantity(item)
     render :index
   end
 end
