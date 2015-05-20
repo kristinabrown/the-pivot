@@ -1,13 +1,14 @@
 class User < ActiveRecord::Base
-  has_many :orders
+  # has_many :orders
 
-  validates :fullname, presence: true,
-                       length: {in: 1..32}
-  validates :email, presence: true,
-                    length: { in: 5..50 },
-                    uniqueness: true
-  validates :display_name, allow_blank: true,
-                            length: {in: 2..32}
+  validates :fullname, presence: true, length: {in: 1..32}
+  validates :email, presence: true, length: { in: 5..50 }, uniqueness: true
+  validates :display_name, allow_blank: true, length: {in: 2..32}
+
+  #   VALID_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # validates :email, presence:true, length: { maximum: 50 },
+  #                   uniqueness: { case_sensitive: false }
+  validates_format_of :email, with: VALID_REGEX, on: :create
 
   has_secure_password
   enum role: %w(default admin)
@@ -23,3 +24,4 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 end
+
