@@ -37,13 +37,14 @@ class Seed
               expiration_date: Faker::Date.between(2.days.from_now, 15.days.from_now),
               store_id: (1..20).to_a.sample,
               category_id: (1..10).to_a.sample,
-              active: true )
+              active: true) 
+
     end
     p "Items Generated"
   end
 
   def self.call
-      new.call
+    new.call
   end
 end
 
