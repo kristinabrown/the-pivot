@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   #   VALID_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # validates :email, presence:true, length: { maximum: 50 },
   #                   uniqueness: { case_sensitive: false }
-  validates_format_of :email, with: VALID_REGEX, on: :create
+  # validates_format_of :email, with: VALID_REGEX, on: :create
 
   has_secure_password
   enum role: %w(default admin)
