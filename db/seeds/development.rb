@@ -38,6 +38,7 @@ class Seed
               store_id: (1..20).to_a.sample,
               category_id: (1..10).to_a.sample,
               active: true) 
+
     end
     p "Items Generated"
   end
