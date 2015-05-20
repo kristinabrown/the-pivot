@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 20150519232259) do
     t.integer  "category_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
   add_index "items", ["store_id"], name: "index_items_on_store_id", using: :btree
 

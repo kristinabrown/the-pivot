@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   belongs_to :store
+  belongs_to :category
 
   # before_save :ensure_has_at_least_one_category
 
