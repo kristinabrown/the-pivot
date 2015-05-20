@@ -1,6 +1,15 @@
 class Item < ActiveRecord::Base
   belongs_to :store
   belongs_to :category
+  
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :active, presence: true
+  validates :starting_price, presence: true
+  validates :expiration_date, presence: true
+  validates :store_id, presence: true
+  validates :category_id, presence: true
+  
 
   # before_save :ensure_has_at_least_one_category
 
