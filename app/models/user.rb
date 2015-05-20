@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
                               default_url: "default-medium.jpg",
                               storage: :s3,
                               bucket: ENV['bucket'],
-                              s3_credentials: { access_key_id: ENV["access_key_id"],
-                                                secret_access_key: ENV["secret_access_key"] }
+                              s3_credentials: { access_key_id: ENV['access_key_id'],
+                                                secret_access_key: ENV['secret_access_key'] }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 end
