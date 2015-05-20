@@ -1,4 +1,68 @@
 /* COLUMNS */
+.stores {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 49px;
+  min-height: 300px;
+  min-width: 110px;
+  background-color: white;  
+}
+
+.item-name{
+  color: black;
+}
+
+
+.time {
+  color: black;
+
+}
+
+.items {
+  border: 2px double black;
+  padding: 10px;
+  margin: 27px;
+  min-height: 300px;
+  min-width: 260px;
+  background-color: white;  
+}
+
+#nav{
+  margin: 0;
+  padding: 0;
+}
+
+#store-div {
+  padding: 15px;
+}
+
+#stores-header {
+  font-size: 75px;
+  letter-spacing:.015em;
+  text-align: center;
+  letter-spacing:.006em;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  
+}
+
+.store-name {
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+  text-transform:uppercase;
+  letter-spacing:.006em;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  border-bottom: 2px solid black;
+}
+
+.works {
+  min-height:500px;
+  max-height:500px;
+  background-size:100%;
+}
 
 .column, .columns{
   padding: 20px 0px;
@@ -12,39 +76,39 @@
   margin: 0 auto;
 }
 /* FONTS */
-h1, h2, h3, h4, h5, h6, .main-nav{
-  font-family: 'Oswald', sans-serif;
-  color:#fff;
-  text-transform:uppercase;
-  letter-spacing:.006em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-}
-h1, h2, h6{
-  font-family:'Arvo', serif;
-  font-weight:bold;
-  letter-spacing:.006em;
-}
-h6{
-  text-align:center;
-  min-height:50px;
-}
+// h1, h2, h3, h4, h5, h6, .main-nav{
+//   font-family: 'Oswald', sans-serif;
+//   color:#fff;
+//   text-transform:uppercase;
+//   letter-spacing:.006em;
+//   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+// }
+// h1, h2, h6{
+//   font-family:'Arvo', serif;
+//   font-weight:bold;
+//   letter-spacing:.006em;
+// }
+// h6{
+//   text-align:center;
+//   min-height:50px;
+// }
 
 h5{
   text-align:center;
 }
-a{
-  text-decoration:none;
-  color:#fff;
-}
+// a{
+//   text-decoration:none;
+//   color:#fff;
+// }
 
-a:hover{
-  color:#8a1f1a;
-}
+// a:hover{
+//   color:#8a1f1a;
+// }
 
-p, table{
-  color:#fff;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-}
+// p, table{
+//   color:#fff;
+//   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+// }
 
 .contact h1, .about h5{
   float:right;
@@ -133,6 +197,7 @@ img{
 body{
   //background:url(image_path("chalk.jpg")) repeat;
   color:#fff;
+  background-color: #dfdecb;
 
 }
 
@@ -145,10 +210,11 @@ body{
   min-height:500px;
   max-height:500px;
   background-size:100%;
+  top-margin: 0;
 }
 
 .about{
-  background: #706f60; //url(image_path("rust.jpg")) repeat ;
+ //url(image_path("rust.jpg")) repeat ;
   background-size:100%;
   padding: 10px;
 
@@ -312,4 +378,3 @@ ul.beerlist li{
   font-size:20px;
 
 }
-

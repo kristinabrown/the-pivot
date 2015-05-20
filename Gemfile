@@ -32,6 +32,7 @@ gem 'unicorn'
 gem 'paperclip'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
+gem 'faker'
 
 group :production do
   gem 'rails_12factor'

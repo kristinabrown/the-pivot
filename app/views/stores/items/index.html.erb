@@ -1,7 +1,9 @@
-<h1><%= current_store.name %></h1>
-
+<div class="row" id="store-div">
+<div class="col-md-12"><h1 class="store-name"><%= current_store.name %></h1></div>
+</div>
 <% current_store.items.each do |item| %>
-  <%= item.name %>
-  <%= item.description %>
-  <%= item.expiration_date %>
+<div class="col-md-2 items">
+  <h5 class="item-name text-center"> <%= link_to item.name, '#' %> </h5>
+  <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.starting_price) %></p>
+</div>
 <% end %>
