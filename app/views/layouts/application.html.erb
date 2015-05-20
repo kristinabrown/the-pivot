@@ -20,9 +20,9 @@
   <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/custom.css"> -->
+  <link rel="stylesheet" href="css/custom.css"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -39,6 +39,7 @@
 
 
 
+<%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
 
 <% flash.each do |name, msg| %>
@@ -52,7 +53,7 @@
 
 
   
-
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </body>
 </html>
