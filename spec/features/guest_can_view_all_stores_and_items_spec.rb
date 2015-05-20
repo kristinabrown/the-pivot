@@ -31,7 +31,7 @@ feature "any user is able to see" do
       expect(page).to have_content("Lunar Landing")
     end
     
-    xit "can view items" do
+    it "can view items" do
       visit root_path
       click_link "Stores"
       click_link "Lunar Landing"
