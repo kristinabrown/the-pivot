@@ -1,5 +1,6 @@
 class Store < ActiveRecord::Base  
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true,
+                   presence: true
   validates :slug, uniqueness: true
 
   before_validation :generate_slug
