@@ -20,8 +20,6 @@ class Seed
     p 'Categories Created'
   end
 
-  end
-
   def generate_stores
     20.times do
       store = Store.create(
@@ -31,21 +29,21 @@ class Seed
   end
 
   def generate_items
-    50.items do
+    50.times do
       item =  Item.create( 
               name: Faker::Commerce.product_name,
               description: Faker::Lorem.sentence,
               starting_price: Faker::Commerce.price + 1,
-              expiration_date: Faker::Date.between(2.days.from_now, 15.days.from_now)
+              expiration_date: Faker::Date.between(2.days.from_now, 15.days.from_now),
               store_id: (1..20).to_a.sample,
               category_id: (1..10).to_a.sample,
-              active: true 
+              active: true) 
     end
     p "Items Generated"
   end
 
   def self.call
-      new.call
+    new.call
   end
 end
 
