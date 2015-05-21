@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resource :users
   resources :watch_items, only: [:edit, :create, :update, :index, :destroy]
   resources :orders
+  get '/all_items', to: 'items#index'
   # 
   # resources :charges
   # 
