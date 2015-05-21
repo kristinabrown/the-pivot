@@ -1,20 +1,25 @@
 <div class="row" id="store-div">
-<div class="col-md-12"><h1 class="store-name"><%= current_store.name %></h1></div>
+<div class="col-md-12"><h1 class="store-name store-index"><%= current_store.name %></h1></div>
 </div>
 <% current_store.items.each do |item| %>
 <div class="col-md-2 items">
-  <h5 class="item-name text-center"> <%= link_to item.name, '#' %> </h5>
+  <%= image_tag('default-item.png') %>
+  <h6 class="item-name text-center"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h6>
   <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.starting_price) %></p>
 
 <%= form_for(:order, url: :cart_items) do |f| %>
-  <%= f.label :minimum_bid %>
+  <%= f.label :minimum_bid, :id => 'minimum-bid' %>
   <%= f.number_field :price, value: item.starting_price + 1.00 %>
   <%= f.hidden_field :item_id, value: item.id %>
   <%= f.hidden_field :item_price, value: item.starting_price %>
   <!-- should be bid price -->
-        
-<%= f.submit "Bid Now" %>
-<%= f.submit "Add to Watchlist" %>
+
+  <% if current_user %>      
+  <%= f.submit "Bid Now", url: cart_items_path %>
+  <% else %>
+  <%= f.submit "Bid Now", url: login_path %>
+  <% end %>
+  <%= f.submit "Add to Watchlist", url: cart_items_path %>
 <% end %>
 </div>
 <% end %>
