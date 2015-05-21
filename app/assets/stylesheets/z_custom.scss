@@ -1,11 +1,38 @@
 /* COLUMNS */
 .stores {
   border: 1px solid black;
-  padding: 10px;
+  // padding: 10px;
   margin: 49px;
-  min-height: 300px;
+  min-height: 400px;
+  max-height: 450px;
   min-width: 110px;
-  background-color: white;  
+  background-color: white;
+}
+
+.item-description {
+  color: black;
+}
+
+#item-show-image {
+  max-height: 800px;
+  max-width: 500px;
+  
+}
+
+.item-name-header {
+  background: #6c676e;
+  small {
+    color: #dddcbc;
+  }
+}
+
+#minimum-bid {
+  color: black;
+}
+
+#store-image {
+  width: 100%;
+  top-margin: 35px;
 }
 
 .item-name{
@@ -22,7 +49,8 @@
   border: 2px double black;
   padding: 10px;
   margin: 27px;
-  min-height: 300px;
+  min-height: 550px;
+  max-height: 600px;
   min-width: 260px;
   background-color: white;  
 }
@@ -43,7 +71,13 @@
   letter-spacing:.006em;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  background-color: #3d444f;
   
+}
+
+.store-index{
+  background-color:#1b3947;
+  border-radius: 15px;
 }
 
 .store-name {
@@ -51,6 +85,7 @@
     text-decoration: none;
     font-weight: bold;
   }
+  padding: 10px;
   text-transform:uppercase;
   letter-spacing:.006em;
   text-align: center;
@@ -202,7 +237,11 @@ body{
 }
 
 #e {
- font-size: 2em;
+ font-size: 1.75em;
+}
+
+#logo {
+  background-color: #64e6d0;
 }
 
 .staticpages_hero{
