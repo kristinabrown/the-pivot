@@ -29,10 +29,10 @@
           <% if current_user %>
             <li><%= link_to "Logout", logout_path, method: :delete %></li>
           <% else %>
-            <li><a href="/login" >Login</a></li>
-            <li><a href="users/new">Register</a></li>
+            <li><%= link_to "Login", login_path %></li>
+            <li><%= link_to "Register", new_users_path %></li>
           <% end %>
-          <li><a href="/watch_items">Watch List</a></li>
+          <li><%= link_to "Watch List", watch_items_path %></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
