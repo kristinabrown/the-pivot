@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521044317) do
+ActiveRecord::Schema.define(version: 20150521212208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20150521044317) do
 
   add_index "beer_categories", ["beer_id"], name: "index_beer_categories_on_beer_id", using: :btree
   add_index "beer_categories", ["category_id"], name: "index_beer_categories_on_category_id", using: :btree
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "current_price"
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "bids", ["item_id"], name: "index_bids_on_item_id", using: :btree
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -95,6 +106,8 @@ ActiveRecord::Schema.define(version: 20150521044317) do
 
   add_foreign_key "beer_categories", "categories"
   add_foreign_key "beer_categories", "items", column: "beer_id"
+  add_foreign_key "bids", "items"
+  add_foreign_key "bids", "users"
   add_foreign_key "order_beers", "items", column: "beer_id"
   add_foreign_key "order_beers", "orders"
   add_foreign_key "orders", "users"

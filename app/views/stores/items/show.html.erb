@@ -2,23 +2,35 @@
   <h1 class="item-name-header"><%= @item.name %><br><small><%= distance_of_time_in_words(Time.now, @item.expiration_date) %> | current bid: <%= number_to_currency(@item.starting_price) %></small>
   <small></h1>
 <div class="row">
+
+
   <div class="col-md-2 col-md-offset-4">
     <%= form_for(:order, url: :watch_items) do |f| %>
-    <%= f.number_field :price, value: @item.starting_price + 1.00, :id => "bid-input" %>
-    <%= f.label :minimum_bid, :id => 'minimum-bid' %>
-    <%= f.hidden_field :item_id, value: @item.id %>
-    <%= f.hidden_field :item_price, value: @item.starting_price %>
+      <%#= f.number_field :price, value: @item.starting_price + 1.00, :id => "bid-input" %>
+      <%#= f.label :minimum_bid, :id => 'minimum-bid' %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :item_price, value: @item.starting_price %>
+      <%= f.submit "Watch", url: watch_items_path %>
     <!-- should be bid price -->
+    <% end %>
   </div>
 
+  <% if current_user %>   
   <div class="col-md-4">
-    <% if current_user %>      
-    <%= f.submit "Bid Now", url: watch_items_path %>
-    <% else %>
-    <%= f.submit "Bid Now", url: login_path %>
+    <%= form_for(:bid, url: :bids, method: :post) do |f| %>
+      <%= f.number_field :current_price, value: @item.starting_price + 1.00, :id => "bid-input" %>
+      <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "Bid Now"%>
     <% end %>
-    <%= f.submit "Watch", url: watch_items_path %>
-    <% end %>
+  <% end %>
+
+
+    <%# else %>
+      <%#= form_for( url: :bids) do |f| %>
+      <%#= f.submit "Bid Now" %>
+    <%# end %>
   </div>
   
 </div>

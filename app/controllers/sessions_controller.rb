@@ -10,7 +10,7 @@
       if @cart.contents.empty?
         redirect_to users_path
       else
-        redirect_to cart_items_path
+        redirect_to watch_items_path
       end
     else
       flash[:errors] = "Invalid login"

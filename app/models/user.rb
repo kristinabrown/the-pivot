@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :orders
+  # has_many :orders
+  has_many :bids
+
 
   validates :fullname, presence: true, length: {in: 2..32}
   validates :email, presence: true, length: { in: 5..50 },
