@@ -1,18 +1,22 @@
 
-      <h1>Items</h1>
-        <% @categories.each do |category| %>
-          <button class="<%= category.name.downcase %>"><li><%= category.name %></li></button>
-        <% end %>
-        <button class="all"><li> All</li></button>
+<h1>Items</h1>
+  <% @categories.each do |category| %>
+    <button class="<%= category.name.downcase %>"><li><%= category.name %></li></button>
+  <% end %>
+  <button class="all"><li> All</li></button>
 
-  <% @categories.each do |category, index| %>
-    
-      <% category.items.each do |item| %>
-        <div class="<%= category.name.downcase %>_items">
-          <h6><%= link_to item.name, stores_item(item) %> </h6>
-          <%= image_tag item.attachment.url, class:"individual_beer" %>
-        </div>
-      <% end %>
-      <% end %>
+
+
+<% @items.each do |item| %>
+   <% if !item.category_id.nil? %>
+      <div class="<%= Category.find(item.category_id.to_i).name.downcase %>_items">
+   <% else %>
+      <div class="null_items">
+   <% end %>
+    <h6><%= link_to item.name, store_items_path(item) %> </h6>
+    <%= image_tag item.attachment.url, class:"individual_beer" %>
+  </div>
+<% end %>
+
     
 
