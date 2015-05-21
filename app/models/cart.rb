@@ -14,7 +14,7 @@ class Cart
   end
 
   def add_item(item)
-    contents["item"] = item.id
+    contents[item.id] = item.id
   end
 
   def total
