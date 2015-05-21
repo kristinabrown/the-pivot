@@ -1,6 +1,4 @@
 <div class="container">
-  <%= render :partial => 'layouts/user_header.html.erb' %>
-  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
   <% if current_user.display_name.blank? %>
     <h1>Welcome, <%= current_user.fullname %>!</h1>
@@ -19,7 +17,27 @@
         <li><%= link_to "Past Orders", orders_path %></li>
       </ul>
     </div>
+
+<table>
+      <tr>
+        <th>Item</th>
+        <th>Store </th>
+        <th>Highest Bid</th>
+        <th>Time Remaining</th>
+      </tr>
+    <div>
+      <% current_user.bids.each do |bid| %>
+      
+      <tr>
+        <td> <%= Item.find(bid.item_id).name %> </td>  
+
+        <% end %>
+      </tr>
+    </table>
+    </div>
     
   </div>
 
 </div>
+
+      

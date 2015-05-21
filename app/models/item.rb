@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
   belongs_to :store
   belongs_to :category
+  has_many :bids
   
   validates :name, presence: true
   validates :description, presence: true

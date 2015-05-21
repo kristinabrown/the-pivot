@@ -29,16 +29,36 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
                         )
   end
 
-  it "can see items to bid on" do 
+  xit "can see items to bid on" do 
     visit stores_path
     click_link "Collectibles Store"
     click_link "moon car"
     click_button "Bid Now"
-    save_and_open_page
     expect(current_path).to eq(login_path)
   end
 
+
+  it "can click on bid button and be routed to user dashboard" do
+    visit login_path
+    fill_in("session[email]",    with: "sam@sample.com" )
+    fill_in("session[password]", with: "password" )  
+    click_button "Login"
+
+    visit stores_path
+    click_link "Collectibles Store"
+    click_link "moon car"
+    click_button "Bid Now"
+    expect(current_path).to eq(users_path)
+    expect(page).to have_content("moon car")
+    expect(page).to have_content("Time Remaining")
+
+  end
+
+
+
+
   # it "can click on bid button and be routed to login" do
+
 
   # end
 
