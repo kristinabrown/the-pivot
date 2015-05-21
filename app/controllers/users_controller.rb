@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to users_path
     else
-      flash[:errors] = @user.errors.full_messages.join(", ")
+      flash[:errors] = @user.errors.full_messages
       render :new
     end
   end
@@ -34,7 +34,8 @@ class UsersController < ApplicationController
                                  :phone,
                                  :password,
                                  :password_confirmation,
-                                 :avatar)
+                                 :avatar, :street, :city, :state, :zipcode,
+                                 :credit_card, :cc_expiration_date)
   end
 
 end
