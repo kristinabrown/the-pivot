@@ -9,6 +9,27 @@
   background-color: white;
 }
 
+.item-description {
+  color: black;
+}
+
+#item-show-image {
+  max-height: 800px;
+  max-width: 500px;
+  
+}
+
+.item-name-header {
+  background: #6c676e;
+  small {
+    color: #dddcbc;
+  }
+}
+
+#minimum-bid {
+  color: black;
+}
+
 #store-image {
   width: 100%;
   top-margin: 35px;
@@ -28,8 +49,8 @@
   border: 2px double black;
   padding: 10px;
   margin: 27px;
-  min-height: 450px;
-  max-height: 500px;
+  min-height: 550px;
+  max-height: 600px;
   min-width: 260px;
   background-color: white;  
 }
@@ -216,7 +237,11 @@ body{
 }
 
 #e {
- font-size: 2em;
+ font-size: 1.75em;
+}
+
+#logo {
+  background-color: #64e6d0;
 }
 
 .staticpages_hero{

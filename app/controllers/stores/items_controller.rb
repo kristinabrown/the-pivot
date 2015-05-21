@@ -4,4 +4,8 @@ class Stores::ItemsController < Stores::StoresController
     
   end
   
+  def show
+    @item = Item.find(params[:id])
+  end
+  
 end

@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
   validates :store_id, presence: true
   validates :category_id, presence: true
   
-  has_attached_file :attachment, default_url: "backside-montfort.png",
+  has_attached_file :attachment, default_url: "default-item.png",
                                  storage: :s3,
                                  bucket: ENV['bucket'],
                                  s3_credentials: { access_key_id: ENV["access_key_id"],
