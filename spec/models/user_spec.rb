@@ -10,9 +10,10 @@ RSpec.describe User, type: :model do
                            city: "Denver",
                            state: "CO",
                            zipcode: "80211",
-                           credit_card: 4444111144441111,
-                           credit_card_exp_date: "11/15"
+                           credit_card: "4242424242424242",
+                           cc_expiration_date: "11/2015"
                            ) }
+
   context "is valid" do
     it "is valid with valid attributes" do
       expect(user).to be_valid
@@ -21,33 +22,193 @@ RSpec.describe User, type: :model do
 
   context "is invalid with invalid attributes" do
     it "is invalid without fullname" do
-      user = User.new(email: "example@example.org", 
-                      role: 0, 
-                      phone: "222-333-4444",
-                      password: "password")
+      user = User.new(fullname: nil, 
+                       email: "example@sample.org",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "80211",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
 
-      expect(user).to_not be_valid
+      expect(user).not_to be_valid
     end
 
     it "is invalid without email" do
-      user = User.new(fullname: "David Daniel", 
-                      role: 0, 
-                      phone: "222-333-4444",
-                      password: "password")
+      user = User.new(fullname: "David Smith", 
+                       email: nil,
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "80211",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
 
       expect(user).to_not be_valid
     end
     
-    it "is invalid with empty name" do
-      user = User.new(fullname: "", 
-                      email: "asdf@jkl.com",
-                      role: 0, 
-                      phone: "222-333-4444",
-                      password: "password")
+    it "is invalid with improperly formatted email" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "80211",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
+
+      expect(user).not_to be_valid
+    end
+
+    it "is invalid without a street address" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: nil,
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "80211",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
+
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid without a city address" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: nil,
+                       state: "CO",
+                       zipcode: "80211",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
 
       expect(user).to_not be_valid
     end
     
+    it "is invalid without a state" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: nil,
+                       zipcode: "80211",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
+
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid without a zipcode" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: nil,
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
+
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid with an invalid zipcode format" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "11111111",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: "11/2015"
+                       ) 
+
+      expect(user).not_to be_valid
+    end
+
+    it "is invalid without a credit card" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "11111",
+                       credit_card: nil,
+                       cc_expiration_date: "11/2015"
+                       ) 
+
+      expect(user).not_to be_valid
+    end
+
+     it "is invalid with a credit card not 15 or 16 digits long" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "11111",
+                       credit_card: "4242",
+                       cc_expiration_date: "11/2015"
+                       ) 
+
+      expect(user).not_to be_valid
+    end
+
+    it "is invalid without a cc expiration date" do
+      user = User.new(fullname: "David Smith", 
+                       email: "david@example.com",
+                       role: 0,
+                       phone: "222-333-4444",
+                       password: "password",
+                       street: "123 First Ave",
+                       city: "Denver",
+                       state: "CO",
+                       zipcode: "11111",
+                       credit_card: "4242424242424242",
+                       cc_expiration_date: nil
+                       ) 
+
+      expect(user).not_to be_valid
+    end
+
+
     it "it only accepts and email between 5-50 characters" do
       user = User.new(fullname: "David Daniel", 
                       email: "exam",
@@ -68,32 +229,54 @@ RSpec.describe User, type: :model do
     it "it is not valid with an already taken email" do
       2.times do 
         User.create(fullname: "David Daniel", 
-                    email: "example@example.org", 
-                    phone: "222-333-4444",
-                    password: "password")
-      end
+                   email: "example@sample.org",
+                   role: 0,
+                   phone: "222-333-4444",
+                   password: "password",
+                   street: "123 First Ave",
+                   city: "Denver",
+                   state: "CO",
+                   zipcode: "80211",
+                   credit_card: "4242424242424242",
+                   cc_expiration_date: "11/2015"
+                   )
+    end
 
-      expect(User.where(email: "example@example.org").count).to eq(1)
+      expect(User.where(email: "example@sample.org").count).to eq(1)
     end
     
     it "it has a display name between 2-32 characters when provided" do
       user = User.new(fullname: "David Daniel", 
-                      email: "example@example.org", 
-                      phone: "222-333-4444",
-                      display_name: "d",
-                      password: "password")
-      user1 = User.new(fullname: "David Daniel", 
-                       email: "example@example.com", 
-                       phone: "222-333-4444",
-                       display_name: "ddddddddddddddddddddddddddddddddd",
-                       password: "password")
+                     email: "example@sample.org",
+                     display_name: "d",
+                     role: 0,
+                     phone: "222-333-4444",
+                     password: "password",
+                     street: "123 First Ave",
+                     city: "Denver",
+                     state: "CO",
+                     zipcode: "80211",
+                     credit_card: "4242424242424242",
+                     cc_expiration_date: "11/2015"
+                     )
+      expect(user).not_to be_valid
 
-       expect(user).to_not be_valid
-       expect(user1).to_not be_valid
+      user1 = User.new(fullname: "David Daniel", 
+                   email: "david@sample.org",
+                   display_name: "ddddddddddddddddddddddddddddddddd",
+                   role: 0,
+                   phone: "222-333-4444",
+                   password: "password",
+                   street: "123 First Ave",
+                   city: "Denver",
+                   state: "CO",
+                   zipcode: "80211",
+                   credit_card: "4242424242424242",
+                   cc_expiration_date: "11/2015"
+                   )
+
+       expect(user1).not_to be_valid
     end
-    
-    # it "responds to orders" do
-    #   expect(user.orders).to eq([])
-    # end
+  
   end
 end
