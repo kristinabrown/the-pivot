@@ -18,7 +18,6 @@ class WatchItemsController < ApplicationController
   end
 
   def destroy
-    byebug
     @cart.delete_item(params['item']['item_id'])
     render :index
   end
