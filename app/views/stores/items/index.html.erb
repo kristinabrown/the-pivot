@@ -5,21 +5,19 @@
 <div class="col-md-2 items">
   <%= image_tag('default-item.png') %>
   <h6 class="item-name text-center"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h6>
-  <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.starting_price) %></p>
+  <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.highest_bid) %></p>
 
-<%= form_for(:order, url: :watch_items) do |f| %>
-  <%= f.label :minimum_bid, :id => 'minimum-bid' %>
-  <%= f.number_field :price, value: item.starting_price + 1.00 %>
-  <%= f.hidden_field :item_id, value: item.id %>
-  <%= f.hidden_field :item_price, value: item.starting_price %>
-  <!-- should be bid price -->
-
-  <% if current_user %>      
-  <%= f.submit "Bid Now", url: watch_items_path %>
-  <% else %>
-  <%= f.submit "Bid Now", url: login_path %>
+  <% if current_user %>   
+  <div class="col-md-4">
+    <%= form_for(:bid, url: :bids, method: :post) do |f| %>
+      <%= f.number_field :current_price, value: item.highest_bid + 1.00, :id => "bid-input" %>
+      <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+      <%= f.hidden_field :item_id, value: item.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "Bid Now"%>
+    </div>
+    <% end %>
   <% end %>
-  <%= f.submit "Watch", url: watch_items_path %>
-<% end %>
+
 </div>
 <% end %>
