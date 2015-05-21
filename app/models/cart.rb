@@ -21,18 +21,8 @@ class Cart
     contents.map { |k, v| total_item_price(k, v["quantity"]) }.reduce(:+)
   end
 
-  def increase_quantity(item)
-    contents[item.id.to_s]["quantity"]   = contents[item.id.to_s]["quantity"].to_i + 1
-    contents[item.id.to_s]["item_price"] = item.price * contents[item.id.to_s]["quantity"].to_i
-  end
-
-  def decrease_quantity(item)
-    contents[item.id.to_s]["quantity"]   = contents[item.id.to_s]["quantity"].to_i - 1
-    contents[item.id.to_s]["beer_price"] = item.price * contents[item.id.to_s]["quantity"].to_i # just do ID and quantity and take logic elsewhere
-  end
-
-  def delete_item(beer_id)
-    contents.delete_if { |k, v| k == beer_id }
+  def delete_item(item_id)
+    contents.delete_if { |v, k| k == item_id.to_i }
   end
 
   # def all_beers
