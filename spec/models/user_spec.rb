@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
                            state: "CO",
                            zipcode: "80211",
                            credit_card: "4242424242424242",
-                           cc_expiration_date: "11/2015"
+                           cc_expiration_date: "2015-11-01"
                            ) }
 
   context "is valid" do
@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "80211",
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).not_to be_valid
@@ -49,7 +49,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "80211",
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).to_not be_valid
@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "80211",
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).not_to be_valid
@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "80211",
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).to_not be_valid
@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "80211",
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).to_not be_valid
@@ -117,7 +117,7 @@ RSpec.describe User, type: :model do
                        state: nil,
                        zipcode: "80211",
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).to_not be_valid
@@ -134,7 +134,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: nil,
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).to_not be_valid
@@ -151,7 +151,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "11111111",
                        credit_card: "4242424242424242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).not_to be_valid
@@ -168,7 +168,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "11111",
                        credit_card: nil,
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).not_to be_valid
@@ -185,7 +185,7 @@ RSpec.describe User, type: :model do
                        state: "CO",
                        zipcode: "11111",
                        credit_card: "4242",
-                       cc_expiration_date: "11/2015"
+                       cc_expiration_date: "2015-11-01"
                        ) 
 
       expect(user).not_to be_valid
@@ -229,7 +229,7 @@ RSpec.describe User, type: :model do
     it "it is not valid with an already taken email" do
       2.times do 
         User.create(fullname: "David Daniel", 
-                   email: "example@sample.org",
+                   email: "david@sample.org",
                    role: 0,
                    phone: "222-333-4444",
                    password: "password",
@@ -238,11 +238,11 @@ RSpec.describe User, type: :model do
                    state: "CO",
                    zipcode: "80211",
                    credit_card: "4242424242424242",
-                   cc_expiration_date: "11/2015"
+                   cc_expiration_date: "2015-11-01"
                    )
     end
 
-      expect(User.where(email: "example@sample.org").count).to eq(1)
+      expect(User.where(email: "david@sample.org").count).to eq(1)
     end
     
     it "it has a display name between 2-32 characters when provided" do
@@ -257,7 +257,7 @@ RSpec.describe User, type: :model do
                      state: "CO",
                      zipcode: "80211",
                      credit_card: "4242424242424242",
-                     cc_expiration_date: "11/2015"
+                     cc_expiration_date: "2015-11-01"
                      )
       expect(user).not_to be_valid
 
@@ -272,7 +272,7 @@ RSpec.describe User, type: :model do
                    state: "CO",
                    zipcode: "80211",
                    credit_card: "4242424242424242",
-                   cc_expiration_date: "11/2015"
+                   cc_expiration_date: "2015-11-01"
                    )
 
        expect(user1).not_to be_valid

@@ -1,46 +1,106 @@
 <div class="stitched">
   <%= form_for(@user, url: users_path, multipart: true) do |f| %>
 
+<div class="row-split">
+  <div class="col-md-6">
     <%= f.label :fullname %>
     <%= f.text_field :fullname %>
+  </div>
+</div>
 
+<div class="row-spit">
+  <div class="col-md-6">
     <%= f.label :display_name %>
     <%= f.text_field :display_name %>
+  </div>
+</div>
 
+<div class="row-spit">
+  <div class="col-md-4">
     <%= f.label :email %>
     <%= f.text_field :email %>
+  </div>
+</div>
 
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-
+<div class="row-split">
+  <div class="col-md-4">
     <%= f.label :phone %>
     <%= f.text_field :phone %>
+  </div>
+</div>
 
+<div class="row-split">
+  <div class="col-md-4">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+</div>
+
+<div class="split-row">
+  <div class="col-md-6">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+</div>
+
+<div class="split-row">
+  <div class="col-md-6">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+</div>
+
+
+<div class="row-split">
+  <div class="col-md-6">
     <%= f.label :street %>
     <%= f.text_field :street%>
+  </div>
+</div>
 
+<div class="row-split">
+  <div class="col-md-6">
     <%= f.label :apt_number %>
     <%= f.text_field :apt_number%>
+  </div>
+</div>
 
+<div class="row-split">
+  <div class="col-md-6">
     <%= f.label :city %>
     <%= f.text_field :city%>
+  </div>
+</div>
+
+<div class="row-spit">
+  <div class="col-md-6">
+    <%= f.label :state %>
+    <%= f.text_field :state%>
 
     <%= f.label :zipcode %>
     <%= f.text_field :zipcode%>
+  </div>
+</div>
 
+<div class="row-spit">
+  <div class="col-md-4">
     <%= f.label :credit_card %>
     <%= f.text_field :credit_card%>
+  </div>
+</div>
 
-   <%= f.label :credit_card_expiration_date %>
+<div class="row-split">
+  <div class="col-md-8">
+   <%= f.label :expiration_date %>
     <%= f.date_select :cc_expiration_date, start_year:Date.today.year, end_year: Date.today.year + 10, discard_day: true %>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-12">
     <%= f.submit "Submit" %>
+  </div>
+</div>
 
   <% end %>
 

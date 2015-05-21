@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resource :users
-  resources :cart_items, only: [:edit, :create, :update, :index, :destroy]
+  resources :watch_items, only: [:edit, :create, :update, :index, :destroy]
   resources :orders
   # 
   # resources :charges
@@ -15,9 +15,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  post 'cart_items/increase', to: 'cart_items#increase'
-  post 'cart_items/decrease', to: 'cart_items#decrease'
-
+  
   root 'staticpages#index'
   
   resources :stores, only: [:index]

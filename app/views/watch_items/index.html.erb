@@ -1,8 +1,5 @@
 <div class="container">
-  <%= render :partial => 'layouts/user_header.html.erb' %>
-  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
-
-  <h1>Shopping cart</h1>
+  <h1>Watch List</h1>
   <div class="stitched">
     <table>
 
@@ -20,14 +17,14 @@
           <td><%= @cart.find_item(v).name %></td>
           <td><%= number_to_currency(@cart.find_item(v).starting_price) %></td>
           <td>
-            <%= link_to "remove item", cart_item_path(@cart, "item" => {item_id: v}), method: "delete" %>
+            <%= link_to "remove item", watch_item_path(@cart, "item" => {item_id: v}), method: "delete" %>
           </td>
           <td>
             
         <% if current_user %>
-          <%= button_to "Bid", orders_path( :order_info => {total: @cart.find_item(v).starting_price, user_id: current_user.id, beers: @cart.contents}) %>
+          <%= button_to "Bid", '#' %>
         <% else %>
-           <%= link_to "Please log in to checkout.", login_path %>
+           <%= link_to "Please log in to bid.", login_path %>
         <% end %>
           </td>
         </tr>

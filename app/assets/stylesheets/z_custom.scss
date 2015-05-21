@@ -13,6 +13,11 @@
   color: black;
 }
 
+#bid-input {
+  margin-bottom: 0;
+  padding: none;
+}
+
 #item-show-image {
   max-height: 800px;
   max-width: 500px;
@@ -32,7 +37,7 @@
 
 #store-image {
   width: 100%;
-  top-margin: 35px;
+  margin-top: 60px;
 }
 
 .item-name{
@@ -412,6 +417,15 @@ ul.beerlist li{
   list-style:none;
   float:left;
   margin-right:15px;
+  font-weight:bold;
+  font-family:'Arvo', serif;
+  font-size:20px;
+
+}
+
+div.split-row li{
+  list-style:none;
+  float:left;
   font-weight:bold;
   font-family:'Arvo', serif;
   font-size:20px;
