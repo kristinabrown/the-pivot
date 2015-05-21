@@ -34,6 +34,7 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     click_link "Collectibles Store"
     click_link "moon car"
     click_button "Bid Now"
+    save_and_open_page
     expect(current_path).to eq(login_path)
   end
 
