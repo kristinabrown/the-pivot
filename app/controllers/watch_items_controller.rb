@@ -17,15 +17,4 @@ class WatchItemsController < ApplicationController
     render :index
   end
 
-  def increase
-    item = @cart.find_item(params["item"]["item_id"])
-      @cart.increase_quantity(item)
-    render :index
-  end
-
-  def decrease
-    item = @cart.find_item(params["item"]["item_id"]) 
-      @cart.decrease_quantity(item)
-    render :index
-  end
 end
