@@ -1,0 +1,35 @@
+<div class="text-center">
+  <h1 class="item-name-header"><%= @item.name %><br><small><%= distance_of_time_in_words(Time.now, @item.expiration_date) %> | current bid: <%= number_to_currency(@item.starting_price) %></small>
+  <small></h1>
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+    <%= form_for(:order, url: :cart_items) do |f| %>
+    <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+    <%= f.number_field :price, value: @item.starting_price + 1.00 %>
+    <%= f.hidden_field :item_id, value: @item.id %>
+    <%= f.hidden_field :item_price, value: @item.starting_price %>
+    <!-- should be bid price -->
+  </div>
+
+  <div class="col-md-4">
+    <% if current_user %>      
+    <%= f.submit "Bid Now", url: cart_items_path %>
+    <% else %>
+    <%= f.submit "Bid Now", url: login_path %>
+    <% end %>
+    <%= f.submit "Add to Watchlist", url: cart_items_path %>
+    <% end %>
+  </div>
+  
+</div>
+  <div class="row" >
+    <div class="col-md-12">
+      <%= image_tag(@item.attachment.url, :id => "item-show-image") %>
+      <h2 class="item-description"> <%= @item.description %></h2>
+    </div>
+  </div>
+</div>
+
+
+
+
