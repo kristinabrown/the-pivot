@@ -1,4 +1,4 @@
-class CartItemsController < ApplicationController
+class WatchItemsController < ApplicationController
   def create
     item_id = params[:order][:item_id]
     item    = @cart.find_item(item_id)
