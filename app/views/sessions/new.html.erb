@@ -1,13 +1,15 @@
 <div class="container">
-  <div class="stitched">
+  <h2 class="watch-list-header">Log In</h2>
+  <div class="stitched watch-list">
     <%= form_for(:session, url:login_path) do |f| %>
-      <%= f.label "Email:" %>
+      <%= f.label "Email", :class => "login-form"%>
       <%= f.text_field :email %>
 
-      <%= f.label "Password:" %>
+      <%= f.label "Password" %>
       <%= f.password_field :password %>
 
-      <%= f.submit 'Login' %>
+      <%= f.submit 'Login', :class => "btn btn-info" %> 
+      <%= link_to "Register", new_users_path %>
     <% end %>
   </div>
   

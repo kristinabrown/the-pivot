@@ -13,9 +13,31 @@
   color: black;
 }
 
+.watch-list-header {
+  color: #605b63;
+}
+
+.watch-list{
+  background-color: #605b63;
+}
+
+.login-form {
+  padding-top: 13px;
+
+}
+
+.cart-total {
+  margin-top: 20px;
+  margin-left: 35px;
+}
+
 #bid-input {
   margin-bottom: 0;
   padding: none;
+}
+
+#bid-input2 {
+  margin-top: 10px;
 }
 
 #item-show-image {
@@ -336,12 +358,12 @@ tr {
 }
 
 .basket .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
-  background-color:#8a1f1a;
-  border:none;
-  font-family: 'Oswald', sans-serif;;
-  color:#fff;
-  float:left;
-  margin-right:5px;
+  background-color: white;
+  // border:none;
+  // font-family: 'Oswald', sans-serif;;
+  // color:#fff;
+  // float:left;
+  // margin-right:5px;
 }
 
 .basket{
