@@ -1,0 +1,30 @@
+<h1 class="item-name-header text-center special">Items</h1>
+
+<div class="row">
+  <div class="col-md-12 col-md-offset-3">
+    <% @categories.each do |category| %>
+      <button class="btn btn-default <%= category.name.downcase %>"><%= category.name %></button>
+    <% end %>
+    <button class="btn btn-primary all"> All</button>
+  </div>
+</div>
+
+<div class="row">
+
+<% @items.each do |item| %>
+   <% if !item.category_id.nil? %>
+      <div class="<%= Category.find(item.category_id.to_i).name.downcase %>_items hidden col-md-4 two">
+   <% else %>
+      <div class="null_items hidden col-md-4 two">
+   <% end %>
+   <div class="col-md-2 items">
+     <a href= <%= "#{item.id}/items/#{item.id}" %>> <%= image_tag item.attachment.url %> </a>
+     <h6 class="item-name text-center"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h6>
+     <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.starting_price) %></p>
+   </div>
+  </div>
+<% end %>
+
+    
+
+</div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :watch_items, only: [:edit, :create, :update, :index, :destroy]
   resources :orders
   resources :bids
+
   # 
   # resources :charges
   # 
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/all_items', to: 'items#index'
   
   root 'staticpages#index'
   

@@ -17,14 +17,13 @@
 
 $(document).ready(function(){
   
-  toggleCategory(".lager", ".lager_beers")
-  toggleCategory(".stout", ".stout_beers")
-  toggleCategory(".ipa", ".ipa_beers")
-  toggleCategory(".ale", ".ale_beers")
-  toggleCategory(".blonde", ".blonde_beers")
-  toggleCategory(".pale", ".pale_beers")
-  toggleCategory(".amber", ".amber_beers")
-  toggleCategory(".porter", ".porter_beers")
+  toggleCategory(".sports", ".sports_items")
+  toggleCategory(".film", ".film_items")
+  toggleCategory(".clothing", ".clothing_items")
+  toggleCategory(".toys", ".toys_items")
+  toggleCategory(".literature", ".literature_items")
+  toggleCategory(".automobiles", ".automobiles_items")
+  toggleCategory(".space", ".space_items")
   toggleAllCategory()
 
   
