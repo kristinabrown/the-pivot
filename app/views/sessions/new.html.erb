@@ -2,14 +2,23 @@
   <h2 class="watch-list-header">Log In</h2>
   <div class="stitched watch-list">
     <%= form_for(:session, url:login_path) do |f| %>
-      <%= f.label "Email", :class => "login-form"%>
-      <%= f.text_field :email %>
 
+      <div class="row">
+        <div class="col-md-6">
+        <%= f.label "Email", :class => "login-form"%>
+        <%= f.text_field :email %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
       <%= f.label "Password" %>
       <%= f.password_field :password %>
+        </div>
+      </div>
 
-      <%= f.submit 'Login', :class => "btn btn-info" %> 
-      <%= link_to "Register", new_users_path %>
+      <%= f.submit 'Login', :class => "btn btn-info" %> <br><br>
+      <%= link_to "New User? Register Here ", new_users_path %>
     <% end %>
   </div>
   
