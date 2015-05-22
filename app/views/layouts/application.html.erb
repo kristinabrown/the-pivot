@@ -43,16 +43,11 @@
 
 
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :class => "flash-#{name}" %>
+  <%= content_tag :div, msg, :class => "flash-#{name} flash " %>
 <% end %>
 
 <%= yield %>
 
-
-
-
-
-  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </body>

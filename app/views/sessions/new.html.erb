@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="watch-list-header">Log In</h2>
+  <h2 class="watch-list-header">Login</h2>
   <div class="stitched watch-list">
     <%= form_for(:session, url:login_path) do |f| %>
 
@@ -18,7 +18,7 @@
       </div>
 
       <%= f.submit 'Login', :class => "btn btn-info" %> <br><br>
-      <%= link_to "New User? Register Here ", new_users_path %>
+      <%= link_to "New User? Sign Up ", new_users_path %>
     <% end %>
   </div>
   
