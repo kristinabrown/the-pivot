@@ -75,7 +75,7 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     click_button "Bid Now"
     expect(current_path).to eq(users_path)
     
-    Bid.create(item_id: @item.id, user_id: @user.id, current_price: 15)
+    Bid.create(item_id: @item.id, user_id: @user.id, current_price: @item.highest_bid + 1)
     
     visit users_path
     
@@ -91,11 +91,16 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     click_button "Bid Now"
     expect(current_path).to eq(users_path)
     
-    Bid.create(item_id: @item.id, user_id: @user.id, current_price: 15)
+    Bid.create(item_id: @item.id, user_id: @user.id, current_price: @item.highest_bid + 1)
     
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     visit users_path
-    
     expect(page).to have_button("Bid")
+    
+    fill_in "bid[current_price]", with: 100
+    click_button("Bid")
+    expect(page).to have_content("moon car")
   end
 
 
