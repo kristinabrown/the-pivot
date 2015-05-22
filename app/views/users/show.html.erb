@@ -1,23 +1,18 @@
 <div class="container">
 
   <% if current_user.display_name.blank? %>
-    <h1>Welcome, <%= current_user.fullname %>!</h1>
+    <h1 class="watch-list-header">Welcome, <%= current_user.fullname %>!</h1>
   <% else %>
-    <h1>Welcome, <%= current_user.display_name %>!</h1>
+    <h1 class="watch-list-header">Welcome, <%= current_user.display_name %>!</h1>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-2">
+  <div class="row user-info-row">
+    
+    <div class="col-md-2 ">
       <%= image_tag current_user.avatar.url %>
     </div>
 
-    <div class="eight columns">
-      <ul>
-        <li><%= link_to "Edit Profile", edit_users_path(@user) %></li>
-        <li><%= link_to "Past Orders", orders_path %></li>
-      </ul>
-    </div>
-    
+    <div class="col-md-10 stitched watch-list">
     <table class="table-condensed">
       <tr>
         <th>Item</th>
@@ -28,7 +23,6 @@
       </tr>
       
       <% current_user.bids.each do |bid| %>
-      <div>
       <tr>
         <td><%= bid.item.name %> </td>
         <td><%= number_to_currency(bid.current_price) %> </td>
@@ -50,10 +44,15 @@
         <% end %>
       </tr>
     </table>
-    </div>
-    
+  </div>
   </div>
 
+    <div class="row user-info-row">
+       <div class="col-md-2">
+          <%= link_to "Edit Profile", edit_users_path(@user) %> |
+          <%= link_to "Past Orders", orders_path %>
+      </div>
+    </div>
 </div>
 
       

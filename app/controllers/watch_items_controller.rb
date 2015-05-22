@@ -4,7 +4,7 @@ class WatchItemsController < ApplicationController
     @item    = @cart.find_item(item_id)
     if @item.available?
       if @cart.contents[item_id]
-        flash[:errors] = "The #{item.name} is already on watch!"
+        flash[:errors] = "The #{@item.name} is already on watch!"
         render :index
       else
         @cart.add_item(@item)

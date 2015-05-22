@@ -20,7 +20,7 @@
 
   def destroy
     session.clear
-    flash[:notice] = "Successfully logged out."
+    flash[:success] = "Successfully logged out."
     redirect_to root_path
   end
 end

@@ -34,7 +34,7 @@
                   <%= f.submit "Bid Now", :class => "btn btn-info" %>
                 <% end %>
               <% else %>
-              <%= link_to "Please log in to bid.", login_path %>
+              <%= link_to "Log in", login_path %> or <%= link_to "register", new_users_path %> to bid.
                 
               <% end %>
             </div>
