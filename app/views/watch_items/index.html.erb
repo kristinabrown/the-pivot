@@ -1,49 +1,50 @@
 <div class="container">
-  <h1>Watch List</h1>
-  <div class="stitched">
-    <table>
+  <h1 class="watch-list-header">Watch List</h1>
+  
+  <% if @cart.contents.empty? %>
+    <h3> <%= link_to "Add items to your watch list!", stores_path %>
+  <% else %>
+    <div class="stitched watch-list">
+      <table class="table-condensed">
 
-      <tr>
-        <th>Item</th>
-        <th>Top Bid</th>
-        <th>Remove</th>
-        <th></th>
-      </tr>
-
-      <tr>
-        <% @cart.contents.each do |k,v| %>
-
-          <td><%= @cart.find_item(v).name %></td>
-          <td><%= number_to_currency(@cart.find_item(v).starting_price) %></td>
-          <td>
-            <%= link_to "Remove Item", watch_item_path(@cart, "item" => {item_id: v}), method: "delete" %>
-          </td>
-          <td>
-            
-            <% if current_user && Bid.bid_exisits?(current_user.id, @cart.find_item(v).id) %>
-              <%= link_to "View your bid standing.", users_path(current_user)  %>
-            <% elsif current_user %>   
-              <%= form_for(:bid, url: :bids, method: :post) do |f| %>
-                <%= f.number_field :current_price, value: @cart.find_item(v).highest_bid + 1.00, :id => "bid-input" %>
-                <%= f.label :minimum_bid, :id => 'minimum-bid' %>
-                <%= f.hidden_field :item_id, value: @cart.find_item(v).id %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= f.submit "Bid Now"%>
-              <% end %>
-            <% else %>
-            <%= link_to "Please log in to bid.", login_path %>
-              
-            <% end %>
-          </td>
+        <tr>
+          <th>Item</th>
+          <th>Top Bid</th>
+          <th>Remove</th>
+          <th></th>
         </tr>
-        <% end %>
-      
 
-    </table>
+        <tr>
+          <% @cart.contents.each do |k,v| %>
 
+            <td><%= @cart.find_item(v).name %></td>
+            <td><%= number_to_currency(@cart.find_item(v).starting_price) %></td>
+            <td>
+              <%= link_to "Remove Item", watch_item_path(@cart, "item" => {item_id: v}), method: "delete" %>
+            </td>
+            <td>
+              <div class="col-md-10 bid-box-table">
+              <% if current_user && Bid.bid_exisits?(current_user.id, @cart.find_item(v).id) %>
+                <%= link_to "View this bid.", users_path(current_user)  %>
+              <% elsif current_user %>   
+                <%= form_for(:bid, url: :bids, method: :post) do |f| %>
+                  <%= f.number_field :current_price, value: @cart.find_item(v).highest_bid + 1.00, :id => "bid-input2" %>
+                  <%= f.hidden_field :item_id, value: @cart.find_item(v).id %>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <%= f.submit "Bid Now", :class => "btn btn-info" %>
+                <% end %>
+              <% else %>
+              <%= link_to "Please log in to bid.", login_path %>
+                
+              <% end %>
+            </div>
+            </td>
+          </tr>
+          <% end %>
+        
+
+      </table>
+      <h4 class="cart-total"> Total Items: <%= @cart.contents.count %></h4>
+    </div>
   </div>
-  <br/>
-
-  <h4> Total Items: <%= @cart.contents.count %></h4>
-
-</div>
+<% end %>
