@@ -16,15 +16,24 @@
           <td><%= @cart.find_item(v).name %></td>
           <td><%= number_to_currency(@cart.find_item(v).starting_price) %></td>
           <td>
-            <%= link_to "remove item", watch_item_path(@cart, "item" => {item_id: v}), method: "delete" %>
+            <%= link_to "Remove Item", watch_item_path(@cart, "item" => {item_id: v}), method: "delete" %>
           </td>
           <td>
             
-        <% if current_user %>
-          <%= button_to "Bid", '#' %>
-        <% else %>
-           <%= link_to "Please log in to bid.", login_path %>
-        <% end %>
+            <% if current_user && Bid.bid_exisits?(current_user.id, @item.id) %>
+              <%= link_to "View your bid standing.", users_path(current_user)  %>
+            <% elsif current_user %>   
+              <%= form_for(:bid, url: :bids, method: :post) do |f| %>
+                <%= f.number_field :current_price, value: @item.highest_bid + 1.00, :id => "bid-input" %>
+                <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+                <%= f.hidden_field :item_id, value: @item.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.submit "Bid Now"%>
+              <% end %>
+            <% else %>
+            <%= link_to "Please log in to bid.", login_path %>
+              
+            <% end %>
           </td>
         </tr>
         <% end %>

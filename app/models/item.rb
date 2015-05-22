@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  
   belongs_to :store
   belongs_to :category
   has_many :bids
@@ -20,6 +21,13 @@ class Item < ActiveRecord::Base
 
   validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
   
+  def highest_bid
+    if bids.any?
+      Bid.where(item_id: id).maximum(:current_price)
+    else
+      starting_price
+    end
+  end
 
   # before_save :ensure_has_at_least_one_category
 
