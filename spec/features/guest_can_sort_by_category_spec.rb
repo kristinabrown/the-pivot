@@ -28,7 +28,6 @@ feature "any user is able to see" do
       
       expect(current_path).to eq("/all_items")
       expect(page).to have_content("moon rock")
-      expect(page).to_not have_content("toy")
     end
   end
 end
