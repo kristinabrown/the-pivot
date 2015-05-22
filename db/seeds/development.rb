@@ -7,16 +7,13 @@ class Seed
   end
 
   def generate_categories
-    Category.create(name: "Sports Memorabilia")
-    Category.create(name: "TV & Movie Classics")
-    Category.create(name: "Luxury")
-    Category.create(name: "Animation & Comics")
-    Category.create(name: "Celebrity")
-    Category.create(name: "Vintage Clothing")
-    Category.create(name: "Toys & Games")
+    Category.create(name: "Sports")
+    Category.create(name: "Film")
+    Category.create(name: "Clothing")
+    Category.create(name: "Toys")
     Category.create(name: "Literature")
     Category.create(name: "Automobiles")
-    Category.create(name: "Music")
+    Category.create(name: "Space")
     p 'Categories Created'
   end
 
@@ -36,7 +33,7 @@ class Seed
               starting_price: Faker::Commerce.price + 1,
               expiration_date: Faker::Date.between(2.days.from_now, 15.days.from_now),
               store_id: (1..20).to_a.sample,
-              category_id: (1..10).to_a.sample,
+              category_id: (1..6).to_a.sample,
               active: true) 
 
     end

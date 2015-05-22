@@ -3,7 +3,7 @@
 </div>
 <% current_store.items.each do |item| %>
 <div class="col-md-2 items">
-  <%= image_tag('default-item.png') %>
+  <%= image_tag item.attachment.url %>
   <h6 class="item-name text-center"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h6>
   <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.starting_price) %></p>
 
