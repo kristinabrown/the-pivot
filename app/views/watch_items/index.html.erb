@@ -20,13 +20,13 @@
           </td>
           <td>
             
-            <% if current_user && Bid.bid_exisits?(current_user.id, @item.id) %>
+            <% if current_user && Bid.bid_exisits?(current_user.id, @cart.find_item(v).id) %>
               <%= link_to "View your bid standing.", users_path(current_user)  %>
             <% elsif current_user %>   
               <%= form_for(:bid, url: :bids, method: :post) do |f| %>
-                <%= f.number_field :current_price, value: @item.highest_bid + 1.00, :id => "bid-input" %>
+                <%= f.number_field :current_price, value: @cart.find_item(v).highest_bid + 1.00, :id => "bid-input" %>
                 <%= f.label :minimum_bid, :id => 'minimum-bid' %>
-                <%= f.hidden_field :item_id, value: @item.id %>
+                <%= f.hidden_field :item_id, value: @cart.find_item(v).id %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.submit "Bid Now"%>
               <% end %>
