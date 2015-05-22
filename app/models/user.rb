@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: {thumb: '100x100>',
                                       square: '200x200#',
                                       medium: '300x300>'},
-                              default_url: "default-medium.jpg",
+                              default_url: "beast2.png",
                               storage: :s3,
                               bucket: ENV['bucket'],
                               s3_credentials: { access_key_id: ENV['access_key_id'],
