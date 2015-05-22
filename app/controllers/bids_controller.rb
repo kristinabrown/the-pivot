@@ -3,7 +3,9 @@ class BidsController < ApplicationController
   def create
     bid = Bid.new(bid_params)
     if bid.save
-      # bid = current_user.bid
+      redirect_to users_path
+    else 
+      flash[:errors] = "Invalid bid!"
       redirect_to users_path
     end
   end
