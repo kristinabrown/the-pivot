@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/#about">How It Works <span class="sr-only">(current)</span></a></li>
-          <li><a href="/stores">Stores</a></li>
+          <li><a href="/stores">Shops</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Browse <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -33,7 +33,7 @@
             <li><%= link_to "Logout", logout_path, method: :delete %> </li>
           <% else %>
             <li><%= link_to "Login", login_path %></li>
-            <li><%= link_to "Register", new_users_path %></li>
+            <li><%= link_to "Signup", new_users_path %></li>
           <% end %>
           <li><%= link_to "Watch List", watch_items_path %></li>
         </ul>
