@@ -11,7 +11,7 @@
   <% else %>
   <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.highest_bid) %></p>
 
-  <% if current_user && Bid.bid_exisits?(current_user.id, item.id) %>
+  <% if current_user && Bid.bid_exsits?(current_user.id, item.id) %>
     <%= link_to "View your bid standing.", users_path(current_user)  %>
   <% elsif current_user %>   
     <%= form_for(:bid, url: :bids, method: :post) do |f| %>
