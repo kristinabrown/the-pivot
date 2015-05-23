@@ -24,8 +24,18 @@ class Seed
   def call
     generate_categories
     generate_stores
-    generate_items
     generate_users
+    generate_items
+  end
+
+  def unique_email
+    begin 
+      unique_email = Faker::Internet.email
+    end while User.exists?(email: unique_email) 
+
+    unique_email
+    #run this code while this email address is not unique.
+    #Guarantees, valid, unique email address for each User
   end
 
   def generate_users
@@ -37,7 +47,7 @@ class Seed
 
     60.times do
       User.create(
-            fullname: Faker::Name.name, email: Faker::Internet.email, password: 'password',
+            fullname: Faker::Name.name, email: unique_email, password: 'password',
             display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
             city: Faker::Address.city, state: Faker::Address.state, zipcode: Faker::Address.zip,
             credit_card:Faker::Business.credit_card_number, 
@@ -49,7 +59,7 @@ class Seed
 
     40.times do
       User.create(
-            fullname: Faker::Name.name, email: Faker::Internet.email, password: 'password',
+            fullname: Faker::Name.name, email: unique_email, password: 'password',
             display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
             apt_number: Faker::Address.secondary_address,
             city: Faker::Address.city, state: Faker::Address.state, zipcode: Faker::Address.zip,
@@ -87,7 +97,7 @@ class Seed
 
   def generate_items
     50.times do |i|
-      piture = PICTURES(i % 31)
+      picture = PICTURES[i % 31]
       item =  Item.new( 
               name: Faker::Commerce.product_name,
               description: Faker::Lorem.sentence,
@@ -97,7 +107,7 @@ class Seed
               category_id: (1..10).to_a.sample,
               active: true) 
 
-              item.image = File.open("#{Rails.root}/app/assets/images/item_images#{picture}.jpg")
+              item.attachment = File.open("#{Rails.root}/app/assets/images/item_images/#{picture}.jpg")
               item.save!
     end
     p "Items Generated"
