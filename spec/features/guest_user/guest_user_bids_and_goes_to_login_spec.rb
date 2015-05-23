@@ -56,6 +56,7 @@ feature "any user is able to see item show" do
       fill_in "user[display_name]", with: "Wolfgang"
       fill_in "user[email]", with: "sample@sample.com"
       fill_in "user[password]", with: "password"
+      fill_in "user[password_confirmation]", with: "password"
       fill_in "user[street]", with: "main st"
       fill_in "user[city]", with: "denver"
       fill_in "user[state]", with: "CO"
