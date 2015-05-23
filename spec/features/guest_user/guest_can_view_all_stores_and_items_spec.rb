@@ -16,7 +16,7 @@ feature "any user is able to see" do
     
     it "can see all stores" do
       visit root_path
-      click_link "Stores"
+      click_link "Shops"
       
       expect(current_path).to eq('/stores')
       expect(page).to have_content("Lunar Landing")
@@ -24,7 +24,7 @@ feature "any user is able to see" do
     
     it "can visit a store items page" do
       visit root_path
-      click_link "Stores"
+      click_link "Shops"
       click_link "Lunar Landing"
       
       expect(current_path).to eq('/lunar-landing/items')
@@ -33,7 +33,7 @@ feature "any user is able to see" do
     
     it "can view items" do
       visit root_path
-      click_link "Stores"
+      click_link "Shops"
       click_link "Lunar Landing"
       
       expect(current_path).to eq('/lunar-landing/items')

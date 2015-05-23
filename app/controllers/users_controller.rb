@@ -8,7 +8,13 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to users_path
+      if @pending_bid.contents.empty?
+        redirect_to users_path
+      else
+        Bid.create(user_id: current_user.id, item_id: @pending_bid.contents["bid"]["item"].to_i, current_price: @pending_bid.contents["bid"]["price"].to_i)
+        flash[:success] = "Your bid successfully posted!"
+        redirect_to users_path
+      end
     else
       flash[:errors] = @user.errors.full_messages.join(", ")
       render :new

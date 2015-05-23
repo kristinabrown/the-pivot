@@ -63,7 +63,6 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     expect(current_path).to eq(users_path)
     expect(page).to have_content("moon car")
     expect(page).to have_content("Time Remaining")
-
   end
   
   it "can see when they are out bid" do 
@@ -116,5 +115,38 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     visit stores_path
     click_link "Collectibles Store"
     expect(page).to have_content("View your bid standing.")
+  end
+  
+  it "can not bid less than starting amount" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit stores_path
+    click_link "Collectibles Store"
+    click_link "moon car"
+    fill_in "bid[current_price]", with: 1
+    click_button "Bid Now"
+    expect(current_path).to eq(users_path)
+    expect(page).to have_content("Invalid bid!")
+  end
+  
+  it "can not bid less than current bid" do 
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    
+    visit stores_path
+    click_link "Collectibles Store"
+    click_link "moon car"
+    click_button "Bid Now"
+    expect(current_path).to eq(users_path)
+    
+    Bid.create(item_id: @item.id, user_id: @user.id, current_price: @item.highest_bid + 1)
+    
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit users_path
+    
+    fill_in "bid[current_price]", with: 1
+    click_button("Bid")
+    
+    expect(page).to have_content("Invalid bid!")
   end
 end

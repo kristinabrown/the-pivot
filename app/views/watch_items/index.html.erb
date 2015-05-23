@@ -24,7 +24,7 @@
             </td>
             <td>
               <div class="col-md-10 bid-box-table">
-              <% if current_user && Bid.bid_exisits?(current_user.id, @cart.find_item(v).id) %>
+              <% if current_user && Bid.bid_exsits?(current_user.id, @cart.find_item(v).id) %>
                 <%= link_to "View this bid.", users_path(current_user)  %>
               <% elsif current_user %>   
                 <%= form_for(:bid, url: :bids, method: :post) do |f| %>
@@ -34,6 +34,12 @@
                   <%= f.submit "Bid Now", :class => "btn btn-info" %>
                 <% end %>
               <% else %>
+              
+                <%= form_for(:bid, url: :pending_bids) do |f| %>
+                  <%= f.number_field :current_price, value: @cart.find_item(v).highest_bid + 1.00, :id => "bid-input2" %>
+                  <%= f.hidden_field :item_id, value: @cart.find_item(v).id %>
+                  <%= f.submit "Bid Now", :class => "btn btn-info" %>
+                <% end %>
               <%= link_to "Log in", login_path %> or <%= link_to "register", new_users_path %> to bid.
                 
               <% end %>

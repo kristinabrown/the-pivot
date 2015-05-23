@@ -20,7 +20,7 @@ feature "any user is able to see" do
     end
     it "can add an item to a watch list" do
       visit root_path
-      click_link "Stores"
+      click_link "Shops"
       click_link "Lunar Landing"
       click_link "moon rock"
       click_link_or_button "Watch"
@@ -31,16 +31,44 @@ feature "any user is able to see" do
     
     it "can add two items to a watch list" do
       visit root_path
-      click_link "Stores"
+      click_link "Shops"
       click_link "Lunar Landing"
       click_link "moon rock"
       click_link_or_button "Watch"
-      click_link "Stores"
+      click_link "Shops"
       click_link "Lunar Landing"
       click_link "star dust"
       click_link_or_button "Watch"
   
       expect(page).to have_content("star dust")
+    end
+    
+    it "can delete an item from watch list" do
+      visit root_path
+      click_link "Shops"
+      click_link "Lunar Landing"
+      click_link "star dust"
+      click_link_or_button "Watch"
+      expect(page).to have_content("star dust")
+      click_link "Remove Item"
+      
+      expect(page).to_not have_content("star dust")
+    end
+    
+    it "can add item only once" do
+      visit root_path
+      click_link "Shops"
+      click_link "Lunar Landing"
+      click_link "star dust"
+      click_link_or_button "Watch"
+      expect(page).to have_content("star dust")
+      visit root_path
+      click_link "Shops"
+      click_link "Lunar Landing"
+      click_link "star dust"
+      click_link_or_button "Watch"
+      
+      expect(page).to have_content("star dust is already on watch!")
     end
   end
 end
