@@ -25,7 +25,6 @@ $(document).ready(function(){
   toggleCategory(".automobiles", ".automobiles_items")
   toggleCategory(".space", ".space_items")
   toggleAllCategory()
-
   
   
   
@@ -42,6 +41,5 @@ $(document).ready(function(){
       $(".two").toggleClass("hidden");
     });
   }  
-  
   
 });
