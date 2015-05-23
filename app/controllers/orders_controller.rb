@@ -1,6 +1,10 @@
 class OrdersController < ApplicationController
 
   def create
+    #check for all bids that are expired
+    #cross check for items that are paid false
+    #when we have those iterate through them and create
+    #orders with the highest bidder
     new_order = CreateOrder.new(params)
     order = Order.new(user_id: new_order.user_id, total: new_order.total, status: "ordered",)
     if order.save
@@ -23,13 +27,4 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show
-    @order = Order.find(params[:id])
-    if current_user && @order.user_id == current_user.id
-      @order
-    else
-      flash[:errors] = "Oops, something went wrong"
-      redirect_to "/404"
-    end
-  end
 end

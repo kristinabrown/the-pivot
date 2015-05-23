@@ -6,6 +6,9 @@
 
   <%= link_to image_tag(item.attachment.url), store_item_path(item.store.slug, item) %>
   <h6 class="item-name text-center"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h6>
+  <%if item.expired? %>
+  <p class="black-font">This Item is no longer available</p>
+  <% else %>
   <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.highest_bid) %></p>
 
   <% if current_user && Bid.bid_exisits?(current_user.id, item.id) %>
@@ -22,4 +25,5 @@
   <% end %>
     </div>
 </div>
+  <% end %>
 <% end %>
