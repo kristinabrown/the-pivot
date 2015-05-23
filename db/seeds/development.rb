@@ -17,8 +17,8 @@ class Seed
 # Password: password
 
   PICTURES = %w(baseballBR Beatles camera car1 car2 car3 celebrity2 celebrity3 celebrity4 
-                classic-catwoman dress dress2 dress3, eclectic-desk accessories football
-                guitar, lebron, lucycelebrity lunchbox phone pocket_watch star_trek1 star_trek2
+                classic-catwoman dress dress2 dress3 eclectic-desk-accessories football
+                guitar lebron lucycelebrity lunchbox phone pocket_watch star_trek1 star_trek2
                 star_trek3 tea_service the_fonz toy1 toy2 toy3 vintage_logo)
 
   def call
@@ -97,7 +97,7 @@ class Seed
 
   def generate_items
     50.times do |i|
-      picture = PICTURES[i % 31]
+      picture = PICTURES[i % 30]
       item =  Item.new( 
               name: Faker::Commerce.product_name,
               description: Faker::Lorem.sentence,
