@@ -4,7 +4,9 @@
 
 <% @stores.each do |store| %>
   <div class="col-md-3 stores">
-    <h5 class="store-name" > <%= link_to store.name, store_items_path(store: store.slug) %></h5>
-      <a href="<%= store_items_path(store: store.slug)  %>"><%= image_tag("default-store.png", :class => "store-image")%></a>
+  <h5><%= link_to store.name, store_items_path(store: store.slug) %></h5>
+  <%#= link_to image_tag(store.items.first.attachment.url), store_items_path(store: store.slug) %>
+<a href="<%= store_items_path(store: store.slug)  %>"><%= image_tag(store.items.first.attachment.url, :class => "store-image")%></a>
     </div>
 <% end %>
+
