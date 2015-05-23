@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521212208) do
+ActiveRecord::Schema.define(version: 20150523202548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150521212208) do
     t.datetime "expiration_date"
     t.integer  "store_id"
     t.integer  "category_id"
+    t.boolean  "paid",                    default: false
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
@@ -69,12 +70,13 @@ ActiveRecord::Schema.define(version: 20150521212208) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "status"
     t.integer  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "item_id"
   end
 
+  add_index "orders", ["item_id"], name: "index_orders_on_item_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "stores", force: :cascade do |t|
@@ -110,5 +112,6 @@ ActiveRecord::Schema.define(version: 20150521212208) do
   add_foreign_key "bids", "users"
   add_foreign_key "order_beers", "items", column: "beer_id"
   add_foreign_key "order_beers", "orders"
+  add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
 end

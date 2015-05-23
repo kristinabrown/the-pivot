@@ -23,13 +23,4 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show
-    @order = Order.find(params[:id])
-    if current_user && @order.user_id == current_user.id
-      @order
-    else
-      flash[:errors] = "Oops, something went wrong"
-      redirect_to "/404"
-    end
-  end
 end
