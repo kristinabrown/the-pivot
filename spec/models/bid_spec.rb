@@ -33,10 +33,28 @@ RSpec.describe Bid, type: :model do
       expect(bid).to be_valid
     end
     
-    it "is invalid with invalid attributes" do
+    it "is invalid with invalid without current price" do
       bid.update(current_price: nil)
       expect(bid).to_not be_valid
     end
     
+    it "is invalid without user id" do
+      bid.update(user_id: nil)
+      expect(bid).to_not be_valid
+    end
+    
+    it "is invalid without item id" do
+      bid.update(current_price: nil)
+      expect(bid).to_not be_valid
+    end
+    
+    it "can find it's item" do
+      item = bid.item
+      expect(item.name).to eq("moon car")
+    end
+    
+    it "can know if it exsits" do
+      Bid.bid_exsits?(@user.id, @item.id)
+    end
   end
 end
