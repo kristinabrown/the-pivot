@@ -8,12 +8,12 @@ feature "any user is able to see" do
       @store = Store.create(name: "Lunar Landing")
       @category = Category.create(name: "space")
       @store.items.create(name: "moon rock", description: "rocky",
-                          expiration_date: "Time.now + 10.days",
+                          expiration_date: Time.now + 10.days,
                           starting_price: 10,
                           active: true, 
                           category_id: @category.id )
       @store.items.create(name: "star dust", description: "rocky",
-                          expiration_date: "Time.now + 10.days",
+                          expiration_date: Time.now + 10.days,
                           starting_price: 10,
                           active: true, 
                           category_id: @category.id )
