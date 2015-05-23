@@ -24,6 +24,7 @@
       
       <% current_user.bids.each do |bid| %>
       <tr>
+        <% if !bid.item.expired? %>
         <td><%= bid.item.name %> </td>
         <td><%= number_to_currency(bid.current_price) %> </td>
         <td><%= distance_of_time_in_words(Time.now, bid.item.expiration_date) %> </td>
@@ -40,6 +41,7 @@
               <% end %>
             <% else %>
               <td>You're the highest bidder!</td>
+              <% end %>
             <% end %>
         <% end %>
       </tr>

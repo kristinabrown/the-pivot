@@ -8,7 +8,7 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     category = Category.create!(name: "Automobiles")
 
     @item =  Item.create!(name: "moon car", description: "rocky",
-                          expiration_date: "Time.now + 10.days",
+                          expiration_date: Time.now + 10.days,
                           starting_price: 10,
                           active: true, 
                           category_id: category.id, 
