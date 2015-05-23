@@ -16,7 +16,7 @@ feature "any user is able to see item show" do
     
     it "can visit the item show page" do
       visit root_path
-      click_link "Stores"
+      click_link "Shops"
       click_link "Lunar Landing"
       expect(current_path).to eq('/lunar-landing/items')
       click_link "moon rock"
