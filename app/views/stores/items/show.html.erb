@@ -30,7 +30,14 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.submit "Bid Now"%>
     <% end %>
+  <% else %>
     
+    <%= form_for(:bid, url: :pending_bids) do |f| %>
+      <%= f.number_field :current_price, value: @item.highest_bid + 1.00, :id => "bid-input2" %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.submit "Bid Now", :class => "btn btn-info" %>
+    <% end %>
+
   <% end %>
 
 
