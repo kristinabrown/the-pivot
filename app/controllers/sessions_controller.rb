@@ -7,10 +7,12 @@
       redirect_to admin_dashboard_path
     elsif @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      if @cart.contents.empty?
+      if @pending_bid.contents.empty?
         redirect_to users_path
       else
-        redirect_to watch_items_path
+        Bid.create(user_id: current_user.id, item_id: @pending_bid.contents["bid"]["item"].to_i, current_price: @pending_bid.contents["bid"]["price"].to_i)
+        flash[:success] = "Your bid successfully posted!"
+        redirect_to users_path
       end
     else
       flash[:errors] = "Invalid login"

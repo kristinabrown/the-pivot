@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :watch_items, only: [:edit, :create, :update, :index, :destroy]
   resources :orders
   resources :bids
+  resources :pending_bids, only: [:create]
 
   # 
   # resources :charges
