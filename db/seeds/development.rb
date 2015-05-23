@@ -45,7 +45,7 @@ class Seed
                state: "CO", zipcode: "80211",
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 
-    60.times do
+    5.times do
       User.create(
             fullname: Faker::Name.name, email: unique_email, password: 'password',
             display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
@@ -57,7 +57,7 @@ class Seed
     end
 
 
-    40.times do
+    5.times do
       User.create(
             fullname: Faker::Name.name, email: unique_email, password: 'password',
             display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
@@ -88,7 +88,7 @@ class Seed
   end
 
   def generate_stores
-    20.times do
+    10.times do
       store = Store.create(
               name: Faker::Company.name)
     end
@@ -96,19 +96,28 @@ class Seed
   end
 
   def generate_items
-    50.times do |i|
-      picture = PICTURES[i % 30]
-      item =  Item.new( 
-              name: Faker::Commerce.product_name,
-              description: Faker::Lorem.sentence,
-              starting_price: Faker::Commerce.price + 1,
-              expiration_date: Faker::Date.between(2.days.from_now, 15.days.from_now),
-              store_id: (1..20).to_a.sample,
-              category_id: (1..10).to_a.sample,
-              active: true) 
+    i = 0
+    stores = Store.all
 
-              item.attachment = File.open("#{Rails.root}/app/assets/images/item_images/#{picture}.jpg")
-              item.save!
+    Category.all.each do |category|  #go through ALL categories
+      15.times do  #and make 5 items per category --> must be 50 in production
+        store = stores[ i % stores.length]
+        picture = PICTURES.sample
+
+        item =  Item.new( 
+                name: Faker::Commerce.product_name,
+                description: Faker::Lorem.sentence,
+                starting_price: Faker::Commerce.price + 1,
+                expiration_date: Faker::Date.between(2.days.from_now, 15.days.from_now),
+                store: store,
+                category: category,
+                active: true) 
+
+        item.attachment = File.open("#{Rails.root}/app/assets/images/item_images/#{picture}.jpg")
+        item.save!
+        i += 1 #ensures we iterate thru all stores and all pictures
+              # i = number of items made so far  .....keeps store and picture position  when selecting to make a new item
+      end
     end
     p "Items Generated"
   end
