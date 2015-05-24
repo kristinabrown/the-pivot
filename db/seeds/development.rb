@@ -21,6 +21,10 @@ class Seed
                 guitar lebron lucycelebrity lunchbox phone pocket_watch star_trek1 star_trek2
                 star_trek3 tea_service the_fonz toy1 toy2 toy3 vintage_logo)
 
+  STORE_DESCRIPTORS =   ["Collectibles", "Antiques", "Basement Bargains", "Vintage Gear", "Good Ole Things",
+                        "Nostalgia", "Knick-Knacks", "Attic", "Old Gear", "Classics", "Junkyard Goodies", 
+                        "Discoveries", "Treasures", "Luxurious Accessories", "Designer Gems", "Biddables"]
+
   def call
     generate_categories
     generate_stores
@@ -71,7 +75,6 @@ class Seed
     p 'Users Created'
   end
 
-
   def generate_categories
     Category.create(name: "Sports Memorabilia")
     Category.create(name: "TV & Movie Classics")
@@ -88,9 +91,11 @@ class Seed
   end
 
   def generate_stores
-    10.times do
+    10.times do |i|
+      store_descriptor = STORE_DESCRIPTORS[i % STORE_DESCRIPTORS.length]
+
       store = Store.create(
-              name: Faker::Company.name)
+              name: Faker::Company.name + "'s #{store_descriptor}")
     end
     p "Stores Created"
   end
