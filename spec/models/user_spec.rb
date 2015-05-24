@@ -18,6 +18,38 @@ RSpec.describe User, type: :model do
     it "is valid with valid attributes" do
       expect(user).to be_valid
     end
+
+    it "is valid with a credit card with dashes" do
+      user = User.create(fullname: "David Daniel", 
+                           email: "example@sample.org",
+                           role: 0,
+                           phone: "222-333-4444",
+                           password: "password",
+                           street: "123 First Ave",
+                           city: "Denver",
+                           state: "CO",
+                           zipcode: "80211",
+                           credit_card: "4242-4242-4242-4242",
+                           cc_expiration_date: "2015-11-01"
+                           )
+      expect(user).to be_valid
+    end
+
+    it "is valid with a credit card with spaces" do
+      user = User.create(fullname: "David Daniel", 
+                           email: "example@sample.org",
+                           role: 0,
+                           phone: "222-333-4444",
+                           password: "password",
+                           street: "123 First Ave",
+                           city: "Denver",
+                           state: "CO",
+                           zipcode: "80211",
+                           credit_card: "4242 4242 4242 4242",
+                           cc_expiration_date: "2015-11-01"
+                           )
+      expect(user).to be_valid
+    end
   end
 
   context "is invalid with invalid attributes" do
@@ -174,7 +206,7 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
-     it "is invalid with a credit card not 15 or 16 digits long" do
+    it "is invalid with a credit card not 15 or 16 digits long" do
       user = User.new(fullname: "David Smith", 
                        email: "david@example.com",
                        role: 0,
@@ -240,8 +272,7 @@ RSpec.describe User, type: :model do
                    credit_card: "4242424242424242",
                    cc_expiration_date: "2015-11-01"
                    )
-    end
-
+      end
       expect(User.where(email: "david@sample.org").count).to eq(1)
     end
     
@@ -277,6 +308,6 @@ RSpec.describe User, type: :model do
 
        expect(user1).not_to be_valid
     end
-  
+
   end
 end

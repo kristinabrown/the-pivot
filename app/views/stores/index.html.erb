@@ -1,12 +1,21 @@
+
 <div class="row">
-  <div class="col-md-12"><h1 id="stores-header">Shops</h1></div>
+  <div class="col-md-12 store-column">
+    <h1 id="stores-header" >Shop eBiddable Merchants</h1>
+  </div>
 </div>
 
-<% @stores.each do |store| %>
-  <div class="col-md-3 stores">
-  <h5><%= link_to store.name, store_items_path(store: store.slug) %></h5>
-  <%#= link_to image_tag(store.items.first.attachment.url), store_items_path(store: store.slug) %>
-<a href="<%= store_items_path(store: store.slug)  %>"><%= image_tag(store.items.first.attachment.url, :class => "store-image")%></a>
+<div class="container">
+  <% @stores.each_slice(4) do |four_stores| %>
+    <div class="row">
+      <% four_stores.each do |store| %>
+        <div class="col-md-3">
+          <div class="well">
+            <h5 class="items-title"><%= link_to store.name, store_items_path(store: store.slug) %></h5>
+            <%= link_to image_tag(store.items.first.attachment.url, width: "300", class: "image-border"), store_items_path(store: store.slug) %>
+          </div>
+        </div>
+      <% end %>
     </div>
-<% end %>
-
+  <% end %>
+</div>

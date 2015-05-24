@@ -2,12 +2,12 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :bids
 
-
   validates :fullname, presence: true, length: {in: 2..32}
   validates :email, presence: true, length: { in: 5..50 },
             uniqueness: true
-  VALID_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates_format_of :email, with: VALID_REGEX, on: :create
+  VALID_REGEX_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates_format_of :email, with: VALID_REGEX_EMAIL, on: :create
   validates :display_name, allow_blank: true, length: {in: 2..32}
   validates :street, presence: true
   validates :city, presence: true
@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   validates_format_of :zipcode, :with => /^\d{5}(-\d{4})?$/, :multiline => true, :message => "should be in the form 12345 or 12345-1234"
   validates :credit_card, presence: true, length: { minimum: 15, maximum: 16 }
   validates :cc_expiration_date, presence: true
+
+  before_validation :clean_credit_card  #callback's allow you to alter the data, then the validations check the updated results
 
   has_secure_password
   enum role: %w(default admin)
@@ -30,5 +32,10 @@ class User < ActiveRecord::Base
                                                 secret_access_key: ENV['secret_access_key'] }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  protected
+    def clean_credit_card
+      credit_card.gsub!(/[^\d]/, "") unless credit_card.nil?
+    end
 end
 

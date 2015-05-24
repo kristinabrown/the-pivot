@@ -18,14 +18,12 @@ class Item < ActiveRecord::Base
                                  s3_credentials: { access_key_id: ENV["access_key_id"],
                                                    secret_access_key: ENV["secret_access_key"] }
 
-
   validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
-  
   
   def expired?
     expiration_date < Time.now
   end
-  
+
   def highest_bid
     if bids.any?
       Bid.where(item_id: id).maximum(:current_price)
