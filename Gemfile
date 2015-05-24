@@ -33,6 +33,7 @@ gem 'paperclip'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
 gem 'faker'
+gem 'whenever', :require => false
 
 group :production do
   gem 'rails_12factor'
@@ -47,6 +48,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem "database_cleaner"
+  gem "nyan-cat-formatter"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

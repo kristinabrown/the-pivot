@@ -257,6 +257,29 @@ blockquote{
   border-style: none;
 }
 
+@-webkit-keyframes thumb {
+  0% { -webkit-transform: scale(1); }
+  50% { -webkit-transform: scale(0.9); }
+  100% { -webkit-transform: scale(1); }
+}
+
+.mr-roboto:hover
+{
+blockquote::before{
+  -webkit-animation-name: thumb;
+  -webkit-animation-duration: 225ms;
+  -webkit-transform-origin:50% 50%;
+  -webkit-animation-iteration-count: 4;
+  -webkit-animation-timing-function: linear;
+}blockquote::after{
+  -webkit-animation-name: thumb;
+  -webkit-animation-duration: 225ms;
+  -webkit-transform-origin:50% 50%;
+  -webkit-animation-iteration-count: 4;
+  -webkit-animation-timing-function: linear;
+}
+
+}
 
 blockquote::before{
   content: "";
@@ -447,6 +470,24 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
   padding-bottom: 10px;
 }
 
+.big-e{
+  -webkit-transition-duration:0.8s;
+  -moz-transition-duration:0.8s;
+  -o-transition-duration:0.8s;
+  transition-duration:0.8s;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
+  overflow:hidden;   
+}  
+ 
+#logo:hover  {
+  .big-e {
+-webkit-transform:rotate(360deg);
+-moz-transform:rotate(360deg);
+-o-transform:rotate(360deg);}
+} 
 
 .individual_beer {
   max-width:80%;
@@ -546,6 +587,4 @@ a:hover {
   margin-top: 25px;
 }
 
-#welcome {
-  font-size: 25px;
-}
+
