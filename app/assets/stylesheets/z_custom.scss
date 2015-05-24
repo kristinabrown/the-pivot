@@ -129,17 +129,21 @@
 #stores-header {
   font-size: 40px;
   letter-spacing:.015em;
-  text-align: center;
   letter-spacing:.006em;
-  text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
   background-color: #3d444f;
-  
+  text-align: center;
+  padding: 15px 0; //centers text vertically. 15 adds padding to top and bottom
+}
+
+.hv-center {
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
 }
 
 .store-index{
   background-color:#1b3947;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .store-name {
@@ -499,9 +503,15 @@ div.split-row li{
 }
 
 .items-title {
-  font-size: 23px;
+  font-size: 19px;
   margin-bottom: 20px;
   font-weight: 600;
+  line-height: 1.5;
+
+  a {
+  color: #3d444f;
+  }
+
 }
 
 .well {
@@ -532,7 +542,7 @@ a:hover {
 }
 
 .store-column {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .watch-list-header {
