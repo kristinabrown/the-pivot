@@ -29,8 +29,8 @@ class Seed
   def call
     generate_categories
     generate_stores
-    generate_users
     generate_items
+    generate_users
   end
 
   def unique_email
@@ -57,9 +57,9 @@ class Seed
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 
     5.times do
-      User.create!(
-            fullname: Faker::Name.name, email: unique_email, password: 'password',
-            display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
+      User.create(
+            fullname: Faker::Name.first_name + " " + Faker::Name.last_name, email: unique_email, password: 'password',
+            display_name: Faker::Name.first_name, street: Faker::Address.street_address, 
             city: Faker::Address.city, state: Faker::Address.state, zipcode: Faker::Address.zip,
             credit_card:Faker::Business.credit_card_number, 
             cc_expiration_date: Faker::Business.credit_card_expiry_date,
@@ -67,11 +67,10 @@ class Seed
       )
     end
 
-
     5.times do
-      User.create!(
-            fullname: Faker::Name.name, email: unique_email, password: 'password',
-            display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
+      User.create(
+            fullname: Faker::Name.first_name + " " + Faker::Name.last_name, email: unique_email, password: 'password',
+            display_name: Faker::Name.first_name, street: Faker::Address.street_address, 
             apt_number: Faker::Address.secondary_address,
             city: Faker::Address.city, state: Faker::Address.state, zipcode: Faker::Address.zip,
             credit_card:Faker::Business.credit_card_number, 
