@@ -2,7 +2,7 @@
 .stores {
   border: 1px solid black;
   // padding: 10px;
-  margin: 49px;
+  margin: 39px;
   min-height: auto;
   max-height: 350px;
   min-width: 130px;
@@ -79,10 +79,14 @@
 }
 
 .item-name-header {
-  background: #6c676e;
-  small {
-    color: #dddcbc;
-  }
+    font-size: 60px;
+  letter-spacing:.015em;
+  text-align: center;
+  letter-spacing:.006em;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  background-color: #3d444f;
+
 }
 
 #minimum-bid {
@@ -124,7 +128,7 @@
 }
 
 #stores-header {
-  font-size: 75px;
+  font-size: 40px;
   letter-spacing:.015em;
   text-align: center;
   letter-spacing:.006em;
@@ -144,12 +148,13 @@
     text-decoration: none;
     font-weight: bold;
   }
-  padding: 10px;
-  text-transform:uppercase;
+  font-size: 60px;
+  letter-spacing:.015em;
+  text-align: center;
   letter-spacing:.006em;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-  border-bottom: 2px solid black;
+  background-color: #3d444f;
 }
 
 .works {
@@ -492,4 +497,49 @@ div.split-row li{
   font-family:'Arvo', serif;
   font-size:20px;
 
+}
+
+.items-title {
+  font-size: 23px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.well {
+  width: 300px;
+  height: 400px;
+  align: center;
+  border-radius: 10px;
+  margin-left: 12px;
+  margin-bottom: 50px;
+}
+
+.well-items {
+  height: 500px;
+
+}
+
+a:hover {
+  text-decoration: none; 
+  color: rgba(17, 18, 17, 0.7);
+}
+
+
+.image-border {
+  border: 2px solid rgba(17, 18, 17, 0.2);
+  border-radius: 10px;
+  max-height: 300px;
+  margin-bottom: 10px;
+}
+
+.store-column {
+  margin-bottom: 50px;
+}
+
+.watch-list-header {
+  margin-top: 25px;
+}
+
+#welcome {
+  font-size: 25px;
 }

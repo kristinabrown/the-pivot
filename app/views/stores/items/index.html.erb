@@ -1,15 +1,20 @@
-<div class="row" id="store-div">
-<div class="col-md-12"><h1 class="store-name store-index"><%= current_store.name %></h1></div>
+<div class="row">
+  <div class="col-md-12 store-column">
+    <h1 id="stores-header"><span id="welcome">Welcome to</span> <%= current_store.name %></h1>
+  </div>
 </div>
-<% current_store.items.each do |item| %>
-<div class="col-md-2 items">
 
-  <%= link_to image_tag(item.attachment.url), store_item_path(item.store.slug, item) %>
-  <h6 class="item-name text-center"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h6>
+<% current_store.items.each_slice(4) do |four_items| %>
+<div class="row">
+<% four_items.each do |item| %>
+  <div class="col-md-3">
+    <div class="well well-items text-center">
+  <h5 class="items-title"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h5>
+  <%= link_to image_tag(item.attachment.url, class: "image-border"), store_item_path(item.store.slug, item) %>
   <%if item.expired? %>
-  <p class="black-font">This Item is no longer available</p>
+  <p class="black-font">No longer available</p>
   <% else %>
-  <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> | current bid: <%= number_to_currency(item.highest_bid) %></p>
+  <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> remaining<br> current bid: <%= number_to_currency(item.highest_bid) %></p>
 
   <% if current_user && Bid.bid_exsits?(current_user.id, item.id) %>
     <%= link_to "View your bid standing.", users_path(current_user)  %>
@@ -26,4 +31,5 @@
     </div>
 </div>
   <% end %>
+<% end %>
 <% end %>
