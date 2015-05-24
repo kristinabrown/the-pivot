@@ -2,11 +2,15 @@
   <div class="col-md-12"><h1 id="stores-header">Shops</h1></div>
 </div>
 
-<% @stores.each do |store| %>
-  <div class="col-md-3 stores">
-  <h5><%= link_to store.name, store_items_path(store: store.slug) %></h5>
-  <%#= link_to image_tag(store.items.first.attachment.url), store_items_path(store: store.slug) %>
-<a href="<%= store_items_path(store: store.slug)  %>"><%= image_tag(store.items.first.attachment.url, :class => "store-image")%></a>
+<% @stores.each_slice(4) do |four_stores| %>
+  <div class="row">
+  <% four_stores.each do |store| %>
+    <div class="col-md-3">
+      <div class="stores">
+        <h5><%= link_to store.name, store_items_path(store: store.slug) %></h5>
+        <%= link_to image_tag(store.items.first.attachment.url), store_items_path(store: store.slug), class: "store-image" %>
+      </div>
     </div>
+  <% end %>
+  </div>
 <% end %>
-
