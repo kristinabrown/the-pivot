@@ -49,8 +49,14 @@ class Seed
                state: "CO", zipcode: "80211",
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 
+    User.create(fullname: "Test User", email: "test@example.com",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "tester", street: "1510 Blake St", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
+
     5.times do
-      User.create(
+      User.create!(
             fullname: Faker::Name.name, email: unique_email, password: 'password',
             display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
             city: Faker::Address.city, state: Faker::Address.state, zipcode: Faker::Address.zip,
@@ -62,7 +68,7 @@ class Seed
 
 
     5.times do
-      User.create(
+      User.create!(
             fullname: Faker::Name.name, email: unique_email, password: 'password',
             display_name: Faker::Name.name.split.first, street: Faker::Address.street_address, 
             apt_number: Faker::Address.secondary_address,
