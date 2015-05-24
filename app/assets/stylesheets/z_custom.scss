@@ -506,7 +506,7 @@ div.split-row li{
   font-size: 19px;
   margin-bottom: 20px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.2;
 
   a {
   color: #3d444f;
@@ -515,17 +515,14 @@ div.split-row li{
 }
 
 .well {
-  width: 300px;
   height: 400px;
-  align: center;
   border-radius: 10px;
-  margin-left: 12px;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 .well-items {
   height: 500px;
-
 }
 
 a:hover {
@@ -533,11 +530,11 @@ a:hover {
   color: rgba(17, 18, 17, 0.7);
 }
 
-
 .image-border {
   border: 2px solid rgba(17, 18, 17, 0.2);
   border-radius: 10px;
-  max-height: 300px;
+  max-width: 200px;
+  width: auto;
   margin-bottom: 10px;
 }
 
