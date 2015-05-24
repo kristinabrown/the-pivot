@@ -33,6 +33,10 @@ class Item < ActiveRecord::Base
       starting_price
     end
   end
+  
+  def highest_bidder_id
+    Bid.where(item_id: id).order(current_price: :desc).first.user_id
+  end
 
   def available?
     active == true
