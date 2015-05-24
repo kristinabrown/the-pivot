@@ -20,6 +20,7 @@ class Seed
                 classic-catwoman dress dress2 dress3 eclectic-desk-accessories football
                 guitar lebron lucycelebrity lunchbox phone pocket_watch star_trek1 star_trek2
                 star_trek3 tea_service the_fonz toy1 toy2 toy3 vintage_logo)
+  STORES_IMAGES = %w(bakery bikes cabin_fever comics corner hardware hardware2 local raplhs records smiths)
 
   def call
     generate_categories
