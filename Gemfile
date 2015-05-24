@@ -33,6 +33,7 @@ gem 'paperclip'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
 gem 'faker'
+gem 'whenever', :require => false
 
 group :production do
   gem 'rails_12factor'
