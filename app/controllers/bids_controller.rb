@@ -2,7 +2,7 @@ class BidsController < ApplicationController
 
   def create
     bid = Bid.new(bid_params)
-    if bid.item.starting_price < params["bid"]["current_price"].to_i
+    if bid.item.highest_bid < params["bid"]["current_price"].to_i
       bid.save
       redirect_to users_path
     else 
@@ -13,7 +13,7 @@ class BidsController < ApplicationController
   
   def update
     bid = Bid.find(params[:id])
-    if bid.current_price < params["bid"]["current_price"].to_i
+    if bid.item.highest_bid < params["bid"]["current_price"].to_i
       bid.update(current_price: params["bid"]["current_price"])
       redirect_to users_path
     else
