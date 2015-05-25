@@ -11,24 +11,24 @@
       <% four_items.each do |item| %>
         <div class="col-md-3">
 
-          <div class="well">
+          <div class="well well-items">
             <h5 class="items-title"> <%= link_to item.name, store_item_path(item, id: item.id) %> </h5>
             <%= link_to image_tag(item.attachment.url, class: "image-border"), store_item_path(item.store.slug, item) %>
             
             <%if item.expired? %>
               <p class="black-font">No longer available</p>
             <% else %>
-              <p class="time"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> remaining<br> current bid: <%= number_to_currency(item.highest_bid) %></p>
+              <p class="time less-margin"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> remaining<br> current bid: <%= number_to_currency(item.highest_bid) %></p>
 
               <% if current_user && Bid.bid_exsits?(current_user.id, item.id) %>
                 <%= link_to "View your bid standing.", users_path(current_user)  %>
               <% elsif current_user %>   
                 <%= form_for(:bid, url: :bids, method: :post) do |f| %>
-                  <%= f.number_field :current_price, value: number_with_precision(item.highest_bid + 1, precision: 2), :id => "bid-input" %>
+                  <%= f.number_field :current_price, min: number_with_precision(item.highest_bid + 1), step: 1.00, value: number_with_precision(item.highest_bid + 1, precision: 2), :id => "bid-input", class: "number-center" %>
                   <%= f.label :minimum_bid, :id => 'minimum-bid' %>
                   <%= f.hidden_field :item_id, value: item.id %>
                   <%= f.hidden_field :user_id, value: current_user.id %>
-                  <%= f.submit "Bid Now"%>
+                  <%= f.submit "Bid Now", class: "btn btn-default btn-xs" %>
                 <% end %>
               <% end %>
             <% end %>
