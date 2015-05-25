@@ -1,21 +1,40 @@
-# require 'rails_helper'
-# 
-# RSpec.describe "unauthenicated user" do 
-#   context "when not signed in" do
-#     let(:user) { User.create(fullname: "milli", email: "sample@sample.com", password: "pw")}
-#     let(:order) { Order.create(user_id: user.id, total: 400, status: "ordered") }
-#     it "cannot view any orders page" do
-#       visit orders_path
-#       
-#       expect(page).to have_content("Must be logged in to view orders")
-#     end
-#     
-#     it "cannot view an individual order page" do
-#       visit order_path(order)
-#       
-#       expect(page).to have_content("The page you were looking for doesn't exist.")
-#     end
-#   end
-# end
-#       
-#       
+require 'rails_helper'
+
+RSpec.describe "unauthenicated user" do 
+  context "when not signed in" do
+    before(:each) do 
+      store = Store.create!(name: "Collectibles Store")
+
+      category = Category.create!(name: "Automobiles")
+
+      @item =  Item.create!(name: "moon car", description: "rocky",
+                            expiration_date: "Time.now + 10.days",
+                            starting_price: 10,
+                            active: true, 
+                            category_id: category.id, 
+                            store_id: store.id )
+      @user = User.create!(fullname: "Jack Spade", 
+                           email: "jack@sample.com",
+                           display_name: "jackie",
+                           role: 0,
+                           phone: "222-333-4444",
+                           password: "password",
+                           street: "123 First Ave",
+                           city: "Denver",
+                           state: "CO",
+                           zipcode: "80211",
+                           credit_card: "4242424242424242",
+                           cc_expiration_date: "2015-11-05"
+                          ) 
+      @order = Order.create!(user_id: @user.id, item_id: @item.id, total: 10)
+     end
+    
+    it "cannot view an individual order page" do
+      visit orders_path
+      
+      expect(page).to have_content("Must be logged in to view orders")
+    end
+  end
+end
+      
+      

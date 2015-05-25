@@ -11,9 +11,6 @@ class WatchItemsController < ApplicationController
         session[:cart] = @cart.contents
         render :index
       end
-    else
-      flash[:errors] = "The #{item.name} is unavailable."
-      redirect_to stores_path
     end
   end
 
@@ -21,5 +18,4 @@ class WatchItemsController < ApplicationController
     @cart.delete_item(params['item']['item_id'])
     render :index
   end
-
 end
