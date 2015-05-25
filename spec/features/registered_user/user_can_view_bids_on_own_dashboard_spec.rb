@@ -43,16 +43,6 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
      ) 
    end
 
-
-  xit "can see items to bid on" do 
-    visit stores_path
-    click_link "Collectibles Store"
-    click_link "moon car"
-    click_button "Bid Now"
-    expect(current_path).to eq(login_path)
-  end
-
-
   it "can click on bid button and be routed to user dashboard" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
