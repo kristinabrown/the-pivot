@@ -11,16 +11,16 @@ class Order < ActiveRecord::Base
   end
   
   def self.create_order
-    Item.all.each do |item|
       counter = 0
+    Item.where(paid: false).each do |item|
       if item.expired? && Bid.find_by(item_id: item.id)
         user_id = item.highest_bidder_id
         price = item.highest_bid
-        find_or_create_by(user_id: user_id, item_id: item.id, total: price)
+        Order.create(user_id: user_id, item_id: item.id, total: price)
         counter += 1
         item.update(paid: true)
-        puts "#{Time.now}: #{counter} orders created."
       end
+        puts "#{Time.now}: #{counter} orders created."
     end
   end
 end
