@@ -5,5 +5,10 @@ $(document).ready(function(){
 },function(){
     $(this).stop().animate({"opacity": 1});
   });
-
+  
+  $(".animate").hover(function(){
+    $(".animate").animate({    
+        left: "+=300",  
+      }, 3000);
+    });    
 });

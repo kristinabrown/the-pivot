@@ -265,7 +265,7 @@ blockquote{
 
 .mr-roboto:hover
 {
-blockquote::before{
+.animate{
   -webkit-animation-name: thumb;
   -webkit-animation-duration: 225ms;
   -webkit-transform-origin:50% 50%;
@@ -281,10 +281,7 @@ blockquote::before{
 
 }
 
-blockquote::before{
-  content: "";
-  background: url(image_path("robot.png")) no-repeat;
-  display: inline-block;
+.animate {
   min-height: 100px;
   min-width: 110px;
   position: absolute;
