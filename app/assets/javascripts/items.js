@@ -6,9 +6,21 @@ $(document).ready(function(){
     $(this).stop().animate({"opacity": 1});
   });
   
-  $(".animate").hover(function(){
+  $(".animate").click(function(){
     $(".animate").animate({    
-        left: "+=300",  
+        left: "+=200",  
       }, 3000);
-    });    
+    }); 
+  
+  $(".animate").click(function(){
+    $(".right-animate").animate({    
+        right: "+=200",  
+      }, 3000);
+    }).addClass(".re-animate")
+  
+  $(".re-animate").click(function(){
+    $(".animate").animate({    
+        right: "+=200",  
+      }, 3000);
+    });       
 });
