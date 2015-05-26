@@ -29,8 +29,11 @@ class Seed
   def call
     generate_categories
     generate_stores
-    generate_items
+    generate_new_items
+    generate_expired_items
     generate_users
+    generate_active_bids
+    generate_inactive_bids
   end
 
   def unique_email
@@ -106,12 +109,12 @@ class Seed
     p "Stores Created"
   end
 
-  def generate_items
+  def generate_new_items
     i = 0
     stores = Store.all
 
     Category.all.each do |category|  #go through ALL categories
-      15.times do  #and make 5 items per category --> must be 50 in production
+      5.times do  #and make 5 items per category --> must be 50 in production
         store = stores[ i % stores.length]
         picture = PICTURES.sample
 
@@ -130,8 +133,63 @@ class Seed
               # i = number of items made so far  .....keeps store and picture position  when selecting to make a new item
       end
     end
-    p "Items Generated"
+    p "New Items Generated"
   end
+
+  def generate_expired_items
+    i = 0
+    stores = Store.all
+
+    Category.all.each do |category|  #go through ALL categories
+      3.times do  #and make 5 items per category --> must be 50 in production
+        store = stores[ i % stores.length]
+        picture = PICTURES.sample
+
+        item =  Item.new( 
+                name: Faker::Commerce.product_name,
+                description: Faker::Lorem.sentence,
+                starting_price: Faker::Commerce.price + 1,
+                expiration_date: Faker::Time.between(20.days.ago, Time.now, :all),
+                store: store,
+                category: category,
+                active: false) 
+
+        item.attachment = File.open("#{Rails.root}/app/assets/images/item_images/#{picture}.jpg")
+        item.save!
+        i += 1 #ensures we iterate thru all stores and all pictures
+              # i = number of items made so far  .....keeps store and picture position  when selecting to make a new item
+      end
+    end
+    p "Expired Items Generated"
+  end
+
+  def generate_active_bids
+    items = Item.where(active:true)
+    users = User.where({ email: ["josh@turing.io", "test@example.com"] })
+    
+    users.each do |user|
+      3.times do 
+        item = items.shuffle.first
+        Bid.create!(user_id: user.id, item_id: item.id, current_price: Faker::Commerce.price)
+      end
+    end
+    p "Bids Created"
+  end
+
+  def generate_inactive_bids
+    items = Item.where(active:false)
+    users = User.where({ email: ["josh@turing.io", "test@example.com"] })
+    
+    users.each do |user|
+      3.times do 
+        item = items.shuffle.first
+        Bid.create!(user_id: user.id, item_id: item.id, current_price: Faker::Commerce.price)
+      end
+    end
+    p "Inactive Bids Created"
+  end
+
+
 
   def self.call
     new.call
