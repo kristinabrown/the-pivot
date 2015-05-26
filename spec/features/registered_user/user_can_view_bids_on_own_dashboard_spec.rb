@@ -47,7 +47,9 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit stores_path
-    click_link "Collectibles Store"
+    within(".items-title") do
+        click_link "Collectibles Store"
+    end
     click_link "moon car"
     click_button "Bid Now"
     expect(current_path).to eq(users_path)
@@ -59,7 +61,9 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     visit stores_path
-    click_link "Collectibles Store"
+        within(".items-title") do
+        click_link "Collectibles Store"
+    end
     click_link "moon car"
     click_button "Bid Now"
     expect(current_path).to eq(users_path)
@@ -75,7 +79,9 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     visit stores_path
-    click_link "Collectibles Store"
+    within(".items-title") do
+        click_link "Collectibles Store"
+    end
     click_link "moon car"
     click_button "Bid Now"
     expect(current_path).to eq(users_path)
@@ -97,13 +103,17 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit stores_path
-    click_link "Collectibles Store"
+    within(".items-title") do
+        click_link "Collectibles Store"
+    end
     click_link "moon car"
     click_button "Bid Now"
     expect(current_path).to eq(users_path)
     
     visit stores_path
-    click_link "Collectibles Store"
+    within(".items-title") do
+        click_link "Collectibles Store"
+    end
     expect(page).to have_content("View your bid standing.")
   end
   
@@ -111,7 +121,9 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit stores_path
-    click_link "Collectibles Store"
+    within(".items-title") do
+        click_link "Collectibles Store"
+    end
     click_link "moon car"
     fill_in "bid[current_price]", with: 1
     click_button "Bid Now"
@@ -123,7 +135,9 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     visit stores_path
-    click_link "Collectibles Store"
+    within(".items-title") do
+        click_link "Collectibles Store"
+    end
     click_link "moon car"
     click_button "Bid Now"
     expect(current_path).to eq(users_path)
