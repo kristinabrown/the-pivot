@@ -30,6 +30,17 @@
                   <%= f.hidden_field :user_id, value: current_user.id %>
                   <%= f.submit "Bid Now", class: "btn btn-default btn-xs" %>
                 <% end %>
+
+                <%= form_for(:order, url: :watch_items) do |f| %>
+
+                  <%#= f.number_field :price, value: @item.starting_price + 1.00, :id => "bid-input" %>
+                  <%#= f.label :minimum_bid, :id => 'minimum-bid' %>
+                  <%= f.hidden_field :item_id, value: item.id %>
+                  <%= f.hidden_field :item_price, value: item.highest_bid %>
+                  <%= f.submit "Watch", url: watch_items_path %>
+                <!-- should be bid price -->
+                <% end %>
+
               <% end %>
             <% end %>
           </div>
