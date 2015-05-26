@@ -18,17 +18,6 @@ class ApplicationController < ActionController::Base
   def pending_bid
     @pending_bid ||= PendingBid.new(session[:pending_bid])
   end
-  # 
-  # def create_order
-  #   Item.all.each do |item|
-  #     if item.expired? && Bid.find_by(item_id: item.id)
-  #       user_id = item.highest_bidder_id
-  #       price = item.highest_bid
-  #       Order.find_or_create_by(user_id: user_id, item_id: item.id, total: price)
-  #       item.update(paid: true)
-  #     end
-  #   end
-  # end
   
   def expire_items
     Item.all.each do |item|

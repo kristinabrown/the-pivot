@@ -1,5 +1,4 @@
-  class SessionsController < ApplicationController
-
+class SessionsController < ApplicationController
   def create
    @user = User.find_by(email: params[:session][:email])
     if @user != nil && @user.admin?
@@ -12,6 +11,7 @@
       else
         Bid.create(user_id: current_user.id, item_id: @pending_bid.contents["bid"]["item"].to_i, current_price: @pending_bid.contents["bid"]["price"].to_i)
         flash[:success] = "Your bid successfully posted!"
+        session[:pending_bid].clear
         redirect_to users_path
       end
     else
