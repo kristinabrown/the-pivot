@@ -6,7 +6,6 @@ class Item < ActiveRecord::Base
   
   validates :name, presence: true
   validates :description, presence: true
-  # validates :active, presence: true
   validates :starting_price, presence: true
   validates :expiration_date, presence: true
   validates :store_id, presence: true
