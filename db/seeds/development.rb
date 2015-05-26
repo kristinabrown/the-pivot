@@ -31,6 +31,7 @@ class Seed
     generate_stores
     generate_items
     generate_users
+    generate_orders
   end
 
   def unique_email
@@ -131,6 +132,24 @@ class Seed
       end
     end
     p "Items Generated"
+  end
+
+  def generate_orders
+    User.all.each do |user|
+      10.times do 
+        item = Item.all.sample
+        Order.create!(user_id: user.id, item_id: item.id, total: Faker::Commerce.price + 5)
+      end
+    end
+  end
+
+  def generate_bids
+    User.all.each do |user|
+      3.times do 
+        item = Item.all.sample
+        Bid.create!(user_id: user.id, item_id: item.id, total: Faker::Commerce.price)
+      end
+    end
   end
 
   def self.call

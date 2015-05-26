@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   belongs_to :item
 
   validates :user_id, presence: true
-  validates :item_id, presence: true
+  validates :item_id, presence: true, uniqueness: true
   validates :total, presence: true
   
   def item
