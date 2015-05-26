@@ -32,8 +32,8 @@ class Seed
     generate_new_items
     generate_expired_items
     generate_users
-    generate_bids
-    generate_orders
+    generate_active_bids
+    generate_inactive_bids
   end
 
   def unique_email
@@ -114,7 +114,7 @@ class Seed
     stores = Store.all
 
     Category.all.each do |category|  #go through ALL categories
-      15.times do  #and make 5 items per category --> must be 50 in production
+      5.times do  #and make 5 items per category --> must be 50 in production
         store = stores[ i % stores.length]
         picture = PICTURES.sample
 
@@ -133,7 +133,7 @@ class Seed
               # i = number of items made so far  .....keeps store and picture position  when selecting to make a new item
       end
     end
-    p "Items Generated"
+    p "New Items Generated"
   end
 
   def generate_expired_items
@@ -141,7 +141,7 @@ class Seed
     stores = Store.all
 
     Category.all.each do |category|  #go through ALL categories
-      5.times do  #and make 5 items per category --> must be 50 in production
+      3.times do  #and make 5 items per category --> must be 50 in production
         store = stores[ i % stores.length]
         picture = PICTURES.sample
 
@@ -163,26 +163,32 @@ class Seed
     p "Expired Items Generated"
   end
 
-  def generate_bids
-    User.all.each do |user|
+  def generate_active_bids
+    items = Item.where(active:true)
+    users = User.where({ email: ["josh@turing.io", "test@example.com"] })
+    
+    users.each do |user|
       3.times do 
-        item = Item.where(active:true)
+        item = items.shuffle.first
         Bid.create!(user_id: user.id, item_id: item.id, current_price: Faker::Commerce.price)
       end
     end
+    p "Bids Created"
   end
-  
-  def generate_orders
-    users = User.where({ email: ["josh@turing.io", "test@exampl.com"] })
+
+  def generate_inactive_bids
+    items = Item.where(active:false)
+    users = User.where({ email: ["josh@turing.io", "test@example.com"] })
     
     users.each do |user|
-      3.times do      
-      exp_item = Item.where(active:false)
-
-      Order.create!(user_id: user.id, item_id: exp_item.id, total: Faker::Commerce.price + 5)
+      3.times do 
+        item = items.shuffle.first
+        Bid.create!(user_id: user.id, item_id: item.id, current_price: Faker::Commerce.price)
       end
     end
+    p "Inactive Bids Created"
   end
+
 
 
   def self.call
