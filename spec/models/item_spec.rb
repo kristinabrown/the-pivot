@@ -6,7 +6,6 @@ RSpec.describe Item, type: :model do
   let(:item){ Item.create(name: "moon rock", description: "rocky",
                           expiration_date: "Time.now + 10.days",
                           starting_price: 10,
-                          active: true, 
                           category_id: category.id, 
                           store_id: store.id )}
 
@@ -24,11 +23,6 @@ RSpec.describe Item, type: :model do
     
     it "is invalid without description" do
       item.update(description: nil)
-      expect(item).to_not be_valid
-    end
-    
-    it "is invalid without active" do
-      item.update(active: nil)
       expect(item).to_not be_valid
     end
     
