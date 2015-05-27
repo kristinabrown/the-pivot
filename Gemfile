@@ -58,5 +58,6 @@ group :development, :test do
   gem 'launchy'
   gem 'capybara'
   gem 'simplecov', :require => false, :group => :test
+  gem 'brakeman'
 end
 
