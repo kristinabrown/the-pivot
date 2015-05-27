@@ -28,7 +28,7 @@
                 <%= link_to "View this bid.", users_path(current_user)  %>
               <% elsif current_user %>   
                 <%= form_for(:bid, url: :bids, method: :post) do |f| %>
-                  <%= f.number_field :current_price, value: @cart.find_item(v).highest_bid + 1.00, :id => "bid-input2" %>
+                  <%= f.number_field :current_price, min: number_with_precision(@cart.find_item(v).highest_bid + 1 ), step: 1.00, value: number_with_precision(@cart.find_item(v).highest_bid + 1, precision: 2), :id => "bid-input2", class: "number-center" %>
                   <%= f.hidden_field :item_id, value: @cart.find_item(v).id %>
                   <%= f.hidden_field :user_id, value: current_user.id %>
                   <%= f.submit "Bid Now", :class => "btn btn-info" %>
@@ -36,7 +36,7 @@
               <% else %>
               
                 <%= form_for(:bid, url: :pending_bids) do |f| %>
-                  <%= f.number_field :current_price, value: @cart.find_item(v).highest_bid + 1.00, :id => "bid-input2" %>
+                  <%= f.number_field :current_price, min: number_with_precision(@cart.find_item(v).highest_bid + 1 ), step: 1.00, value: number_with_precision(@cart.find_item(v).highest_bid + 1, precision: 2), :id => "bid-input2", class: "number-center" %>
                   <%= f.hidden_field :item_id, value: @cart.find_item(v).id %>
                   <%= f.submit "Bid Now", :class => "btn btn-info" %>
                 <% end %>
