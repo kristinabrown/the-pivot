@@ -1,7 +1,6 @@
 class Stores::ItemsController < Stores::StoresController
   
   def index
-    
   end
   
   def show

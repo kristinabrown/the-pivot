@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :orders
   has_many :bids
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 
   validates :fullname, presence: true, length: {in: 2..32}
   validates :email, presence: true, length: { in: 5..50 },
@@ -20,7 +22,6 @@ class User < ActiveRecord::Base
   before_validation :clean_credit_card  #callback's allow you to alter the data, then the validations check the updated results
 
   has_secure_password
-  enum role: %w(default admin)
 
   has_attached_file :avatar, styles: {thumb: '100x100>',
                                       square: '200x200#',
@@ -32,6 +33,22 @@ class User < ActiveRecord::Base
                                                 secret_access_key: ENV['secret_access_key'] }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  
+  def platform_admin?
+    roles.exists?(name: 'platform_admin')
+  end
+
+  def store_admin?
+    roles.exists?(name: 'store_admin')
+  end
+
+  def registered_user?
+    roles.exists?(name: 'registered_user')
+  end 
+  
+  def store_slug
+    Store.find(store_id).slug
+  end
 
   protected
     def clean_credit_card
