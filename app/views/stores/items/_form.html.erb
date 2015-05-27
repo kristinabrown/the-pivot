@@ -1,4 +1,4 @@
-<%= form_for [:store, @item], multipart: true do |f| %>
+<%= form_for @item, url: store_items_path, multipart: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -14,13 +14,13 @@
 
   <%= f.label :expiration_date %>
   <%= f.datetime_local_field :expiration_date %>
-
+  
   <%= f.label :attachment %>
   <%= f.file_field :attachment %><br>
 
-  <p>Categories:</p>
+  <p>Category:</p>
   <ul >
-  <%= f.collection_check_boxes(:category_id, @categories.to_a, :id, :name) %>
+  <%= f.collection_select(:category_id, @categories.to_a, :id, :name) %>
   </ul>
 
   <%= f.hidden_field :store_id, value: current_user.store_id %>

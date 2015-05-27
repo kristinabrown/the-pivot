@@ -4,6 +4,7 @@ RSpec.describe "store admin can create edit and delet stores", type: :feature do
 
   before(:each) do
     @store = Store.create(name: "Lunar Landing")
+    @category = Category.create(name: "Space")
     @admin = User.create!(fullname: "Jack Spade", 
                          email: "jack@sample.com",
                          display_name: "jackie",
@@ -31,12 +32,31 @@ RSpec.describe "store admin can create edit and delet stores", type: :feature do
     fill_in "item[description]", with: "It tells your mood."
     fill_in "item[starting_price]", with: 10
     fill_in "item[expiration_date]", with: Time.now + 2.days
+    select "Space", from: "item[category_id]"
     click_button "Create Item"
     
-    expect(current_path).to eq(store_items_path)
     expect(page).to have_content('mood ring') 
-    expect(page).to have_content('Item succesfully created.') 
-       
+    expect(page).to have_content('Item has been created!')      
+  end
+  
+  xit "can edit an item" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+    Item.create(name: "mood ring", description: "cool", starting_price: 100, expiration_date: Time.now + 1.day, category_id: @category.id)
+    
+    visit admin_dashboard_path
+    click_link "Edit Items"
+    click_link "edit"
+    
+    fill_in "item[name]", with: "moon rock"
+    fill_in "item[description]", with: "It tells your mood."
+    fill_in "item[starting_price]", with: 10
+    fill_in "item[expiration_date]", with: Time.now + 2.days
+    select "Space", from: "item[category_id]"
+    click_button "Update Item"
+    
+    
+    expect(page).to have_content('moon rock') 
+    expect(page).to have_content('Item has been updated!')    
   end
   
 end

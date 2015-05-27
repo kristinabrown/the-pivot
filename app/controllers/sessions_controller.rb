@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
   def create
    @user = User.find_by(email: params[:session][:email])
-    if @user != nil && (@user.platform_admin? || @user.store_admin?)
+    if @user != nil && @user.platform_admin?
+      session[:user_id] = @user.id
+      redirect_to admin_dashboard_path 
+    elsif @user != nil && @user.store_admin?
       session[:user_id] = @user.id
       redirect_to admin_dashboard_path
     elsif @user && @user.authenticate(params[:session][:password])
