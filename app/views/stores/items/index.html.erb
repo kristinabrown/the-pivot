@@ -32,6 +32,21 @@
                   <%= f.submit "Bid Now", class: "btn btn-primary float-left" %>
                 <% end %>
 
+                  <%= form_for(:order, url: :watch_items) do |f| %>
+                    <%= f.hidden_field :item_id, value: item.id %>
+                    <%= f.hidden_field :item_price, value: item.highest_bid %>
+                    <%= f.submit "Watch", url: watch_items_path, class: "btn btn-info float-right" %>
+                  <% end %>
+
+                <% else %>
+
+                <%= form_for(:bid, url: :pending_bids, class: "less-margin" ) do |f| %>
+                  <%= f.number_field :current_price, min: number_with_precision(item.highest_bid + 1), step: 1.00, value: number_with_precision(item.highest_bid + 1, precision: 2), :id => "bid-input", class: "number-center" %>
+                  <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+                  <%= f.hidden_field :item_id, value: item.id %>
+                  <%= f.submit "Bid Now", :class => "btn btn-primary float-left" %>
+                <% end %>
+
                 <%= form_for(:order, url: :watch_items) do |f| %>
                   <%= f.hidden_field :item_id, value: item.id %>
                   <%= f.hidden_field :item_price, value: item.highest_bid %>
