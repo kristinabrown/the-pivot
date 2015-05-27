@@ -38,5 +38,9 @@ class Item < ActiveRecord::Base
   def available?
     active == true
   end
+  
+  def time_in_seconds
+    (expiration_date - (Time.now)).round
+  end
 
 end

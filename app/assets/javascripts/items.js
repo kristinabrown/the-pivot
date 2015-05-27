@@ -6,4 +6,14 @@ $(document).ready(function(){
     $(this).stop().animate({"opacity": 1});
   });
 
+  var time = $(".remaining-time").text();
+  
+
+  var clock = new FlipClock($('.your-clock'), {
+  "countdown":true
+  });
+  
+  clock.setTime(36);
+  clock.start(time);
+  
 });

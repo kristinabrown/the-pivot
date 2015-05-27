@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require flipclock.min.js
 //= require_tree .
 
 $(document).ready(function(){
@@ -28,13 +29,13 @@ $(document).ready(function(){
   toggleCategory(".literature", ".literature_items")
   toggleCategory(".music", ".music_items")
   toggleAllCategory()
-  
-  
+
   
   function toggleCategory(categoryID, beerID){
-    var currentCategory = this.value;
-    
-    $(categoryID).click(function(){
+    var currentCategory = this.value;    
+    $(categoryID).click(function(e){
+      e.preventDefault();
+      console.log("clicked")
       $(beerID).toggleClass("hidden");
     });
   }

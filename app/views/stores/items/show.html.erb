@@ -5,7 +5,12 @@
       <%if @item.expired? %>
       <p>This Item is no longer available</p>
       <% else %>
-      <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> remaining | current bid: <%= number_to_currency(@item.starting_price) %>
+      <div class="your-clock">
+      </div>
+      <div class="remaining-time">
+        <%= @item.time_in_seconds %>
+      </div>
+        <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> remaining | current bid: <%= number_to_currency(@item.starting_price) %>
     </small>
   </h1>
 <!--  -->
