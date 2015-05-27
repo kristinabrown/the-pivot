@@ -5,16 +5,10 @@ Rails.application.routes.draw do
   resources :bids
   resources :pending_bids, only: [:create]
 
-  # 
-  # resources :charges
-  # 
-  # namespace :admin do
-  #   get '/dashboard', to: 'dashboard#index'
-  #   resources :beers
-  #   resources :categories
-  #   resources :orders, except: [:new, :create]
-  # end
-  # 
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+  end
+  
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -22,9 +16,9 @@ Rails.application.routes.draw do
   
   root 'staticpages#index'
   
-  resources :stores, only: [:index]
+  resources :stores
   
   namespace :stores, as: :store, path: '/:store' do 
-    resources :items,  only: [:index, :show]
+    resources :items,  only: [:index, :show, :new, :edit, :create, :update]
   end
 end

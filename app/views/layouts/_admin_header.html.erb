@@ -1,7 +1,10 @@
-<ul>
-  <li><%= link_to 'all beers', admin_beers_path %> </li>
-  <li><%= link_to 'all categories', admin_categories_path %> </li>
-  <li><%= link_to 'create category', new_admin_category_path %> </li>
-  <li><%= link_to 'create beer', new_admin_beer_path %> </li>
-  <li><%= link_to 'all orders', admin_orders_path %> </li>
-</ul>
+<% if platform_admin? %>
+  <ul>
+    <li><%= link_to 'Create New Store', new_store_path %> </li>
+    <li><%= link_to 'Edit Stores', stores_path %> </li>
+  </ul>
+<% end %>
+<% if store_admin? %>
+  <li><%= link_to 'Edit Items', store_items_path(store: current_user.store_slug) %> </li>
+  <li><%= link_to 'Create Item', new_store_item_path(store: current_user.store_slug) %> </li>
+<% end %>

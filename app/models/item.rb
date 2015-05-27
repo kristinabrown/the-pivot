@@ -38,5 +38,9 @@ class Item < ActiveRecord::Base
   def available?
     active == true
   end
+  
+  def store_slug
+    Store.find(store_id).slug
+  end
 
 end

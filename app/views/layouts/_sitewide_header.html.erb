@@ -39,6 +39,9 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <% if platform_admin? %>
+            <li><%= link_to "Admin Dashboard", admin_dashboard_path %> </li>
+          <% end %>
           <% if current_user %>
           <li><%= image_tag(current_user.avatar.url(:thumb), class: "img-circle img-thumbnail")%></li>
             <li><%= link_to "My Account", users_path %> </li>
