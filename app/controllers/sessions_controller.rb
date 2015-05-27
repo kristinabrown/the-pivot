@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
    @user = User.find_by(email: params[:session][:email])
-    if @user != nil && @user.platform_admin?
+    if @user != nil && (@user.platform_admin? || @user.store_admin?)
       session[:user_id] = @user.id
       redirect_to admin_dashboard_path
     elsif @user && @user.authenticate(params[:session][:password])
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         redirect_to users_path
       end
     else
-      flash[:errors] = "Invalid login"
+      flash.now[:errors] = "Invalid login"
       render :new
     end
   end

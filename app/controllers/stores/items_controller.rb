@@ -7,4 +7,13 @@ class Stores::ItemsController < Stores::StoresController
     @item = Item.find(params[:id])
   end
   
+  def new
+    @item = Item.new
+    @categories = Category.all
+  end
+  
+  def create
+    require 'pry'; binding.pry
+  end
+  
 end

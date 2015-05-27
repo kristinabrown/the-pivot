@@ -5,9 +5,6 @@ Rails.application.routes.draw do
   resources :bids
   resources :pending_bids, only: [:create]
 
-  # 
-  # resources :charges
-  # 
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
   end
@@ -22,6 +19,6 @@ Rails.application.routes.draw do
   resources :stores
   
   namespace :stores, as: :store, path: '/:store' do 
-    resources :items,  only: [:index, :show]
+    resources :items,  only: [:index, :show, :new, :edit, :update]
   end
 end
