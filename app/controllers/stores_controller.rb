@@ -36,7 +36,7 @@ class StoresController < ApplicationController
   
   def destroy
     store = Store.find(params[:id])
-    store.delet
+    store.delete
     flash[:success] = "Store was successfully deleted."
     redirect_to stores_path
   end

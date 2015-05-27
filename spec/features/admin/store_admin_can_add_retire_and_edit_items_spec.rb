@@ -39,5 +39,4 @@ RSpec.describe "store admin can create edit and delet stores", type: :feature do
        
   end
   
-  
 end
