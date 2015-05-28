@@ -8,19 +8,20 @@ $(document).ready(function(){
   
   $(".animate").click(function(){
     $(".animate").animate({    
-        left: "+=200",  
+        left: "+=150",  
       }, 3000);
     }); 
+    
+  
+      $(".animate").click(function(){
+        $(".hello").delay(4000).toggleClass("hidden");
+      });
+
   
   $(".animate").click(function(){
     $(".right-animate").animate({    
-        right: "+=200",  
+        right: "+=150",  
       }, 3000);
-    }).addClass(".re-animate")
-  
-  $(".re-animate").click(function(){
-    $(".animate").animate({    
-        right: "+=200",  
-      }, 3000);
-    });       
+    })
+   
 });
