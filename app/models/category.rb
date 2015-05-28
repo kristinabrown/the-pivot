@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  belongs_to :item
+  has_many :items
 
   validates :name, presence: true
 

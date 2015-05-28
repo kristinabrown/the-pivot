@@ -12,7 +12,13 @@
         <div class="col-md-3">
           <div class="well">
             <h5 class="items-title"><%= link_to store.name, store_items_path(store: store.slug) %></h5>
+            <% if !store.items.empty? %>
             <%= link_to image_tag(store.items.first.attachment.url, width: "300", class: "image-border"), store_items_path(store: store.slug) %>
+            <% end %>
+            <% if platform_admin? %>
+            <br><%= link_to "Edit", edit_store_path(id: store.id) %>
+            <br><%= link_to "Delete", store_path(id: store.id), method: "delete" %>
+            <% end %>
           </div>
         </div>
       <% end %>

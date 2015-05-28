@@ -1,9 +1,7 @@
 <div class="container">
-  <%= render :partial => 'layouts/admin_login_header.html.erb' %>
-  <%= render :partial => 'layouts/sitewide_header.html.erb' %>
 
-  <div class="stitched">
-    <h4>Welcome, <%= current_user.fullname %>!</h4>
+  <h4 class="watch-list-header">Welcome, <%= current_user.fullname %>!</h4>
+  <div class="stitched watch-list">
     <div class="row">
       <div class="four columns">
         <%= render :partial => 'layouts/user_avatar.html.erb' %>
