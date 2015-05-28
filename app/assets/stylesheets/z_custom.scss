@@ -104,7 +104,10 @@
 
 .time {
   color: black;
+}
 
+.less-margin {
+  margin-bottom: 0rem;
 }
 
 .items {
@@ -518,6 +521,8 @@ ul.orders li{
 
 align-log{
   margin-left: none;
+}align-log{
+  margin-left: none;
 }
 
 ul.beerlist li{
@@ -560,7 +565,7 @@ div.split-row li{
 }
 
 .well-items {
-  height: 500px;
+  height: 550px;
 }
 
 a:hover {
@@ -584,4 +589,17 @@ a:hover {
   margin-top: 25px;
 }
 
+.number-center {
+  text-align: center;
+}
 
+.float-left {
+   float: left;
+}
+
+.float-right {
+   float: right;
+}
+
+form {
+  margin-bottom: 0px; }

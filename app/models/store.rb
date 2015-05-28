@@ -10,4 +10,8 @@ class Store < ActiveRecord::Base
   def generate_slug
     self.slug = name.parameterize
   end
+
+  def self.sort_all
+    order(:name)
+  end
 end

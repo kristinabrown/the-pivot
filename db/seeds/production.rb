@@ -1,20 +1,16 @@
 class Seed
+# 10 watch_list per registered customer
 
-# 20 total businesses
-# 10 categories
-# 50 items per category --> for development: 20
-# 100 registered customers, one with the following data:  for development --> 20 users
-# Username: josh@turing.io
-# Password: password
+# 20 total businesses DONE
+# 10 categories DONE
+# 40/10 active items, 10 inactive per category DONE
+# 100 registered customers, DONE
+# Username: josh@turing.io, Password: password DONE
 
-# for production -->
-# 10 orders per registered customer
+# 10 bids per registered customer DONE
 # 1 business admins per business
-# Username: sam@turing.io
-# Password: password
-# 1 platform administrators
-# Username: jorge@turing.io
-# Password: password
+# Username: sam@turing.io, Password: password DONE
+# Username: jorge@turing.io, Password: password DONE
 
   PICTURES = %w(baseballBR Beatles camera car1 car2 car3 celebrity2 celebrity3 celebrity4 
                 classic-catwoman dress dress2 dress3 eclectic-desk-accessories football
@@ -53,13 +49,25 @@ class Seed
                state: "CO", zipcode: "80211",
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 
+    User.create(fullname: "Sam Alghanmi", email: "sam@turing.io",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "dr. angular", street: "1510 Blake St", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01", store_id: 1 )
+
+    User.create(fullname: "Jorge Tellez", email: "jorge@turing.io",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "novohispano", street: "1510 Blake St", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
+
     User.create(fullname: "Test User", email: "test@example.com",
                phone: Faker::PhoneNumber.phone_number, password: "password",
                display_name: "tester", street: "1510 Blake St", city: "Denver",
                state: "CO", zipcode: "80211",
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 
-    5.times do
+    50.times do
       User.create(
             fullname: Faker::Name.first_name + " " + Faker::Name.last_name, email: unique_email, password: 'password',
             display_name: Faker::Name.first_name, street: Faker::Address.street_address, 
@@ -70,7 +78,7 @@ class Seed
       )
     end
 
-    5.times do
+    50.times do
       User.create(
             fullname: Faker::Name.first_name + " " + Faker::Name.last_name, email: unique_email, password: 'password',
             display_name: Faker::Name.first_name, street: Faker::Address.street_address, 
@@ -100,7 +108,7 @@ class Seed
   end
 
   def generate_stores
-    10.times do |i|
+    20.times do |i|
       store_descriptor = STORE_DESCRIPTORS[i % STORE_DESCRIPTORS.length]
 
       store = Store.create(
@@ -113,8 +121,8 @@ class Seed
     i = 0
     stores = Store.all
 
-    Category.all.each do |category|  #go through ALL categories
-      5.times do  #and make 5 items per category --> must be 50 in production
+    Category.all.each do |category|  
+      40.times do  
         store = stores[ i % stores.length]
         picture = PICTURES.sample
 
@@ -129,8 +137,7 @@ class Seed
 
         item.attachment = File.open("#{Rails.root}/app/assets/images/item_images/#{picture}.jpg")
         item.save!
-        i += 1 #ensures we iterate thru all stores and all pictures
-              # i = number of items made so far  .....keeps store and picture position  when selecting to make a new item
+        i += 1 
       end
     end
     p "New Items Generated"
@@ -140,8 +147,8 @@ class Seed
     i = 0
     stores = Store.all
 
-    Category.all.each do |category|  #go through ALL categories
-      3.times do  #and make 5 items per category --> must be 50 in production
+    Category.all.each do |category| 
+      10.times do 
         store = stores[ i % stores.length]
         picture = PICTURES.sample
 
@@ -156,8 +163,8 @@ class Seed
 
         item.attachment = File.open("#{Rails.root}/app/assets/images/item_images/#{picture}.jpg")
         item.save!
-        i += 1 #ensures we iterate thru all stores and all pictures
-              # i = number of items made so far  .....keeps store and picture position  when selecting to make a new item
+        i += 1 
+             
       end
     end
     p "Expired Items Generated"
@@ -165,10 +172,9 @@ class Seed
 
   def generate_active_bids
     items = Item.where(active:true)
-    users = User.where({ email: ["josh@turing.io", "test@example.com"] })
     
-    users.each do |user|
-      3.times do 
+    User.all.each do |user|
+      7.times do 
         item = items.shuffle.first
         Bid.create!(user_id: user.id, item_id: item.id, current_price: Faker::Commerce.price)
       end
@@ -178,9 +184,8 @@ class Seed
 
   def generate_inactive_bids
     items = Item.where(active:false)
-    users = User.where({ email: ["josh@turing.io", "test@example.com"] })
     
-    users.each do |user|
+    User.all.each do |user|
       3.times do 
         item = items.shuffle.first
         Bid.create!(user_id: user.id, item_id: item.id, current_price: Faker::Commerce.price)
@@ -188,8 +193,6 @@ class Seed
     end
     p "Inactive Bids Created"
   end
-
-
 
   def self.call
     new.call
