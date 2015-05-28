@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congrats you win!, <%= @user.fullname %></h1>
+    <p>
+      You won the item <%= @order.item.name %> and were charged your bidding price of 
+      <%= number_to_currency(@order.total) %>.<br>
+    </p>
+    <p>
+      Your item will be shipped out to you soon! 
+    </p>
+    <p>Thanks for bidding and have a great day!</p>
+  </body>
+</html>

@@ -43,8 +43,6 @@ RSpec.describe "platform admin can create edit and delete stores", type: :featur
     fill_in "store[name]", with: "Lunar Landing"
     click_button "Update Store"
     
-    
-    expect(current_path).to eq('/stores')
     expect(page).to have_content('Lunar Landing')    
   end
   
