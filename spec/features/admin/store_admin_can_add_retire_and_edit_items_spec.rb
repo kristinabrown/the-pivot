@@ -39,13 +39,13 @@ RSpec.describe "store admin can create edit and delet stores", type: :feature do
     expect(page).to have_content('Item has been created!')      
   end
   
-  xit "can edit an item" do
+  it "can edit an item" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
-    Item.create(name: "mood ring", description: "cool", starting_price: 100, expiration_date: Time.now + 1.day, category_id: @category.id)
+    Item.create(name: "mood ring", description: "cool", starting_price: 100, expiration_date: Time.now + 1.day, category_id: @category.id, store_id: @store.id)
     
     visit admin_dashboard_path
     click_link "Edit Items"
-    click_link "edit"
+    click_link "Edit"
     
     fill_in "item[name]", with: "moon rock"
     fill_in "item[description]", with: "It tells your mood."

@@ -39,7 +39,7 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <% if platform_admin? %>
+          <% if platform_admin? || store_admin? %>
             <li><%= link_to "Admin Dashboard", admin_dashboard_path %> </li>
           <% end %>
           <% if current_user %>

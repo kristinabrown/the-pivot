@@ -23,6 +23,22 @@ class Stores::ItemsController < Stores::StoresController
     end
   end
   
+  def edit 
+    @item = Item.find(params[:id])
+    @categories = Category.all
+  end
+  
+  def update
+    @item = current_user.store.items.find(params[:id])
+    if @item.update(item_params)
+      flash[:success] = "Item has been updated!"
+      redirect_to store_items_path
+    else
+      flash.now[:errors] = @item.errors.full_messages.join(", ")
+      render :edit
+    end
+  end
+  
   private
   
   def item_params

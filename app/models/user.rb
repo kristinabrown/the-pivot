@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
   def store_slug
     Store.find(store_id).slug
   end
+  
+  def store
+    Store.find(store_id)
+  end
 
   protected
     def clean_credit_card

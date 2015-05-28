@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   resources :stores
   
   namespace :stores, as: :store, path: '/:store' do 
-    resources :items,  only: [:index, :show, :new, :edit, :create, :update]
+    resources :items
   end
 end
