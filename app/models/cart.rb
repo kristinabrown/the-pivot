@@ -16,4 +16,6 @@ class Cart
   def delete_item(item_id)
     contents.delete_if { |v, k| k == item_id.to_i }
   end
+
+  
 end

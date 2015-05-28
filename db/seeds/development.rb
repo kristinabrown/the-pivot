@@ -189,8 +189,6 @@ class Seed
     p "Inactive Bids Created"
   end
 
-
-
   def self.call
     new.call
   end
