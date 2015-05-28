@@ -622,3 +622,11 @@ form {
   margin-top: 17px;
   font-weight: bold;
 }
+
+.bid-button {
+  min-width: 400px;
+
+  input[type="number"] {
+    width: auto;
+  }
+}

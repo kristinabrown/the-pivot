@@ -1,5 +1,6 @@
 class Seed
 # 10 watch_list per registered customer
+# 1 business admins per business
 
 # 20 total businesses DONE
 # 10 categories DONE
@@ -8,7 +9,6 @@ class Seed
 # Username: josh@turing.io, Password: password DONE
 
 # 10 bids per registered customer DONE
-# 1 business admins per business
 # Username: sam@turing.io, Password: password DONE
 # Username: jorge@turing.io, Password: password DONE
 
