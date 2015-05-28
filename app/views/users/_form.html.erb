@@ -4,7 +4,7 @@
 <div class="row-split">
   <div class="col-md-6">
     <%= f.label :full_name %>
-    <%= f.text_field :fullname,  autofocus: true%>
+    <%= f.text_field :fullname, :placeholder => "**", autofocus: true%>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
 <div class="row-spit">
   <div class="col-md-4">
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :placeholder => "**" %>
   </div>
 </div>
 
@@ -39,14 +39,14 @@
 <div class="split-row">
   <div class="col-md-6">
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :placeholder => "**" %>
   </div>
 </div>
 
 <div class="split-row">
   <div class="col-md-6">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation%>
+    <%= f.password_field :password_confirmation, :placeholder => "**"  %>
   </div>
 </div>
 
@@ -62,7 +62,7 @@
 <div class="row-split">
   <div class="col-md-6">
     <%= f.label :street %>
-    <%= f.text_field :street%>
+    <%= f.text_field :street, :placeholder => "**"%>
   </div>
 </div>
 
@@ -76,28 +76,28 @@
 <div class="row-split">
   <div class="col-md-4">
     <%= f.label :city %>
-    <%= f.text_field :city%>
+    <%= f.text_field :city, :placeholder => "**"%>
   </div>
 </div>
 
 <div class="row-spit">
   <div class="col-md-4">
     <%= f.label :state %>
-    <%= f.text_field :state%>
+    <%= f.text_field :state, :placeholder => "**"%>
   </div>
 </div>
 
 <div class="row-spit">
   <div class="col-md-4">
     <%= f.label :zip_code %>
-    <%= f.text_field :zipcode%>
+    <%= f.text_field :zipcode, :placeholder => "**"%>
   </div>
 </div>
 
 <div class="row-spit">
   <div class="col-md-4">
     <%= f.label :credit_card %>
-    <%= f.text_field :credit_card%>
+    <%= f.text_field :credit_card, :placeholder => "**"%>
   </div>
 </div>
 
