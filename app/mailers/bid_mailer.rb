@@ -6,4 +6,5 @@ class BidMailer < ApplicationMailer
     
     mail(to: @user.email, subject: "Order confirmation for #{@order.item.name}")
   end
+  
 end

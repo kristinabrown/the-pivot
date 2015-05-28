@@ -23,8 +23,8 @@ feature "any user is able to see" do
     
     it "clicks on browse button sees a category" do
       visit root_path
-      click_link "Browse"
-      click_link "space"
+      click_link "Browse By Category"
+      click_link_or_button "space"
       
       expect(current_path).to eq("/all_items")
       expect(page).to have_content("moon rock")

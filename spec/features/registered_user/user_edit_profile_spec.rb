@@ -15,7 +15,7 @@ feature "a user is able to edit" do
     
 
     fill_in "Display name", with: "Wolfdogg"
-    fill_in "Password", with: "password"
+    fill_in "user[password]", with: "password"
     fill_in "Password confirmation", with: "password"
     
     click_button "Submit"

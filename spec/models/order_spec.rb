@@ -15,7 +15,6 @@ RSpec.describe Order, type: :model do
     @user = User.create!(fullname: "Jack Spade", 
                          email: "jack@sample.com",
                          display_name: "jackie",
-                         role: 0,
                          phone: "222-333-4444",
                          password: "password",
                          street: "123 First Ave",
