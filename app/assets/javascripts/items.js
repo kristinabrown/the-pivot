@@ -12,6 +12,11 @@ $(document).ready(function(){
       }, 3000);
     }); 
     
+  $(".animate").click(function(){
+    $(".right-animate").animate({    
+        right: "+=150",  
+      }, 3000);
+    })
   
       $(".animate").click(function(){
         $(".hello").delay(4000).toggleClass("hidden");
@@ -21,16 +26,11 @@ $(document).ready(function(){
   
 
   var clock = new FlipClock($('.your-clock'), {
-  "countdown":true
+  "countdown":true 
   });
   
-  clock.setTime(36);
-  clock.start(time);
+  clock.setTime(time);
+  clock.start();
   
-  $(".animate").click(function(){
-    $(".right-animate").animate({    
-        right: "+=150",  
-      }, 3000);
-    })
 
 });
