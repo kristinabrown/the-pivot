@@ -31,8 +31,7 @@
 
     <%= form_for(:bid, url: :bids, method: :post) do |f| %>
       <%= f.number_field :current_price, min: number_with_precision(@item.highest_bid + 1), step: 1.00, value: number_with_precision(@item.highest_bid + 1, precision: 2), :id => "bid-input", class: "number-center" %>
-      <%= f.label :minimum_bid, :id => 'minimum-bid' %>
-      <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+      <%= f.label :minimum_bid, :id => 'minimum-bid', class: "number-center" %>
       <%= f.hidden_field :item_id, value: @item.id %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.submit "Bid Now", class: "btn btn-primary float-left" %>
@@ -48,7 +47,7 @@
     
     <%= form_for(:bid, url: :pending_bids) do |f| %>
       <%= f.number_field :current_price, min: number_with_precision(@item.highest_bid + 1), step: 1.00, value: number_with_precision(@item.highest_bid + 1, precision: 2), :id => "bid-input", class: "number-center" %>
-      <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+      <%= f.label :minimum_bid, :id => 'minimum-bid', class: "number-center" %>
       <%= f.hidden_field :item_id, value: @item.id %>
       <%= f.submit "Bid Now", class: "btn btn-primary float-left" %>
     <% end %>
