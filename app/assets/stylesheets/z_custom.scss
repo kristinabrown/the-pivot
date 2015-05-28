@@ -10,6 +10,11 @@
   padding-bottom: 20px;
 }
 
+.hello {
+  position: absolute;
+  max-width: 40px;
+}
+
 .black-font {
   color: black;
 }
@@ -256,6 +261,7 @@ hr{
   padding-top:30px;
 }
 blockquote{
+  margin-left: 15px;
   text-align:center;
   color:#fff;
   font-style:italic;
@@ -272,13 +278,13 @@ blockquote{
 
 .mr-roboto:hover
 {
-blockquote::before{
+.animate{
   -webkit-animation-name: thumb;
   -webkit-animation-duration: 225ms;
   -webkit-transform-origin:50% 50%;
   -webkit-animation-iteration-count: 4;
   -webkit-animation-timing-function: linear;
-}blockquote::after{
+}.right-animate{
   -webkit-animation-name: thumb;
   -webkit-animation-duration: 225ms;
   -webkit-transform-origin:50% 50%;
@@ -288,23 +294,19 @@ blockquote::before{
 
 }
 
-blockquote::before{
-  content: "";
-  background: url(image_path("robot.png")) no-repeat;
-  display: inline-block;
+.animate {
+  margin-top: 36px;
   min-height: 100px;
-  min-width: 110px;
+  max-width: 90px;
   position: absolute;
   left: -95px;
   top: -30px;
 }
 
-blockquote::after{
-  content: "";
-  background: url(image_path("robot.png")) no-repeat;
-  display: inline-block;
+.right-animate{
+  margin-top: 36px;
   min-height: 100px;
-  min-width: 110px;
+  max-width: 90px;
   position: absolute;
   right: -95px;
   top: -30px;
@@ -609,4 +611,14 @@ a:hover {
 }
 
 form {
-  margin-bottom: 0px; }
+  margin-bottom: 0px; 
+}
+
+.expiration-date select {
+  width: 49%;
+}
+
+.move-down {
+  margin-top: 17px;
+  font-weight: bold;
+}

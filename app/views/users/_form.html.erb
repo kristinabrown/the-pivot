@@ -1,10 +1,13 @@
 <div class="stitched watch-list">
   <%= form_for(@user, url: users_path, multipart: true) do |f| %>
+
+<p class="float-right move-down"> * required field </p>
 <h3>Account Information</h3>
+
 <div class="row-split">
   <div class="col-md-6">
-    <%= f.label :full_name %>
-    <%= f.text_field :fullname, :placeholder => "**", autofocus: true%>
+    <%= f.label :full_name, "Full name *" %>
+    <%= f.text_field :fullname,  autofocus: true%>
   </div>
 </div>
 
@@ -17,8 +20,8 @@
 
 <div class="row-spit">
   <div class="col-md-4">
-    <%= f.label :email %>
-    <%= f.text_field :email, :placeholder => "**" %>
+    <%= f.label :email, "Email *" %>
+    <%= f.text_field :email %>
   </div>
 </div>
 
@@ -38,15 +41,15 @@
 
 <div class="split-row">
   <div class="col-md-6">
-    <%= f.label :password %>
-    <%= f.password_field :password, :placeholder => "**" %>
+    <%= f.label :password, "Password *" %>
+    <%= f.password_field :password %>
   </div>
 </div>
 
 <div class="split-row">
   <div class="col-md-6">
-    <%= f.label :password_confirmation%>
-    <%= f.password_field :password_confirmation, :placeholder => "**"  %>
+    <%= f.label :password_confirmation, "Password confirmation *"  %>
+    <%= f.password_field :password_confirmation %>
   </div>
 </div>
 
@@ -61,8 +64,8 @@
 
 <div class="row-split">
   <div class="col-md-6">
-    <%= f.label :street %>
-    <%= f.text_field :street, :placeholder => "**"%>
+    <%= f.label :street, "Street *" %>
+    <%= f.text_field :street%>
   </div>
 </div>
 
@@ -75,35 +78,35 @@
 
 <div class="row-split">
   <div class="col-md-4">
-    <%= f.label :city %>
-    <%= f.text_field :city, :placeholder => "**"%>
+    <%= f.label :city, "City *" %>
+    <%= f.text_field :city%>
   </div>
 </div>
 
 <div class="row-spit">
   <div class="col-md-4">
-    <%= f.label :state %>
-    <%= f.text_field :state, :placeholder => "**"%>
+    <%= f.label :state, "State *" %>
+    <%= f.text_field :state%>
   </div>
 </div>
 
 <div class="row-spit">
   <div class="col-md-4">
-    <%= f.label :zip_code %>
-    <%= f.text_field :zipcode, :placeholder => "**"%>
+    <%= f.label :zip_code, "Zipcode *" %>
+    <%= f.text_field :zipcode%>
   </div>
 </div>
 
 <div class="row-spit">
   <div class="col-md-4">
-    <%= f.label :credit_card %>
-    <%= f.text_field :credit_card, :placeholder => "**"%>
+    <%= f.label :credit_card, "Credit card *" %>
+    <%= f.text_field :credit_card%>
   </div>
 </div>
 
 <div class="row-split">
-  <div class="col-md-8">
-   <%= f.label :expiration_date %>
+  <div class="col-md-4 expiration-date">
+   <%= f.label :expiration_date, "Expiration date *"%>
     <%= f.date_select :cc_expiration_date, start_year:Date.today.year, end_year: Date.today.year + 10, discard_day: true %>
   </div>
 </div>
