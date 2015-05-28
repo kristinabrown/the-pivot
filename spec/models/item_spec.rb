@@ -45,5 +45,9 @@ RSpec.describe Item, type: :model do
       item.update(category_id: nil)
       expect(item).to_not be_valid
     end
+    
+    it "can find it's store slug" do
+      expect(item.store_slug).to eq("lunar-landing")
+    end
   end
 end
