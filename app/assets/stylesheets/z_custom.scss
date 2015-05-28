@@ -13,6 +13,7 @@
 .hello {
   position: absolute;
   max-width: 40px;
+  display: none;
 }
 
 .black-font {
@@ -282,20 +283,20 @@ blockquote{
   -webkit-animation-name: thumb;
   -webkit-animation-duration: 225ms;
   -webkit-transform-origin:50% 50%;
-  -webkit-animation-iteration-count: 4;
+  -webkit-animation-iteration-count: 8;
   -webkit-animation-timing-function: linear;
 }.right-animate{
   -webkit-animation-name: thumb;
   -webkit-animation-duration: 225ms;
   -webkit-transform-origin:50% 50%;
-  -webkit-animation-iteration-count: 4;
+  -webkit-animation-iteration-count: 8;
   -webkit-animation-timing-function: linear;
 }
 
 }
 
 .animate {
-  margin-top: 36px;
+  margin-top: 50px;
   min-height: 100px;
   max-width: 90px;
   position: absolute;
@@ -304,7 +305,7 @@ blockquote{
 }
 
 .right-animate{
-  margin-top: 36px;
+  margin-top: 50px;
   min-height: 100px;
   max-width: 90px;
   position: absolute;
