@@ -4,7 +4,7 @@
       <%= @item.name %><br>
       <small>
         <%if @item.expired? %>
-          <p>This item is no longer available</p>
+          <p>This item is no longer available
         <% else %>
           <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> remaining | current bid: <%= number_to_currency(@item.starting_price) %>
         <% end %>
@@ -16,9 +16,11 @@
  <%if @item.expired? %>
     <div class="row text-center" >
       <div class="col-md-12">
-        <%= image_tag(@item.attachment.url, :id => "item-show-image", size: "450", class: "image-border") %>
+        <%= image_tag(@item.attachment.url, :id => "item-show-image", width: "450", class: "image-border") %>
         <h5 class="item-description"> <%= @item.description %></h5>
-        <p class="item-description"><strong>Category:</strong> <%= @item.category.name %> </p>
+        <p class="item-description"><strong>Category:</strong> <%= @item.category.name %> <br>
+        <em><strong>Final price: </em></strong><%= number_to_currency(@item.highest_bid) %><br> 
+        <em><strong>Expired: </em></strong> <%= @item.final_date %></p>
       </div>
     </div>
     <% else %>

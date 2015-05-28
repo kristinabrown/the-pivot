@@ -42,4 +42,8 @@ class Item < ActiveRecord::Base
   def store_slug
     Store.find(store_id).slug
   end
+
+  def final_date
+    expiration_date.strftime("%m/%d/%Y")
+  end
 end
