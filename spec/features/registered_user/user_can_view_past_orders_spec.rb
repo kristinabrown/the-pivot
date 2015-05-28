@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "unregistered user cannot bid", type: :feature do 
+RSpec.describe "user can view past orders", type: :feature do 
 
   before(:each) do 
     store = Store.create!(name: "Collectibles Store")
@@ -16,7 +16,6 @@ RSpec.describe "unregistered user cannot bid", type: :feature do
     @user = User.create!(fullname: "Jack Spade", 
                          email: "jack@sample.com",
                          display_name: "jackie",
-                         role: 0,
                          phone: "222-333-4444",
                          password: "password",
                          street: "123 First Ave",
