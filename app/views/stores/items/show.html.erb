@@ -1,45 +1,63 @@
-<div class="text-center">
-  <h1 class="item-name-header">
+<div class="row text-center col-md-12 store-column">
+  <h1 id="stores-header">
     <%= @item.name %><br>
     <small>
       <%if @item.expired? %>
       <p>This Item is no longer available</p>
       <% else %>
-      <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> | current bid: <%= number_to_currency(@item.starting_price) %>
+      <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> remaining | current bid: <%= number_to_currency(@item.starting_price) %>
     </small>
   </h1>
-<div class="row">
-
-
-  <div class="col-md-2 col-md-offset-4">
-    <%= form_for(:order, url: :watch_items) do |f| %>
-      <%#= f.number_field :price, value: @item.starting_price + 1.00, :id => "bid-input" %>
-      <%#= f.label :minimum_bid, :id => 'minimum-bid' %>
-      <%= f.hidden_field :item_id, value: @item.id %>
-      <%= f.hidden_field :item_price, value: @item.highest_bid %>
-      <%= f.submit "Watch", url: watch_items_path %>
-    <!-- should be bid price -->
-    <% end %>
+<!--  -->
+    <%# end %>
   </div>
-  
-  <div class="col-md-4">
+    <div class="row text-center" >
+      <div class="col-md-12">
+        <%= image_tag(@item.attachment.url, :id => "item-show-image", class: "image-border") %>
+        <h5 class="item-description"> <%= @item.description %></h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
   <% if current_user && Bid.bid_exsits?(current_user.id, @item.id) %>
-    <%= link_to "View your bid standing", users_path(current_user)  %>
-  <% elsif current_user %>   
+    <%= link_to "View your bid standing", users_path(current_user) %>
+
+  <% elsif current_user %>  
+
     <%= form_for(:bid, url: :bids, method: :post) do |f| %>
-      <%= f.number_field :current_price, value: @item.highest_bid + 1.00, :id => "bid-input" %>
-      <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+      <%= f.number_field :current_price, min: number_with_precision(@item.highest_bid + 1), step: 1.00, value: number_with_precision(@item.highest_bid + 1, precision: 2), :id => "bid-input", class: "number-center" %>
+      <%= f.label :minimum_bid, :id => 'minimum-bid', class: "number-center" %>
       <%= f.hidden_field :item_id, value: @item.id %>
       <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.submit "Bid Now"%>
+      <%= f.submit "Bid Now", class: "btn btn-primary float-left" %>
     <% end %>
+
+    <%= form_for(:order, url: :watch_items) do |f| %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :item_price, value: @item.highest_bid %>
+      <%= f.submit "Watch", url: watch_items_path, class: "btn btn-info float-right" %>
+    <% end %>
+
   <% else %>
     
     <%= form_for(:bid, url: :pending_bids) do |f| %>
-      <%= f.number_field :current_price, value: @item.highest_bid + 1.00, :id => "bid-input2" %>
+      <%= f.number_field :current_price, min: number_with_precision(@item.highest_bid + 1), step: 1.00, value: number_with_precision(@item.highest_bid + 1, precision: 2), :id => "bid-input", class: "number-center" %>
+      <%= f.label :minimum_bid, :id => 'minimum-bid', class: "number-center" %>
       <%= f.hidden_field :item_id, value: @item.id %>
-      <%= f.submit "Bid Now", :class => "btn btn-info" %>
+      <%= f.submit "Bid Now", class: "btn btn-primary float-left" %>
     <% end %>
+
+    <%= form_for(:order, url: :watch_items) do |f| %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :item_price, value: @item.highest_bid %>
+      <%= f.submit "Watch", url: watch_items_path, class: "btn btn-info float-right" %>
+    <% end %>
+
   <% end %>
 <% end %>
 
@@ -47,16 +65,7 @@
     <%# else %>
       <%#= form_for( url: :bids) do |f| %>
       <%#= f.submit "Bid Now" %>
-    <%# end %>
-  </div>
-    <div class="row" >
-      <div class="col-md-12">
-        <%= image_tag(@item.attachment.url, :id => "item-show-image") %>
-        <h3 class="item-description"> <%= @item.description %></h3>
-      </div>
-    </div>
-  </div>
-</div>
+
   
 
 

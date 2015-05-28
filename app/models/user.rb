@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
-  validates_format_of :zipcode, :with => /^\d{5}(-\d{4})?$/, :multiline => true, :message => "should be in the form 12345 or 12345-1234"
+  validates_format_of :zipcode, :with => /\A^\d{5}(-\d{4})?$\z/, :multiline => true, :message => "should be in the form 12345 or 12345-1234"
   validates :credit_card, presence: true, length: { minimum: 15, maximum: 16 }
   validates :cc_expiration_date, presence: true
 
