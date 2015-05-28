@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 20150527140327) do
     t.string   "fullname"
     t.string   "email"
     t.string   "password_digest"
-    t.integer  "role",                default: 0
     t.string   "phone"
     t.string   "display_name"
     t.string   "avatar_file_name"
@@ -132,4 +131,5 @@ ActiveRecord::Schema.define(version: 20150527140327) do
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
   add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end
