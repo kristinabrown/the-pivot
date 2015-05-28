@@ -16,7 +16,10 @@
             <%= link_to image_tag(item.attachment.url, class: "image-border"), store_item_path(item.store.slug, item) %>
             
             <%if item.expired? %>
-              <p class="black-font">No longer available</p>
+              <p class="black-font">No longer available<br>
+                <em>Final price: </em><%= number_to_currency(item.highest_bid) %><br> 
+                <em>Expired: </em> <%= item.final_date %>
+              </p>
             <% else %>
               <p class="time less-margin"><%= distance_of_time_in_words(Time.now, item.expiration_date) %> remaining<br> current bid: <%= number_to_currency(item.highest_bid) %></p>
 
