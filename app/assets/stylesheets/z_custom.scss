@@ -608,7 +608,11 @@ form {
   margin-bottom: 0px; 
 }
 
-#side-by-side {
-  display: inline;
+.expiration-date select {
+  width: 49%;
 }
 
+.move-down {
+  margin-top: 17px;
+  font-weight: bold;
+}
