@@ -23,8 +23,11 @@ RSpec.describe "store admin can create edit and delet stores", type: :feature do
   end
   
   it "can add a new item" do 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
-    visit admin_dashboard_path
+    visit login_path
+    fill_in "session[email]", with: "jack@sample.com"
+    fill_in "session[password]", with: "password"
+    click_button "Login"
+    expect(current_path).to eq(admin_dashboard_path)
     
     click_link "Create Item"
     
