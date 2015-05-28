@@ -10,13 +10,18 @@ class Order < ActiveRecord::Base
     Item.find(item_id)
   end
   
+  def user 
+    User.find(user_id)
+  end
+  
   def self.create_order
       counter = 0
     Item.where(paid: false).each do |item|
       if item.expired? && Bid.find_by(item_id: item.id)
         user_id = item.highest_bidder_id
         price = item.highest_bid
-        Order.create(user_id: user_id, item_id: item.id, total: price)
+        order = Order.create(user_id: user_id, item_id: item.id, total: price)
+        BidMailer.winning_email(order.user, order).deliver_now
         counter += 1
         item.update(paid: true)
       end

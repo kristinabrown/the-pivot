@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello,<%= @user.fullname %></h1>
+    <p>
+      Someone has placed bid of <%= number_to_currency(@bid.current_price) %> on <%= @bid.item.name %> 
+      .<br>
+    </p>
+    <p>
+      Bid as you wish.
+    </p>
+    <p>Thanks for bidding and have a great day!</p>
+  </body>
+</html>
