@@ -11,7 +11,9 @@
     <div class="col-md-2 ">
       <%= image_tag current_user.avatar.url %>
     </div>
-
+    <% if current_user.bids.empty? %>
+    <h3 ><%= link_to "Let the bidding begin! Check out our stores!", stores_path %></h3>
+    <% else %>
     <div class="col-md-10 stitched watch-list">
     <table class="table-condensed">
       <tr>
@@ -47,6 +49,7 @@
       </tr>
     </table>
   </div>
+  <% end %>
   </div>
 
     <div class="row user-info-row">
