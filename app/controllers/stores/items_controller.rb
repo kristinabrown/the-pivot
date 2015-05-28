@@ -24,7 +24,7 @@ class Stores::ItemsController < Stores::StoresController
   end
   
   def edit 
-    @item = Item.find(params[:id])
+    @item = current_user.store.items.find(params[:id])
     @categories = Category.all
   end
   
@@ -36,6 +36,18 @@ class Stores::ItemsController < Stores::StoresController
     else
       flash.now[:errors] = @item.errors.full_messages.join(", ")
       render :edit
+    end
+  end
+  
+  def destroy
+    item = current_user.store.items.find(params[:id])
+    if item.bids.empty?
+      item.delete
+      flash[:success] = "Item has been deleted!"
+      redirect_to store_items_path
+    else
+      flash[:errors] = "That item has bids! It can't be deleted."
+      redirect_to store_items_path
     end
   end
   

@@ -59,4 +59,16 @@ RSpec.describe "store admin can create edit and delet stores", type: :feature do
     expect(page).to have_content('Item has been updated!')    
   end
   
+  it "can delete an item" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+    Item.create(name: "mood ring", description: "cool", starting_price: 100, expiration_date: Time.now + 1.day, category_id: @category.id, store_id: @store.id)
+    
+    visit admin_dashboard_path
+    click_link "Edit Items"
+    expect(page).to have_content('mood ring') 
+    click_link "Delete"
+
+    expect(page).to_not have_content('mood ring') 
+    expect(page).to have_content('Item has been deleted!')    
+  end
 end

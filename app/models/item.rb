@@ -42,5 +42,4 @@ class Item < ActiveRecord::Base
   def store_slug
     Store.find(store_id).slug
   end
-
 end
