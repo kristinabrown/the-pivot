@@ -26,17 +26,9 @@
               <li class="divider"></li>
              <li><%= link_to "All Shops",stores_path%></li>
             </ul>
-        
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Browse by Category <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <% Category.sort_all.each do |category| %>
-               <li><%= link_to category.name, all_items_path, :class => "#{category.name.downcase}"  %></a></li>
-              <% end %>
-              <li class="divider"></li>
-             <li><%= link_to "All Items", all_items_path, :class => "all" %></li>
-            </ul>
-          </li>
+           
+            <li><a href="/all_items">Browse By Category <span class="sr-only">(current)</span></a></li>
+          
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if platform_admin? || store_admin? %>
