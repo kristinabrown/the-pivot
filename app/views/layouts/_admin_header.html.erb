@@ -1,10 +1,11 @@
+  <ul class="nav nav-pills nav-stacked">
 <% if platform_admin? %>
-  <ul>
     <li><%= link_to 'Create New Store', new_store_path %> </li>
     <li><%= link_to 'Edit Stores', stores_path %> </li>
-  </ul>
 <% end %>
 <% if store_admin? %>
   <li><%= link_to 'Edit Items', store_items_path(store: current_user.store_slug) %> </li>
   <li><%= link_to 'Create Item', new_store_item_path(store: current_user.store_slug) %> </li>
+  <li><%= link_to 'Edit Store', edit_store_path(id: current_user.store_id) %> </li>
 <% end %>
+  </ul>

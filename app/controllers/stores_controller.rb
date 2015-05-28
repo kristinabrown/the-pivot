@@ -27,7 +27,7 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
     if @store.update(store_params)
       flash[:success] = "Store was successfully updated."
-      redirect_to stores_path
+      redirect_to store_items_path(store: @store.slug)
     else
       flash.now[:errors] = @store.errors.full_messages.join(", ")
       render :edit
