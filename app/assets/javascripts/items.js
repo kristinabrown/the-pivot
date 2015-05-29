@@ -8,22 +8,21 @@ $(document).ready(function(){
   
   $(".animate").click(function(){
     $(".animate").animate({    
-        left: "+=150",  
+        left: "+=280",  
       }, 3000);
     }); 
     
   $(".animate").click(function(){
     $(".right-animate").animate({    
-        right: "+=150",  
+        right: "+=330",  
       }, 3000);
     })
   
       $(".animate").click(function(){
-        $(".hello").delay(4000).toggleClass("hidden");
+        $(".hello").delay(3000).fadeIn(100);
       });
 
   var time = $(".remaining-time").text();
-  
 
   var clock = new FlipClock($('.your-clock'), {
   "countdown":true 
@@ -31,6 +30,5 @@ $(document).ready(function(){
   
   clock.setTime(time);
   clock.start();
-  
 
 });
