@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :current_admin?, :current_cart, :pending_bid
-  before_action :current_cart, :pending_bid, :expire_items
+  before_action :current_cart, :pending_bid
 
   def current_user
     @current_user = User.find(session[:user_id]) if session[:user_id]
@@ -12,14 +12,6 @@ class ApplicationController < ActionController::Base
   
   def pending_bid
     @pending_bid ||= PendingBid.new(session[:pending_bid])
-  end
-  
-  def expire_items
-    Item.all.each do |item|
-      if item.expired?
-        item.update(active: false)
-      end
-    end
   end
   
   def current_permission

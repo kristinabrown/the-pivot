@@ -23,7 +23,6 @@ class Order < ActiveRecord::Base
         order = Order.create(user_id: user_id, item_id: item.id, total: price)
         BidMailer.winning_email(order.user, order).deliver_now
         counter += 1
-        item.update(paid: true)
       end
     end
     puts "#{Time.now}: #{counter} orders created."

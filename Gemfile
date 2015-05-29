@@ -31,6 +31,8 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'unicorn'
 gem 'paperclip'
 gem 'figaro'
+gem 'will_paginate',           '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 gem 'aws-sdk', '< 2.0'
 gem 'faker'
 

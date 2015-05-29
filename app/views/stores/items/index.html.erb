@@ -5,7 +5,7 @@
 </div>
 
 <div class="container">
-  <% current_store.items.each_slice(4) do |four_items| %>
+  <% @items.each_slice(4) do |four_items| %>
 
     <div class="row">
       <% four_items.each do |item| %>
@@ -68,4 +68,6 @@
       <% end %>
     </div>
   <% end %>
+  
+  <%= will_paginate %>
 </div>
