@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   
   def index
-    @stores = Store.all
+    @stores = Store.paginate(:page => params[:page], :per_page => 8)
   end
   
   def new
