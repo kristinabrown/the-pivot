@@ -11,7 +11,7 @@
           <th>Item</th>
           <th>Top Bid</th>
           <th>Remove</th>
-          <th class="bid-button">Current Bid Price</th>
+          <th class="watch-button">Current Bid Price</th>
         </tr>
 
         <tr>
@@ -22,7 +22,7 @@
             <td>
               <%= link_to "Remove Item", watch_item_path(@cart, "item" => {item_id: v}), method: "delete" %>
             </td>
-            <td class="bid-button">
+            <td class="watch-button">
               <div class="bid-box-table">
               <% if current_user && Bid.bid_exsits?(current_user.id, @cart.find_item(v).id) %>
                 <%= link_to "View this bid.", users_path(current_user)  %>

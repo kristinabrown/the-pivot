@@ -17,32 +17,31 @@
     <div class="col-md-10 stitched watch-list">
     <table class="table-condensed">
       <tr>
-        <th>Item</th>
+        <th class="bid-button">Item</th>
         <th>Your Bid </th>
         <th>Time Remaining</th>
         <th>Highest Bid</th>
-        <th>Re-bid!</th>
+        <th class="bid-button">Re-bid!</th>
       </tr>
       
       <% current_user.bids.each do |bid| %>
       <tr>
         <% if !bid.item.expired? %>
-        <td><%= bid.item.name %> </td>
+        <td class="bid-button"><%= link_to bid.item.name, store_item_path(store: bid.item.store.slug, id: bid.item.id) %> </td>
         <td><%= number_to_currency(bid.current_price) %> </td>
         <td><%= distance_of_time_in_words(Time.now, bid.item.expiration_date) %> </td>
         <td> <%= number_to_currency(bid.item.highest_bid) %> </td>
         
         <% if bid.current_price < bid.item.highest_bid %>
     
-            <td> <%= form_for(:bid, url: bid_path(bid), method: :patch) do |f| %>
-              <%= f.number_field :current_price, value: bid.item.highest_bid + 1.00, :id => "bid-input" %>
-              <%= f.label :minimum_bid, :id => 'minimum-bid' %>
+            <td class="bid-button"> <%= form_for(:bid, url: bid_path(bid), method: :patch) do |f| %>
+              <%= f.number_field :current_price, value: number_with_precision(bid.item.highest_bid + 1, precision: 2), :id => "bid-input", class: "number-center" %>
               <%= f.hidden_field :item_id, value: bid.item.id %>
               <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.submit "Bid"%> </td>
+              <%= f.submit "Bid Now"%> </td>
               <% end %>
             <% else %>
-              <td>You're the highest bidder!</td>
+              <td>Highest bidder!</td>
               <% end %>
             <% end %>
         <% end %>
