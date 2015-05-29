@@ -32,6 +32,7 @@ class Seed
     generate_new_items
     generate_expired_items
     generate_users
+    generate_store_admins
     generate_active_bids
     generate_inactive_bids
   end
@@ -47,15 +48,9 @@ class Seed
   end
 
   def generate_users
-    User.create(fullname: "Josh Cheek", email: "josh@turing.io",
+    User.create(fullname: "Jorge Tellez", email: "jorge@turing.io",
                phone: Faker::PhoneNumber.phone_number, password: "password",
-               display_name: "Paddington", street: "123 First Ave", city: "Denver",
-               state: "CO", zipcode: "80211",
-               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
-
-    User.create(fullname: "Test User", email: "test@example.com",
-               phone: Faker::PhoneNumber.phone_number, password: "password",
-               display_name: "tester", street: "1510 Blake St", city: "Denver",
+               display_name: "novohispano", street: "1510 Blake St", city: "Denver",
                state: "CO", zipcode: "80211",
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 
@@ -84,6 +79,57 @@ class Seed
     p 'Users Created'
   end
 
+  def generate_stores
+    10.times do |i|
+      store_descriptor = STORE_DESCRIPTORS[i % STORE_DESCRIPTORS.length]
+
+      store = Store.create(
+              name: Faker::Company.name + "'s #{store_descriptor}")
+    end
+    p "Stores Created"
+  end
+
+  def generate_store_admins
+    users = []
+    users << User.new(fullname: "Josh Cheek", email: "josh@turing.io",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "Paddington", street: "123 First Ave", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
+
+    users << User.new(fullname: "Test User", email: "test@example.com",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "tester", street: "1510 Blake St", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
+
+    users << User.new(fullname: "Sam Alghanmi", email: "sam@turing.io",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "dr. angular", street: "1510 Blake St", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01"  )
+
+    7.times do 
+      users << User.new(
+                fullname: Faker::Name.first_name + " " + Faker::Name.last_name, email: unique_email, password: 'password',
+                display_name: Faker::Name.first_name, street: Faker::Address.street_address, 
+                apt_number: Faker::Address.secondary_address,
+                city: Faker::Address.city, state: Faker::Address.state, zipcode: Faker::Address.zip,
+                credit_card:Faker::Business.credit_card_number, 
+                cc_expiration_date: Faker::Business.credit_card_expiry_date, 
+                phone: Faker::PhoneNumber.phone_number 
+              )
+    end
+    
+    stores = Store.all 
+
+    users.each_with_index do |user, index| 
+      user.store_id = stores[index].id 
+      user.save!
+    end
+    p "Store Admins Created"
+  end
+
   def generate_categories
     Category.create(name: "Sports Memorabilia")
     Category.create(name: "TV & Movie Classics")
@@ -97,16 +143,6 @@ class Seed
     Category.create(name: "Music")
 
     p 'Categories Created'
-  end
-
-  def generate_stores
-    10.times do |i|
-      store_descriptor = STORE_DESCRIPTORS[i % STORE_DESCRIPTORS.length]
-
-      store = Store.create(
-              name: Faker::Company.name + "'s #{store_descriptor}")
-    end
-    p "Stores Created"
   end
 
   def generate_new_items

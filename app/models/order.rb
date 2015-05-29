@@ -15,11 +15,6 @@ class Order < ActiveRecord::Base
   end
 
   def store_owner_email
-    #once an order is created
-    #find the item's store id DONE
-    #find the store_id's user DONE
-    #get the email address of this user
-    #
     if !user.nil?
       user = User.find_by(store_id: item.store.id)
       user.email
@@ -27,7 +22,8 @@ class Order < ActiveRecord::Base
   end
   
   def self.create_order
-      counter = 0
+    counter = 0
+    
     Item.where(paid: false).each do |item|
       if item.expired? && Bid.find_by(item_id: item.id)
         user_id = item.highest_bidder_id
@@ -35,7 +31,7 @@ class Order < ActiveRecord::Base
         order = Order.create(user_id: user_id, item_id: item.id, total: price)
         BidMailer.winning_email(order.user, order).deliver_now
 
-        if !store_owner_email.nil?
+        if !order.store_owner_email.nil?
           BidMailer.store_owner_email(order).deliver_now
         end
 

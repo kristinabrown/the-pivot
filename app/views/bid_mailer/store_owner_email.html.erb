@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello,<%= @store_owner.email %></h1>
+    <h1>Hello,<%= @order.store_owner_email %></h1>
     <p>
       <%= @order.user %> has won the <%= @order.item.name %> for <%= number_to_currency(@order.total) %>.<br>
     </p>
