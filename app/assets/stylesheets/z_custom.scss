@@ -642,10 +642,19 @@ form {
   font-weight: bold;
 }
 
-.bid-button {
+.watch-button {
   min-width: 400px;
 
   input[type="number"] {
     width: auto;
   }
 }
+
+.bid-button {
+  min-width: 300px;
+
+  input[type="number"] {
+    width: 100px;
+  }
+}
+
