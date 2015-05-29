@@ -12,4 +12,10 @@ class BidMailer < ApplicationMailer
     @bid = bid
     mail(to: @user.email, subject: "Someone has outbid you for #{@bid.item.name}")
   end
+
+  def store_owner_email(order)
+    @order = order
+
+    mail(to: @order.store_owner_email, subject: "Someone purchased the #{@order.item.name}")
+  end
 end
