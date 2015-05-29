@@ -1,3 +1,24 @@
+<div class="row text-center col-md-12 store-column">
+  <h1 id="stores-header">
+    <%= @item.name %><br>
+    <small>
+      <%if @item.expired? %>
+      <p>This Item is no longer available</p>
+      <% else %>
+        <% if @item.time_in_seconds <= 85400 %>
+          <div class="your-clock col-md-offset-5", id="clock">
+          </div>
+          <div class="remaining-time hidden">
+            <%= @item.time_in_seconds %>
+          </div>
+          <% else %>
+            <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> remaining | current bid: <%= number_to_currency(@item.highest_bid) %>
+          <% end %>
+    </small>
+  </h1>
+
+    <% end %>
+    <!-- 
 <div class="row"> 
   <div class= "text-center col-md-12 store-column">
     <h1 id="stores-header">
@@ -11,7 +32,7 @@
       </small>
     </h1>
   </div>
-</div>
+</div> -->
 
  <%if @item.expired? %>
     <div class="row text-center" >
@@ -34,7 +55,7 @@
 
 
 <div class="row">
-  <div class="col-md-4 col-md-offset-4 item-show-buttons">
+  <div class="col-md-4 col-md-offset-4 item-show-buttons number-center">
   <% if current_user && Bid.bid_exsits?(current_user.id, @item.id)%>
     <%= link_to "View your bid standing", users_path(current_user) %>
 

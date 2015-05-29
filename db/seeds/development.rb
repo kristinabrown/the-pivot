@@ -47,9 +47,9 @@ class Seed
   end
 
   def generate_users
-    User.create(fullname: "Josh Mejia", email: "josh@turing.io",
+    User.create(fullname: "Josh Cheek", email: "josh@turing.io",
                phone: Faker::PhoneNumber.phone_number, password: "password",
-               display_name: "oscar's dad", street: "123 First Ave", city: "Denver",
+               display_name: "Paddington", street: "123 First Ave", city: "Denver",
                state: "CO", zipcode: "80211",
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 

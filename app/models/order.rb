@@ -40,7 +40,6 @@ class Order < ActiveRecord::Base
         end
 
         counter += 1
-        item.update(paid: true)
       end
     end
     puts "#{Time.now}: #{counter} orders created."

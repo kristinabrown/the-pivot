@@ -10,6 +10,24 @@
   padding-bottom: 20px;
 }
 
+.clock {
+  position: relative !important;
+  padding-top: 0px;
+  margin-left: -194px;
+  height:100px;
+  width: 800px;
+  zoom: .6;
+
+}
+
+.flip-clock-wrapper {
+  position: relative; 
+}
+
+#clock {
+  margin-left: 380px;
+}
+
 .hello {
   position: absolute;
   max-width: 40px;
@@ -262,7 +280,7 @@ hr{
   padding-top:30px;
 }
 blockquote{
-  margin-left: 15px;
+  margin-left: 40px;
   text-align:center;
   color:#fff;
   font-style:italic;
@@ -624,10 +642,19 @@ form {
   font-weight: bold;
 }
 
-.bid-button {
+.watch-button {
   min-width: 400px;
 
   input[type="number"] {
     width: auto;
   }
 }
+
+.bid-button {
+  min-width: 300px;
+
+  input[type="number"] {
+    width: 100px;
+  }
+}
+
