@@ -1,6 +1,7 @@
 class Stores::ItemsController < Stores::StoresController
   
   def index
+    @items = Item.where(store_id: current_store.id).paginate(:page => params[:page], :per_page => 8)
   end
   
   def show
