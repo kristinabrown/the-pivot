@@ -20,8 +20,10 @@ class Order < ActiveRecord::Base
     #find the store_id's user DONE
     #get the email address of this user
     #
-    user = User.find_by(store_id: item.store.id)
-    user.email
+    if !user.nil?
+      user = User.find_by(store_id: item.store.id)
+      user.email
+    end
   end
   
   def self.create_order
@@ -32,8 +34,10 @@ class Order < ActiveRecord::Base
         price = item.highest_bid
         order = Order.create(user_id: user_id, item_id: item.id, total: price)
         BidMailer.winning_email(order.user, order).deliver_now
-        require 'pry';binding.pry
-        BidMailer.store_owner_email(order).deliver_now
+
+        if !store_owner_email.nil?
+          BidMailer.store_owner_email(order).deliver_now
+        end
 
         counter += 1
         item.update(paid: true)
