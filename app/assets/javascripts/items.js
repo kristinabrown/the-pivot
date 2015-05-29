@@ -8,19 +8,19 @@ $(document).ready(function(){
   
   $(".animate").click(function(){
     $(".animate").animate({    
-        left: "+=150",  
+        left: "+=250",  
       }, 3000);
     }); 
     
   
       $(".animate").click(function(){
-        $(".hello").delay(4000).toggleClass("hidden");
+        $(".hello").delay(3000).fadeIn(100);
       });
 
   
   $(".animate").click(function(){
     $(".right-animate").animate({    
-        right: "+=150",  
+        right: "+=280",  
       }, 3000);
     })
    
