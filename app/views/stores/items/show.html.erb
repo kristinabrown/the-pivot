@@ -1,4 +1,5 @@
-<div class="row text-center col-md-12 store-column">
+<div class="row">
+<div class="text-center col-md-12 store-column">
   <h1 id="stores-header">
     <%= @item.name %><br>
     <small>
@@ -14,25 +15,12 @@
           <% else %>
             <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> remaining | current bid: <%= number_to_currency(@item.highest_bid) %>
           <% end %>
-    </small>
-  </h1>
 
     <% end %>
-    <!-- 
-<div class="row"> 
-  <div class= "text-center col-md-12 store-column">
-    <h1 id="stores-header">
-      <%= @item.name %><br>
-      <small>
-        <%if @item.expired? %>
-          <p>This item is no longer available
-        <% else %>
-          <%= distance_of_time_in_words(Time.now, @item.expiration_date) %> remaining | current bid: <%= number_to_currency(@item.starting_price) %>
-        <% end %>
-      </small>
-    </h1>
-  </div>
-</div> -->
+    </small>
+  </h1>
+</div>
+</div>
 
  <%if @item.expired? %>
     <div class="row text-center" >
@@ -47,7 +35,7 @@
     <% else %>
     <div class="row text-center" >
       <div class="col-md-12">
-        <%= image_tag(@item.attachment.url, :id => "item-show-image", size: "450", class: "image-border") %>
+        <%= image_tag(@item.attachment.url, :id => "item-show-image", width: "450", class: "image-border") %>
         <h5 class="item-description"> <%= @item.description %></h5>
         <p class="item-description"><strong>Category:</strong> <%= @item.category.name %> </p>
       </div>

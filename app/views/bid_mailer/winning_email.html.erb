@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Congrats you win!, <%= @user.fullname %></h1>
+    <h1>Congratulations, <%= @user.fullname %>!</h1>
     <p>
       You won the item <%= @order.item.name %> and were charged your bidding price of 
       <%= number_to_currency(@order.total) %>.<br>

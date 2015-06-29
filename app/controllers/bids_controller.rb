@@ -31,7 +31,7 @@ class BidsController < ApplicationController
 
     def email_losers(bid)
       bid.losers.each do |loser|
-      BidMailer.outbid_email(loser, bid).deliver_now
+      BidMailer.outbid_email(loser, bid).deliver_later
       end
     end
 end
