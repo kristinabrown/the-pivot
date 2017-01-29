@@ -12,6 +12,7 @@ RSpec.describe Order, type: :model do
                           active: true, 
                           category_id: category.id, 
                           store_id: store.id )
+
     @user = User.create!(fullname: "Jack Spade", 
                          email: "jack@sample.com",
                          display_name: "jackie",
@@ -22,7 +23,8 @@ RSpec.describe Order, type: :model do
                          state: "CO",
                          zipcode: "80211",
                          credit_card: "4242424242424242",
-                         cc_expiration_date: "2015-11-05"
+                         cc_expiration_date: "2015-11-05",
+                         store_id: store.id
                         )
   end
   

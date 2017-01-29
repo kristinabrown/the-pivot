@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello,<%= @order.store_owner_email %></h1>
+    <p>
+      <%= @order.user %> has won the <%= @order.item.name %> for <%= number_to_currency(@order.total) %>.<br>
+    </p>
+
+    <p>Please ship the item promptly!</p>
+    <p> Have a great day! </p>
+  </body>
+</html>

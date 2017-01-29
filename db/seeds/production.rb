@@ -1,22 +1,9 @@
 class Seed
-# 10 watch_list per registered customer
-# 1 business admins per business
-
-# 20 total businesses DONE
-# 10 categories DONE
-# 40/10 active items, 10 inactive per category DONE
-# 100 registered customers, DONE
-# Username: josh@turing.io, Password: password DONE
-
-# 10 bids per registered customer DONE
-# Username: sam@turing.io, Password: password DONE
-# Username: jorge@turing.io, Password: password DONE
 
   PICTURES = %w(baseballBR Beatles camera car1 car2 car3 celebrity2 celebrity3 celebrity4 
                 classic-catwoman dress dress2 dress3 eclectic-desk-accessories football
                 guitar lebron lucycelebrity lunchbox phone pocket_watch star_trek1 star_trek2
                 star_trek3 tea_service the_fonz toy1 toy2 toy3 vintage_logo)
-  # STORES_IMAGES = %w(bakery bikes cabin_fever comics corner hardware hardware2 local raplhs records smiths)
 
   STORE_DESCRIPTORS =   ["Collectibles", "Antiques", "Basement Bargains", "Vintage Gear", "Good Ole Things",
                         "Nostalgia", "Knick-Knacks", "Attic", "Old Gear", "Classics", "Junkyard Goodies", 
@@ -30,6 +17,7 @@ class Seed
     generate_users
     generate_active_bids
     generate_inactive_bids
+    generate_store_admins
   end
 
   def unique_email
@@ -38,32 +26,12 @@ class Seed
     end while User.exists?(email: unique_email) 
 
     unique_email
-    #run this code while this email address is not unique.
-    #Guarantees, valid, unique email address for each User
   end
 
   def generate_users
-    User.create(fullname: "Josh Cheek", email: "josh@turing.io",
-               phone: Faker::PhoneNumber.phone_number, password: "password",
-               display_name: "Paddington", street: "123 First Ave", city: "Denver",
-               state: "CO", zipcode: "80211",
-               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
-
-    User.create(fullname: "Sam Alghanmi", email: "sam@turing.io",
-               phone: Faker::PhoneNumber.phone_number, password: "password",
-               display_name: "dr. angular", street: "1510 Blake St", city: "Denver",
-               state: "CO", zipcode: "80211",
-               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01", store_id: 1 )
-
     User.create(fullname: "Jorge Tellez", email: "jorge@turing.io",
                phone: Faker::PhoneNumber.phone_number, password: "password",
                display_name: "novohispano", street: "1510 Blake St", city: "Denver",
-               state: "CO", zipcode: "80211",
-               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
-
-    User.create(fullname: "Test User", email: "test@example.com",
-               phone: Faker::PhoneNumber.phone_number, password: "password",
-               display_name: "tester", street: "1510 Blake St", city: "Denver",
                state: "CO", zipcode: "80211",
                credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
 
@@ -115,6 +83,47 @@ class Seed
               name: Faker::Company.name + "'s #{store_descriptor}")
     end
     p "Stores Created"
+  end
+
+  def generate_store_admins
+    users = []
+    users << User.new(fullname: "Josh Cheek", email: "josh@turing.io",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "Paddington", street: "123 First Ave", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
+
+    users << User.new(fullname: "Test User", email: "test@example.com",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "tester", street: "1510 Blake St", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01" )
+
+    users << User.new(fullname: "Sam Alghanmi", email: "sam@turing.io",
+               phone: Faker::PhoneNumber.phone_number, password: "password",
+               display_name: "dr. angular", street: "1510 Blake St", city: "Denver",
+               state: "CO", zipcode: "80211",
+               credit_card: "4242424242424242", cc_expiration_date: "2015-11-01"  )
+
+    17.times do 
+      users << User.new(
+                fullname: Faker::Name.first_name + " " + Faker::Name.last_name, email: unique_email, password: 'password',
+                display_name: Faker::Name.first_name, street: Faker::Address.street_address, 
+                apt_number: Faker::Address.secondary_address,
+                city: Faker::Address.city, state: Faker::Address.state, zipcode: Faker::Address.zip,
+                credit_card:Faker::Business.credit_card_number, 
+                cc_expiration_date: Faker::Business.credit_card_expiry_date, 
+                phone: Faker::PhoneNumber.phone_number 
+              )
+    end
+    
+    stores = Store.all 
+
+    users.each_with_index do |user, index| 
+      user.store_id = stores[index].id 
+      user.save!
+    end
+    p "Store Admins Created"
   end
 
   def generate_new_items

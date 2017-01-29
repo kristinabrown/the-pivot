@@ -27,15 +27,15 @@ module BeerWorld
     
     config.action_mailer.delivery_method = :smtp 
 
-  config.action_mailer.smtp_settings = { 
-    address:              'smtp.mandrillapp.com', 
-    port:                 '587', 
-    domain:               'blogger.com', 
-    user_name:            ENV["MANDRILL_USER_NAME"], 
-    password:             ENV["MANDRILL_API_KEY"], 
-    authentication:       'plain', 
-    enable_starttls_auto: true 
-  }
+    config.action_mailer.smtp_settings = { 
+        address:              'smtp.mandrillapp.com', 
+        port:                 '587', 
+        domain:               'blogger.com', 
+        user_name:            ENV["MANDRILL_USER_NAME"], 
+        password:             ENV["MANDRILL_API_KEY"], 
+        authentication:       'plain', 
+        enable_starttls_auto: true 
+    }
 
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
